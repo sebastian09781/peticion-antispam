@@ -3,7 +3,7 @@
 **¿Te llaman a toda hora para venderte un crédito, un plan o un seguro que nunca pediste?**
 Esta página te ayuda a escribir, en unos tres minutos, un **derecho de petición** para que esa empresa borre tus datos y deje de contactarte.
 
-👉 **Úsala aquí:** `https://<tu-usuario>.github.io/peticion-antispam/` *(se activa al publicar con GitHub Pages; ver abajo)*
+👉 **Úsala aquí: https://sebastian09781.github.io/peticion-antispam/**
 
 ---
 
