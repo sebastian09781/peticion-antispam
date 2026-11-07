@@ -175,6 +175,10 @@ dialog.viewer::backdrop{background:rgba(23,32,43,.55)}
 .vbody blockquote{margin:0; padding:12px 16px; border-left:4px solid var(--blue); background:var(--surface); border-radius:0 10px 10px 0; font-family:var(--font-display); font-size:1rem; line-height:1.6}
 @media (prefers-reduced-motion: no-preference){ dialog.viewer[open]{animation:rise .3s ease-out} }
 
+.calrow{display:flex; flex-wrap:wrap; gap:8px; margin-top:8px}
+.calbtn{font:inherit; font-size:.92rem; font-weight:700; color:var(--blue); background:var(--bg); border:2px solid var(--blue); border-radius:10px; padding:6px 12px; cursor:pointer; text-decoration:none}
+.calbtn:hover{background:var(--blue-soft)}
+
 /* Confianza */
 .trust{display:flex; flex-wrap:wrap; justify-content:center; gap:8px}
 .trust a, .trust button{font:inherit; font-size:.9rem; font-weight:700; display:inline-flex; gap:6px; align-items:center; color:var(--green); background:var(--green-soft); border:0; border-radius:999px; padding:6px 14px; cursor:pointer; text-decoration:none}
@@ -252,6 +256,7 @@ footer.nav{position:fixed; left:0; right:0; bottom:0; z-index:5; background:var(
   <symbol id="i-stamp" viewBox="0 0 24 24"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4M9 14l2 2 4-4"/></symbol>
   <symbol id="i-copy" viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V4H4v12h4"/></symbol>
   <symbol id="i-send" viewBox="0 0 24 24"><path d="M21 3L10 14M21 3l-7 18-4-7-7-4z"/></symbol>
+  <symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></symbol>
   <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
   <symbol id="i-coins" viewBox="0 0 24 24"><ellipse cx="9" cy="7" rx="6" ry="3"/><path d="M3 7v5c0 1.7 2.7 3 6 3s6-1.3 6-3V7M9 15v2c0 1.7 2.7 3 6 3s6-1.3 6-3v-5c0-1.6-2.4-2.9-5.5-3"/></symbol>
   <symbol id="i-moon" viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/></symbol>
@@ -398,7 +403,9 @@ footer.nav{position:fixed; left:0; right:0; bottom:0; z-index:5; background:var(
       <li style="--c:var(--amber)"><b id="vence">15 días hábiles</b>Plazo de la empresa: 15 días hábiles. <span id="venceNota"></span> <button type="button" class="src" data-src="art15"><svg class="ico"><use href="#i-eye"/></svg>Ver</button></li>
       <li style="--c:var(--red)"><b>¿No cumplen?</b>Vuelva aquí y presente la queja ante la SIC.</li>
     </ol>
-    <div class="note info"><svg class="ico"><use href="#i-shield"/></svg><p class="small"><b>Extra:</b> inscriba su número en el <a href="https://tramitescrcom.gov.co/tramitesCRC/publico/index.xhtml" target="_blank" rel="noopener">Registro de Números Excluidos de la CRC</a>. Es gratis y las empresas deben consultarlo antes de llamar. <button type="button" class="src" data-src="circ"><svg class="ico"><use href="#i-eye"/></svg>Ver fuente</button></p></div>
+    <div class="note info"><svg class="ico"><use href="#i-calendar"/></svg><div class="small"><b>Agéndelo:</b> le recordamos el día en que vence el plazo, con el enlace para volver aquí y presentar la queja si la empresa no cumplió.
+      <div class="calrow"><a class="calbtn" id="calGoogle" target="_blank" rel="noopener">Google Calendar</a><button class="calbtn" type="button" id="calIcs">Otro calendario (.ics)</button></div></div></div>
+    <div class="note info"><svg class="ico"><use href="#i-shield"/></svg><p class="small"><b>Extra:</b> inscriba su número en el <a href="https://tramitescrcom.gov.co/tramites/comun/guia.xhtml?tit=&amp;subt=&amp;tram=ebhrEbS9qKn04bkBEBApXQ==&amp;pr1=3578LkxQ3TO3y3t5FY9/BQ==&amp;onA=S0etv8CCdHqPI8wYF9h5dtdTbijZh1Ii32LohKmsEd6aN1b0ia4DPDtKgFkbFjDn" target="_blank" rel="noopener">Registro de Números Excluidos de la CRC</a>. Es gratis y las empresas deben consultarlo antes de llamar. <button type="button" class="src" data-src="circ"><svg class="ico"><use href="#i-eye"/></svg>Ver fuente</button></p></div>
     <button class="cta alt" type="button" id="otra"><span class="ci"><svg class="ico"><use href="#i-plus"/></svg></span><span><strong>Escribir a otra empresa</strong><small>Sus datos se mantienen</small></span></button>
   </section>
 
@@ -588,8 +595,7 @@ footer.nav{position:fixed; left:0; right:0; bottom:0; z-index:5; background:var(
       v(d.ciudad, '[ciudad]') + ', ' + fechaLarga(hoy), '',
       'Señores', 'Superintendencia de Industria y Comercio', 'Delegatura para la Protección de Datos Personales', 'contactenos@sic.gov.co', '',
       'Asunto: ' + ASUNTO_SIC, '',
-      'Denunciante: ' + nombre + ', ' + doc + '.',
-      'Denunciado: ' + empresa + '.', '',
+      nombre + ', mayor de edad, identificado(a) con ' + doc + ', actuando en nombre propio y como titular de los datos, presento queja contra ' + empresa + ', por los siguientes hechos.', '',
       'HECHOS',
       num([
         'He recibido ' + canales + ' con fines comerciales o publicitarios de ' + v(d.empresa, 'la empresa') + ' en: ' + v(d.contactos, '[sus números o correos]') + ', sin haber autorizado ese uso de mis datos.',
@@ -811,7 +817,39 @@ footer.nav{position:fixed; left:0; right:0; bottom:0; z-index:5; background:var(
     // La empresa recibe hoy; el plazo corre desde el día siguiente.
     document.getElementById('vence').textContent = 'Hasta el ' + sumarHabiles(new Date(), 15).toLocaleDateString('es-CO', { weekday:'long', day:'numeric', month:'long' });
     document.getElementById('venceNota').textContent = notaFestivos();
+    document.getElementById('calGoogle').href = recordatorio().google;
   }
+
+  // ---------- Recordatorio en el calendario ----------
+  // El evento cae el primer día en que ya se puede presentar la queja (día hábil 16) y trae el enlace
+  // de regreso a la plataforma con la fecha de envío ya puesta. Solo lleva el nombre de la empresa, ningún dato personal.
+  var PLATAFORMA = 'https://sebastian09781.github.io/peticion-antispam/';
+  function recordatorio(){
+    var hoy = new Date(), dia = sumarHabiles(hoy, 16), sig = new Date(dia); sig.setDate(sig.getDate() + 1);
+    var compacta = function(d){ return iso(d).replace(/-/g, ''); };
+    var empresa = v(leer().empresa, 'la empresa');
+    var enlace = PLATAFORMA + '#sic=' + iso(hoy);
+    var titulo = 'Chao spam: ¿respondió ' + empresa + '?';
+    var detalle = 'El ' + fechaLarga(hoy) + ' le envió un reclamo a ' + empresa + ' para que borrara sus datos. ' +
+      'Hoy ya venció su plazo de 15 días hábiles. Si no le respondió, no borró sus datos o lo siguen llamando, presente la queja ante la SIC aquí: ' + enlace;
+    return {
+      google: 'https://calendar.google.com/calendar/render?action=TEMPLATE&text=' + encodeURIComponent(titulo) +
+        '&dates=' + compacta(dia) + '/' + compacta(sig) + '&details=' + encodeURIComponent(detalle),
+      ics: ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//Chao llamadas spam//ES', 'BEGIN:VEVENT',
+        'UID:' + Date.now() + '@chao-spam', 'DTSTAMP:' + new Date().toISOString().replace(/[-:]/g, '').slice(0, 15) + 'Z',
+        'DTSTART;VALUE=DATE:' + compacta(dia), 'DTEND;VALUE=DATE:' + compacta(sig),
+        'SUMMARY:' + titulo.replace(/[,;]/g, '\\$&'), 'DESCRIPTION:' + detalle.replace(/[,;]/g, '\\$&'), 'URL:' + enlace,
+        'BEGIN:VALARM', 'TRIGGER:PT9H', 'ACTION:DISPLAY', 'DESCRIPTION:' + titulo.replace(/[,;]/g, '\\$&'), 'END:VALARM',
+        'END:VEVENT', 'END:VCALENDAR'].join('\r\n')
+    };
+  }
+  document.getElementById('calGoogle').addEventListener('click', function(){ this.href = recordatorio().google; play('ding'); });
+  document.getElementById('calIcs').addEventListener('click', function(){
+    var a = document.createElement('a');
+    a.href = URL.createObjectURL(new Blob([recordatorio().ics], { type:'text/calendar' }));
+    a.download = 'recordatorio-chao-spam.ics'; document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(function(){ URL.revokeObjectURL(a.href); }, 1000); play('ding');
+  });
   function pintarQueja(){ queja.value = armarQueja(leer(), new Date()); pintarPlazo(); }
   function pintarPlazo(){
     var d = leer();
@@ -928,7 +966,9 @@ footer.nav{position:fixed; left:0; right:0; bottom:0; z-index:5; background:var(
     go(RUTAS.carta.indexOf('empresa')); play('tick');
   });
 
-  go(0);
+  // Enlace del recordatorio: #sic=AAAA-MM-DD abre directo la queja con la fecha de envío puesta.
+  var m = location.hash.match(/^#sic(?:=(\d{4}-\d{2}-\d{2}))?$/);
+  if (m) { if (m[1]) f.fechaEnvio.value = m[1]; modo = 'sic'; go(1); } else go(0);
 })();
 </script>
 </body>
