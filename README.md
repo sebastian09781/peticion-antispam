@@ -6,7 +6,8 @@
 
 <p align="center">
   <b>Pida que borren su número y dejen de llamarlo, con la ley de su lado.</b><br>
-  Servicio gratuito · Sin abogado · 5 minutos · Nada se guarda
+  Servicio gratuito · Sin abogado · 5 minutos · Nada se guarda<br>
+  Creado por <a href="https://sebastian-09781.blogspot.com/"><b>Juan Sebastián Rodríguez Casas</b></a>
 </p>
 
 <p align="center">
