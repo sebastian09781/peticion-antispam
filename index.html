@@ -433,8 +433,8 @@ footer.nav{position:fixed; left:0; right:0; bottom:0; z-index:5; background:var(
       <p>La empresa debe responderle</p>
       <p class="date" id="vence">en 15 días hábiles</p>
       <p class="small muted"><span id="venceNota"></span> Si no cumple, vuelva aquí y presente la queja ante la SIC.</p>
-      <a class="cta alt" id="calGoogle" target="_blank" rel="noopener"><svg class="ico"><use href="#i-calendar"/></svg>Agendar recordatorio</a>
-      <button class="linkbtn sm" type="button" id="calIcs">Usar otro calendario (.ics)</button>
+      <button class="cta alt" type="button" id="cal"><svg class="ico"><use href="#i-calendar"/></svg>Agregar a mi calendario</button>
+      <p class="status" id="calEstado" role="status"></p>
     </div>
 
     <div class="more-links">
@@ -679,7 +679,7 @@ footer.nav{position:fixed; left:0; right:0; bottom:0; z-index:5; background:var(
     }).catch(function(){});
   })();
   var notaFestivos = function(){ return festivosOk ? 'Ya descontamos los festivos.' : 'No pudimos cargar los festivos: revise si hay alguno, porque corre la fecha.'; };
-  window.__test = { armarCarta: armarCarta, armarQueja: armarQueja, sumarHabiles: sumarHabiles, habilesEntre: habilesEntre };
+  window.__test = { armarCarta: armarCarta, armarQueja: armarQueja, sumarHabiles: sumarHabiles, habilesEntre: habilesEntre, recordatorio: function(){ return recordatorio(); } };
 
   var empresaNit = '';
   function leer(){
@@ -753,6 +753,7 @@ footer.nav{position:fixed; left:0; right:0; bottom:0; z-index:5; background:var(
     plazoNo: 'Todavía no se ha vencido el plazo de la empresa. Podrá presentar la queja a partir del {fecha}.',
     plazoOk: 'Muy bien: ya puede presentar la queja. Adjunte su carta, su cédula y las capturas que tenga, y toque Enviar queja a la SIC.',
     error: 'Falta un dato. Revise el campo marcado.',
+    calendario: 'Listo. Se abrió su calendario con el recordatorio. Solo toque Guardar. Ese día le recordaremos volver aquí si la empresa no cumplió.',
     cuenta: 'Su correo se abrirá en unos segundos. Recuerde adjuntar: {lista}.',
     chao: '¡Chao, spam! Ya se abrió su correo. Adjunte los documentos y presione Enviar. ¡Bien hecho!'
   };
@@ -919,7 +920,7 @@ footer.nav{position:fixed; left:0; right:0; bottom:0; z-index:5; background:var(
     // La empresa recibe hoy; el plazo corre desde el día siguiente.
     document.getElementById('vence').textContent = fechaPlazo();
     document.getElementById('venceNota').textContent = notaFestivos();
-    document.getElementById('calGoogle').href = recordatorio().google;
+    document.getElementById('calEstado').textContent = '';
   }
 
   // ---------- Recordatorio en el calendario ----------
@@ -934,23 +935,37 @@ footer.nav{position:fixed; left:0; right:0; bottom:0; z-index:5; background:var(
     var titulo = 'Chao spam: ¿respondió ' + empresa + '?';
     var detalle = 'El ' + fechaLarga(hoy) + ' le envió un reclamo a ' + empresa + ' para que borrara sus datos. ' +
       'Hoy ya venció su plazo de 15 días hábiles. Si no le respondió, no borró sus datos o lo siguen llamando, presente la queja ante la SIC aquí: ' + enlace;
+    var web = 'https://calendar.google.com/calendar/render?action=TEMPLATE&text=' + encodeURIComponent(titulo) +
+      '&dates=' + compacta(dia) + '/' + compacta(sig) + '&details=' + encodeURIComponent(detalle);
+    var utc = function(d){ return Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()); }; // eventos de día completo van en UTC
     return {
-      google: 'https://calendar.google.com/calendar/render?action=TEMPLATE&text=' + encodeURIComponent(titulo) +
-        '&dates=' + compacta(dia) + '/' + compacta(sig) + '&details=' + encodeURIComponent(detalle),
+      // Android: abre la pantalla "Nuevo evento" de la app de calendario del teléfono, ya llena.
+      android: 'intent:#Intent;action=android.intent.action.INSERT;type=vnd.android.cursor.item/event;' +
+        'S.title=' + encodeURIComponent(titulo) + ';S.description=' + encodeURIComponent(detalle) +
+        ';l.beginTime=' + utc(dia) + ';l.endTime=' + utc(sig) + ';B.allDay=true;S.browser_fallback_url=' + encodeURIComponent(web) + ';end',
       ics: ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//Chao llamadas spam//ES', 'BEGIN:VEVENT',
         'UID:' + Date.now() + '@chao-spam', 'DTSTAMP:' + new Date().toISOString().replace(/[-:]/g, '').slice(0, 15) + 'Z',
         'DTSTART;VALUE=DATE:' + compacta(dia), 'DTEND;VALUE=DATE:' + compacta(sig),
         'SUMMARY:' + titulo.replace(/[,;]/g, '\\$&'), 'DESCRIPTION:' + detalle.replace(/[,;]/g, '\\$&'), 'URL:' + enlace,
         'BEGIN:VALARM', 'TRIGGER:PT9H', 'ACTION:DISPLAY', 'DESCRIPTION:' + titulo.replace(/[,;]/g, '\\$&'), 'END:VALARM',
-        'END:VEVENT', 'END:VCALENDAR'].join('\r\n')
+        'END:VEVENT', 'END:VCALENDAR'].map(function(l){ return l.match(/.{1,70}/g).join('\r\n '); }).join('\r\n') // líneas de máx. 75 (RFC 5545)
     };
   }
-  document.getElementById('calGoogle').addEventListener('click', function(){ this.href = recordatorio().google; play('ding'); });
-  document.getElementById('calIcs').addEventListener('click', function(){
-    var a = document.createElement('a');
-    a.href = URL.createObjectURL(new Blob([recordatorio().ics], { type:'text/calendar' }));
-    a.download = 'recordatorio-chao-spam.ics'; document.body.appendChild(a); a.click(); a.remove();
-    setTimeout(function(){ URL.revokeObjectURL(a.href); }, 1000); play('ding');
+  // Un solo botón: cada sistema abre su propio calendario.
+  var esAndroid = /Android/i.test(navigator.userAgent);
+  var esIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+  document.getElementById('cal').addEventListener('click', function(){
+    var r = recordatorio();
+    if (esAndroid) location.href = r.android;
+    else if (esIOS) location.href = 'data:text/calendar;charset=utf-8,' + encodeURIComponent(r.ics); // iPhone muestra "Agregar al calendario"
+    else { // computador: el archivo se abre con Outlook o Calendario
+      var a = document.createElement('a');
+      a.href = URL.createObjectURL(new Blob([r.ics], { type:'text/calendar' }));
+      a.download = 'recordatorio-chao-spam.ics'; document.body.appendChild(a); a.click(); a.remove();
+      setTimeout(function(){ URL.revokeObjectURL(a.href); }, 1000);
+    }
+    document.getElementById('calEstado').textContent = esAndroid || esIOS ? '✓ Toque "Guardar" en su calendario.' : '✓ Abra el archivo descargado para guardarlo en su calendario.';
+    play('ding'); hablar(VOZ.calendario);
   });
   function pintarQueja(){ queja.value = armarQueja(leer(), new Date()); pintarPlazo(); }
   function pintarPlazo(){

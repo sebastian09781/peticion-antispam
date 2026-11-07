@@ -103,7 +103,7 @@ La página cuenta los 15 días hábiles **descontando los festivos de Colombia**
 ## Pasos complementarios
 
 - **Registro de Números Excluidos (RNE):** es gratis y lo maneja la CRC. Inscribe tu número para frenar también a las empresas que aún no te han llamado. Se hace en el [formulario de la CRC](https://tramitescrcom.gov.co/tramites/comun/guia.xhtml?tit=&subt=&tram=ebhrEbS9qKn04bkBEBApXQ==&pr1=3578LkxQ3TO3y3t5FY9/BQ==&onA=S0etv8CCdHqPI8wYF9h5dtdTbijZh1Ii32LohKmsEd6aN1b0ia4DPDtKgFkbFjDn).
-- **Recordatorio en el calendario:** después de enviar la carta, la página ofrece agendar (Google Calendar o archivo `.ics` para cualquier calendario) el día en que vence el plazo. El evento trae el enlace `…/peticion-antispam/#sic=AAAA-MM-DD`, que abre directo la queja ante la SIC con la fecha de envío ya puesta. Solo incluye el nombre de la empresa, ningún dato personal.
+- **Recordatorio en el calendario:** un solo botón, "Agregar a mi calendario", abre **el calendario propio del teléfono** con el evento ya lleno el día en que vence el plazo: en Android, la app de calendario (si no hay, la versión web); en iPhone, el Calendario de iOS; en computador, Outlook o Calendario. El evento trae el enlace `…/peticion-antispam/#sic=AAAA-MM-DD`, que abre directo la queja ante la SIC con la fecha de envío ya puesta. Solo incluye el nombre de la empresa, ningún dato personal.
 - **Queja ante la SIC:** está en la misma página (botón "Ya envié la carta").
 
 ## Publicarla con GitHub Pages (2 minutos)
