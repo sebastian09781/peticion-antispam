@@ -146,8 +146,11 @@ details.more ol{margin:0 0 10px; padding-left:20px}
 
 /* Carta */
 .paper{background:#fff; border:1px solid var(--line); border-radius:14px; box-shadow:0 14px 30px -22px rgba(23,32,43,.55)}
-.paper textarea{display:block; width:100%; height:42vh; min-height:260px; border:0; resize:vertical; padding:16px 18px; font-family:var(--font-display); font-size:.98rem; line-height:1.65; color:var(--ink); background:transparent; border-radius:14px}
-.paper textarea:focus{outline:none}
+.paper .doc{height:46vh; min-height:280px; overflow-y:auto; padding:18px 20px; font-family:var(--font-display); font-size:.98rem; line-height:1.6; color:var(--ink); border-radius:14px}
+.paper .doc:focus{outline:2px solid var(--blue-soft)}
+.paper .doc p{margin:0 0 12px}
+.paper .doc h4{font-family:var(--font-body); font-size:.82rem; letter-spacing:.08em; color:var(--blue); margin:16px 0 6px}
+.paper .doc .it{margin:0 0 6px; padding-left:2px}
 .sendrow{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px}
 .cta{font:inherit; display:flex; gap:12px; align-items:center; text-align:left; border-radius:14px; padding:12px 16px; cursor:pointer; border:0; text-decoration:none; min-height:60px}
 .cta .ci{width:40px; height:40px; border-radius:12px; display:grid; place-items:center; font-size:22px; flex:none}
@@ -197,6 +200,32 @@ details.peek[open] summary{margin-bottom:8px}
 .deadline{background:var(--amber-soft); border-radius:18px; padding:18px; text-align:center; display:flex; flex-direction:column; align-items:center; gap:4px}
 .deadline .date{font-family:var(--font-display); font-size:1.45rem; font-weight:650; color:var(--amber); line-height:1.25}
 .deadline .cta.alt{margin-top:10px; width:100%; justify-content:center; gap:10px; font-weight:700; background:var(--bg); min-height:50px}
+/* Botones principales: degradado suave en movimiento y un brillo que pasa de vez en cuando, para invitar a tocarlos */
+.cta.main, .cta.sic, .btn.next{position:relative; overflow:hidden; background-size:220% 100%; transition:transform .15s ease, box-shadow .3s ease}
+.cta.main{background-image:linear-gradient(110deg, var(--blue) 0%, var(--violet) 50%, var(--blue) 100%)}
+.cta.sic{background-image:linear-gradient(110deg, var(--red) 0%, var(--amber) 50%, var(--red) 100%)}
+footer.nav .btn.next{background-color:var(--blue); background-image:linear-gradient(110deg, var(--blue) 0%, #2f74a8 50%, var(--blue) 100%); background-size:220% 100%; border-color:transparent}
+footer.nav .btn.next.ready{background-image:linear-gradient(110deg, var(--blue) 0%, var(--violet) 50%, var(--blue) 100%); box-shadow:0 10px 24px -14px var(--violet)}
+.cta.main::after, .cta.sic::after, .btn.next.ready::after{content:""; position:absolute; inset:0; pointer-events:none;
+  background:linear-gradient(100deg, transparent 35%, rgba(255,255,255,.32) 50%, transparent 65%); transform:translateX(-130%)}
+.cta.main:active, .cta.sic:active, .btn.next:active, .iconcta:active{transform:scale(.97)}
+@media (prefers-reduced-motion: no-preference){
+  .cta.main, .cta.sic, .btn.next.ready{animation:flow 6s ease-in-out infinite, glow 3s ease-in-out infinite}
+  .cta.main::after, .cta.sic::after, .btn.next.ready::after{animation:sheen 5s ease-in-out 1.5s infinite}
+}
+@keyframes flow{0%,100%{background-position:0% 50%} 50%{background-position:100% 50%}}
+@keyframes glow{0%,100%{box-shadow:0 10px 22px -16px var(--blue)} 50%{box-shadow:0 14px 30px -12px var(--violet)}}
+@keyframes sheen{0%,72%{transform:translateX(-130%)} 100%{transform:translateX(130%)}}
+
+/* Pantalla de gracias */
+.thanks-mark{width:88px; height:88px; border-radius:50%; background:var(--green); display:grid; place-items:center; box-shadow:0 16px 34px -16px var(--green)}
+.thanks-mark svg{width:56px; height:56px; fill:none; stroke:#fff; stroke-width:3; stroke-linecap:round; stroke-linejoin:round; stroke-dasharray:30}
+@media (prefers-reduced-motion: no-preference){
+  .step:not([hidden]) .thanks-mark{animation:byePhone .9s cubic-bezier(.2,.9,.3,1.3) both}
+  .step:not([hidden]) .thanks-mark svg{animation:draw .8s ease-out .35s both}
+}
+@keyframes draw{from{stroke-dashoffset:30}}
+
 /* Lista de municipios propia (en lugar del desplegable del navegador) */
 .combo{position:relative}
 .fields:has(.combo){position:relative; z-index:5} /* la animación de entrada crea capas: la lista debe quedar encima */
@@ -214,7 +243,6 @@ details.peek[open] summary{margin-bottom:8px}
 .chipbtn{font:inherit; font-size:.92rem; font-weight:700; display:inline-flex; gap:6px; align-items:center; align-self:center; color:var(--blue); background:var(--blue-soft); border:0; border-radius:999px; padding:7px 14px; cursor:pointer; text-decoration:none}
 .chips-row{display:flex; flex-wrap:wrap; gap:8px; justify-content:center}
 .deadline .big-ico{font-size:2rem; color:var(--amber)}
-.paper textarea{height:46vh}
 .step > .qnum{margin-bottom:-10px}
 .more-links{display:flex; flex-direction:column; gap:8px}
 .more-links a, .more-links button{font:inherit; display:flex; gap:12px; align-items:center; text-align:left; padding:12px 14px; border:1px solid var(--line); border-radius:14px; background:var(--bg); color:var(--ink); text-decoration:none; cursor:pointer}
@@ -286,7 +314,7 @@ footer.nav{position:fixed; left:0; right:0; bottom:0; z-index:10; background:var
   .flip, .flip .in{min-height:136px}
   .timeline{grid-template-columns:minmax(0,1fr)}
 }
-@media (max-width: 600px){ .paper textarea{height:50vh; min-height:300px} }
+@media (max-width: 600px){ .paper .doc{height:52vh; min-height:300px; padding:16px} }
 </style>
 </head>
 <body>
@@ -318,6 +346,7 @@ footer.nav{position:fixed; left:0; right:0; bottom:0; z-index:10; background:var
   <symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol>
   <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
   <symbol id="i-ext" viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-9 9M18 14v6H4V6h6"/></symbol>
+  <symbol id="i-share" viewBox="0 0 24 24"><circle cx="6" cy="12" r="2.5"/><circle cx="18" cy="6" r="2.5"/><circle cx="18" cy="18" r="2.5"/><path d="M8.2 10.8l7.6-3.6M8.2 13.2l7.6 3.6"/></symbol>
   <symbol id="i-pencil" viewBox="0 0 24 24"><path d="M4 20l4-1 11-11-3-3L5 16z"/><path d="M14 6l3 3"/></symbol>
   <symbol id="i-clip" viewBox="0 0 24 24"><path d="M21 11l-8.5 8.5a5 5 0 0 1-7-7L14 4a3.5 3.5 0 0 1 5 5l-8.5 8.5a2 2 0 0 1-3-3L15 7"/></symbol>
   <symbol id="i-headset" viewBox="0 0 24 24"><path d="M4 14v-2a8 8 0 0 1 16 0v2"/><rect x="3" y="14" width="4" height="6" rx="1.5"/><rect x="17" y="14" width="4" height="6" rx="1.5"/></symbol>
@@ -357,7 +386,7 @@ footer.nav{position:fixed; left:0; right:0; bottom:0; z-index:10; background:var
       <p class="foot"><svg class="ico"><use href="#i-lock"/></svg>Nada se guarda ·
         <a href="https://github.com/sebastian09781/peticion-antispam" target="_blank" rel="noopener">Código abierto</a> ·
         <button type="button" class="linkbtn sm" data-src="politica">Privacidad</button></p>
-      <p class="credit">Creado por Juan Sebastián Rodríguez Casas. Herramienta educativa: no reemplaza a un abogado.</p>
+      <p class="credit">Servicio gratuito creado por <a href="https://sebastian-09781.blogspot.com/" target="_blank" rel="noopener">Juan Sebastián Rodríguez Casas</a>. No reemplaza la asesoría de un abogado.</p>
     </div>
   </section>
 
@@ -444,7 +473,7 @@ footer.nav{position:fixed; left:0; right:0; bottom:0; z-index:10; background:var
   <section class="step" data-id="carta" style="--c:var(--green);--cs:var(--green-soft)" hidden>
     <div class="qhead"><div class="badge"><svg class="ico"><use href="#i-doc"/></svg></div>
       <div><p class="qnum">1 · Léala</p><h2 class="qtext">Su carta</h2></div></div>
-    <div class="paper"><textarea id="carta" aria-label="Su carta a la empresa" spellcheck="true"></textarea></div>
+    <div class="paper"><div class="doc" id="carta" contenteditable="true" role="textbox" aria-multiline="true" aria-label="Su carta a la empresa" spellcheck="true"></div></div>
     <p class="hint"><svg class="ico" style="color:var(--blue)"><use href="#i-pencil"/></svg>Puede tocar el texto para corregirlo.</p>
 
     <p class="qnum" style="color:var(--green)">2 · Envíela</p>
@@ -485,7 +514,7 @@ footer.nav{position:fixed; left:0; right:0; bottom:0; z-index:10; background:var
     <div class="note" id="plazo" hidden></div>
 
     <p class="qnum">1 · Léala</p>
-    <div class="paper"><textarea id="queja" aria-label="Su queja ante la SIC" spellcheck="true"></textarea></div>
+    <div class="paper"><div class="doc" id="queja" contenteditable="true" role="textbox" aria-multiline="true" aria-label="Su queja ante la SIC" spellcheck="true"></div></div>
     <p class="hint"><svg class="ico" style="color:var(--blue)"><use href="#i-pencil"/></svg>Puede tocar el texto para corregirlo.</p>
 
     <p class="qnum">2 · Envíela</p>
@@ -498,6 +527,24 @@ footer.nav{position:fixed; left:0; right:0; bottom:0; z-index:10; background:var
     <div class="chips-row">
       <a class="chipbtn" href="https://servicioslinea.sic.gov.co/servilinea/pqrsf/" target="_blank" rel="noopener"><svg class="ico"><use href="#i-ext"/></svg>Formulario web SIC</a>
       <button type="button" class="chipbtn" data-src="lista:sic9,requisito,art16,circ,canales"><svg class="ico"><use href="#i-scale"/></svg>Normas</button>
+    </div>
+  </section>
+
+  <!-- GRACIAS -->
+  <section class="step" data-id="gracias" hidden>
+    <div class="hero">
+      <div class="thanks-mark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>
+      <h1>¡Gracias! Ya hizo su parte.</h1>
+      <p class="lead" id="gTexto"></p>
+      <button class="cta main big" type="button" id="gCal"><svg class="ico"><use href="#i-calendar"/></svg>Agregar a mi calendario</button>
+      <div class="more-links" style="width:100%">
+        <button type="button" id="gShare"><svg class="ico"><use href="#i-share"/></svg><b>Compartir con alguien a quien también llamen</b></button>
+        <a href="https://tramitescrcom.gov.co/tramites/comun/guia.xhtml?tit=&amp;subt=&amp;tram=ebhrEbS9qKn04bkBEBApXQ==&amp;pr1=3578LkxQ3TO3y3t5FY9/BQ==&amp;onA=S0etv8CCdHqPI8wYF9h5dtdTbijZh1Ii32LohKmsEd6aN1b0ia4DPDtKgFkbFjDn" target="_blank" rel="noopener"><svg class="ico"><use href="#i-shield"/></svg><b>Bloquear mi número en la CRC</b></a>
+        <button type="button" id="gOtra"><svg class="ico"><use href="#i-plus"/></svg><b>Escribir a otra empresa</b></button>
+      </div>
+      <p class="status" id="gEstado" role="status"></p>
+      <button class="linkbtn" type="button" id="gInicio">Volver al inicio</button>
+      <p class="credit">Chao llamadas spam · Servicio gratuito creado por <a href="https://sebastian-09781.blogspot.com/" target="_blank" rel="noopener">Juan Sebastián Rodríguez Casas</a></p>
     </div>
   </section>
 
@@ -550,7 +597,7 @@ footer.nav{position:fixed; left:0; right:0; bottom:0; z-index:10; background:var
   };
   // Texto fijo escrito aquí (no viene de afuera), por eso se inserta como HTML.
   FUENTES.politica = { t:'Privacidad y condiciones de uso', url:'https://github.com/sebastian09781/peticion-antispam', link:'Revisar el código fuente en GitHub', html:
-    '<h3>¿Qué es esto?</h3><p>Una herramienta educativa, gratuita y de código abierto (licencia MIT). No es asesoría jurídica y no tiene relación con la SIC ni con las empresas mencionadas.</p>' +
+    '<h3>¿Qué es esto?</h3><p>Un servicio gratuito y de código abierto (licencia MIT) que le ayuda a hacer el trámite de forma fácil. No es asesoría jurídica y no tiene relación con la SIC ni con las empresas mencionadas. Lo creó <a href="https://sebastian-09781.blogspot.com/" target="_blank" rel="noopener">Juan Sebastián Rodríguez Casas</a>.</p>' +
     '<h3>Sus datos no se guardan</h3><ul><li>Lo que usted escribe se queda en su celular o computador. No hay servidor propio, base de datos, cuentas, cookies ni analítica.</li>' +
     '<li>Al cerrar la pestaña, todo se borra. Nosotros nunca vemos su carta.</li>' +
     '<li>El correo sale desde <b>su propio correo</b>: usted decide si lo envía, a quién y cuándo.</li></ul>' +
@@ -598,7 +645,15 @@ footer.nav{position:fixed; left:0; right:0; bottom:0; z-index:10; background:var
   function lista(items){ return items.length < 2 ? items.join('') : items.slice(0, -1).join(', ') + ' y ' + items[items.length - 1]; }
   var v = function(x, ph){ return (x || '').trim() || ph; };
   var fechaLarga = function(d){ return d.toLocaleDateString('es-CO', { day:'numeric', month:'long', year:'numeric' }); };
-  var num = function(arr){ return arr.map(function(t, i){ return (i + 1) + '. ' + t; }).join('\n'); };
+  // La carta se arma en HTML con formato (negrillas, cursivas). Todo dato que escribe la persona pasa por e().
+  var e = function(s){ return String(s).replace(/[&<>"]/g, function(c){ return { '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;' }[c]; }); };
+  var ve = function(x, ph){ return e(v(x, ph)); };
+  var P = function(h){ return '<p>' + h + '</p>'; };
+  var sec = function(titulo, items, numerar){
+    return '<h4>' + titulo + '</h4>' + items.map(function(t, i){ return '<div class="it">' + (numerar ? '<b>' + (i + 1) + '.</b> ' : '• ') + t + '</div>'; }).join('');
+  };
+  // Jurisprudencia verificada en la relatoría de la Corte Constitucional (ver FUENTES). Se cita en cursiva.
+  var JURIS = [];
 
   function armarCarta(d, hoy){
     var canales = lista(d.canales.length ? d.canales : ['llamadas']);
@@ -606,50 +661,51 @@ footer.nav{position:fixed; left:0; right:0; bottom:0; z-index:10; background:var
     var hechos = [
       { nunca:'No tengo ni he tenido ningún contrato o relación comercial con su compañía.',
         antes:'Fui cliente de su compañía, pero esa relación ya terminó.',
-        actual:'Soy cliente de su compañía, pero no deseo recibir contactos con fines comerciales o publicitarios.' }[d.relacion],
-      'He recibido ' + canales + ' con fines comerciales o publicitarios en: ' + v(d.contactos, '[sus números o correos]') + '.',
+        actual:'Soy cliente de su compañía, pero <b>no deseo recibir contactos con fines comerciales o publicitarios</b>.' }[d.relacion],
+      'He recibido ' + e(canales) + ' con fines comerciales o publicitarios en: <b>' + ve(d.contactos, '[sus números o correos]') + '</b>.',
       cliente ? 'Revoco cualquier autorización que haya dado para usar mis datos con fines comerciales, publicitarios o de mercadeo.'
-              : 'No recuerdo haber dado autorización previa, expresa e informada para que su compañía trate mis datos.'
+              : 'No recuerdo haber dado autorización <i>previa, expresa e informada</i> para que su compañía trate mis datos.'
     ];
     var peticiones = cliente ? [
-      'Revocatoria. Que se tenga por revocada mi autorización para usar mis datos con fines comerciales, publicitarios o de mercadeo, y que mis datos se usen solo para la ejecución de mi contrato.',
-      'Terceros. Que se ordene lo mismo a los encargados, aliados, call centers y demás terceros a quienes hayan entregado mis datos, y se me informe quiénes son.',
-      'Contacto comercial. Que se abstengan de contactarme con fines comerciales o publicitarios por cualquier canal (Ley 2300 de 2023).',
-      'Certificación. Que se me confirme por escrito que la solicitud fue atendida.'
+      '<b>Revocatoria.</b> Que se tenga por revocada mi autorización para usar mis datos con fines comerciales, publicitarios o de mercadeo, y que mis datos se usen solo para la ejecución de mi contrato.',
+      '<b>Terceros.</b> Que se ordene lo mismo a los encargados, aliados, <i>call centers</i> y demás terceros a quienes hayan entregado mis datos, y se me informe quiénes son.',
+      '<b>Contacto comercial.</b> Que se abstengan de contactarme con fines comerciales o publicitarios por cualquier canal (<i>Ley 2300 de 2023</i>).',
+      '<b>Certificación.</b> Que se me confirme por escrito que la solicitud fue atendida.'
     ] : [
-      'Supresión. Que se supriman de forma total y definitiva mis datos personales (nombre, documento, teléfonos, correos, dirección y cualquier otro) de todas sus bases de datos.',
-      'Revocatoria. Que se tenga por revocada cualquier autorización que hubiere otorgado para el tratamiento de mis datos.',
-      'Terceros. Que se ordene la misma supresión a los encargados, aliados, call centers y demás terceros a quienes hayan entregado mis datos, y se me informe quiénes son.',
-      'Autorización. Que se me entregue copia de la autorización que, según ustedes, otorgué para el uso de mis datos con fines comerciales o publicitarios, y se me informe cómo y cuándo obtuvieron mis datos (art. 8, lit. b, Ley 1581 de 2012).',
-      'Contacto comercial. Que se abstengan de contactarme con fines comerciales o publicitarios por cualquier canal (Ley 2300 de 2023).',
-      'Conservación legal. Si una norma les obliga a conservar algún dato, que se indique cuál norma, qué dato, para qué y por cuánto tiempo, y que ese dato se bloquee para cualquier otro uso.',
-      'Certificación. Que se me expida constancia escrita de la supresión realizada.'
+      '<b>Supresión.</b> Que se supriman de forma total y definitiva mis datos personales (nombre, documento, teléfonos, correos, dirección y cualquier otro) de todas sus bases de datos.',
+      '<b>Revocatoria.</b> Que se tenga por revocada cualquier autorización que hubiere otorgado para el tratamiento de mis datos.',
+      '<b>Terceros.</b> Que se ordene la misma supresión a los encargados, aliados, <i>call centers</i> y demás terceros a quienes hayan entregado mis datos, y se me informe quiénes son.',
+      '<b>Autorización.</b> Que se me entregue copia de la autorización que, según ustedes, otorgué para el uso de mis datos con fines comerciales o publicitarios, y se me informe cómo y cuándo obtuvieron mis datos (<i>art. 8, lit. b, Ley 1581 de 2012</i>).',
+      '<b>Contacto comercial.</b> Que se abstengan de contactarme con fines comerciales o publicitarios por cualquier canal (<i>Ley 2300 de 2023</i>).',
+      '<b>Conservación legal.</b> Si una norma les obliga a conservar algún dato, que se indique cuál norma, qué dato, para qué y por cuánto tiempo, y que ese dato se bloquee para cualquier otro uso.',
+      '<b>Certificación.</b> Que se me expida constancia escrita de la supresión realizada.'
     ];
-    var nombre = v(d.nombre, '[su nombre completo]');
-    var doc = d.tipoDoc + ' n.° ' + v(d.doc, '[número]');
+    var nombre = ve(d.nombre, '[su nombre completo]');
+    var doc = e(d.tipoDoc) + ' n.° ' + ve(d.doc, '[número]');
     var asunto = cliente
       ? 'Derecho de petición – revocatoria de autorización para fines comerciales'
       : 'Derecho de petición – supresión de datos personales y revocatoria de autorización';
-    var cuerpo = [
-      v(d.ciudad, '[ciudad]') + ', ' + fechaLarga(hoy), '',
-      'Señores', v(d.empresa, '[RAZÓN SOCIAL DE LA EMPRESA]'), 'Área de Protección de Datos Personales', 'E. S. D.', '',
-      'Asunto: ' + asunto + ' (art. 23 C. P.; arts. 8, 9 y 15 de la Ley 1581 de 2012; Ley 1755 de 2015).', '',
-      nombre + ', mayor de edad, identificado(a) con ' + doc + ', actuando en nombre propio y como titular de los datos, presento el siguiente reclamo.', '',
-      'HECHOS', num(hechos), '',
-      'PETICIONES', num(peticiones), '',
-      'FUNDAMENTOS DE DERECHO',
-      '- Artículos 15 y 23 de la Constitución Política.',
-      '- Ley Estatutaria 1581 de 2012: art. 8 (derechos del titular), art. 9 (autorización previa) y art. 15 (reclamos).',
-      '- Decreto 1074 de 2015, capítulo 25 (reglamentario de la Ley 1581).',
-      '- Ley 1755 de 2015 (derecho de petición).',
-      '- Ley 2300 de 2023, que limita los contactos con fines comerciales o publicitarios.', '',
-      'TÉRMINO',
-      'Solicito respuesta dentro de los quince (15) días hábiles previstos en el artículo 15 de la Ley 1581 de 2012. Si no recibo respuesta de fondo, presentaré queja ante la Superintendencia de Industria y Comercio (art. 16, Ley 1581 de 2012).', '',
-      'ANEXOS', '- Copia de mi documento de identidad.', '',
-      'NOTIFICACIONES', 'Recibo respuesta en el correo ' + v(d.correo, '[su correo]') + '.', '',
-      'Atentamente,', '', nombre, doc
-    ].join('\n');
-    return { asunto: asunto, cuerpo: cuerpo };
+    var html = [
+      P(ve(d.ciudad, '[ciudad]') + ', ' + fechaLarga(hoy)),
+      P('Señores<br><b>' + ve(d.empresa, '[RAZÓN SOCIAL DE LA EMPRESA]') + '</b><br>Área de Protección de Datos Personales<br>E. S. D.'),
+      P('<b>Asunto:</b> ' + asunto + ' (<i>art. 23 C. P.; arts. 8, 9 y 15 de la Ley 1581 de 2012; Ley 1755 de 2015</i>).'),
+      P('<b>' + nombre + '</b>, mayor de edad, identificado(a) con ' + doc + ', actuando en nombre propio y como titular de los datos, presento el siguiente <b>reclamo</b>.'),
+      sec('HECHOS', hechos, true),
+      sec('PETICIONES', peticiones, true),
+      sec('FUNDAMENTOS DE DERECHO', [
+        'Artículos 15 y 23 de la <i>Constitución Política</i>.',
+        '<i>Ley Estatutaria 1581 de 2012</i>: art. 8 (derechos del titular), art. 9 (autorización previa) y art. 15 (reclamos).',
+        '<i>Decreto 1074 de 2015</i>, capítulo 25 (reglamentario de la Ley 1581).',
+        '<i>Ley 1755 de 2015</i> (derecho de petición).',
+        '<i>Ley 2300 de 2023</i>, que limita los contactos con fines comerciales o publicitarios.'
+      ].concat(JURIS.map(function(j){ return j.carta; })), false),
+      sec('TÉRMINO', ['Solicito respuesta dentro de los <b>quince (15) días hábiles</b> previstos en el artículo 15 de la Ley 1581 de 2012. Si no recibo respuesta de fondo, presentaré queja ante la Superintendencia de Industria y Comercio (<i>art. 16, Ley 1581 de 2012</i>).'], false).replace('• ', ''),
+      sec('ANEXOS', ['Copia de mi documento de identidad.'], false),
+      sec('NOTIFICACIONES', ['Recibo respuesta en el correo ' + ve(d.correo, '[su correo]') + '.'], false).replace('• ', ''),
+      P('Atentamente,'),
+      P('<b>' + nombre + '</b><br>' + doc)
+    ].join('');
+    return { asunto: asunto, html: html };
   }
 
   // Asunto que pide la SIC en su guía (pregunta 9).
@@ -657,44 +713,54 @@ footer.nav{position:fixed; left:0; right:0; bottom:0; z-index:10; background:var
   function armarQueja(d, hoy){
     var canales = lista(d.canales.length ? d.canales : ['llamadas']);
     var envio = d.fechaEnvio ? fechaLarga(new Date(d.fechaEnvio + 'T12:00:00')) : '[fecha en que envió la carta]';
-    var empresa = v(d.empresa, '[RAZÓN SOCIAL DE LA EMPRESA]') + (d.nit ? ', NIT ' + d.nit : '');
-    var canal = d.correoEmpresa ? 'al correo ' + d.correoEmpresa : 'por el canal de atención de la empresa';
+    var emp = ve(d.empresa, 'la empresa');
+    var empresa = '<b>' + ve(d.empresa, '[RAZÓN SOCIAL DE LA EMPRESA]') + '</b>' + (d.nit ? ', NIT ' + e(d.nit) : '');
+    var canal = d.correoEmpresa ? 'al correo ' + e(d.correoEmpresa) : 'por el canal de atención de la empresa';
     var resultado = {
       silencio: 'Han pasado más de quince (15) días hábiles desde que la empresa recibió mi reclamo y no he recibido respuesta.',
       mala: 'La empresa respondió, pero no suprimió mis datos ni acreditó contar con mi autorización previa, expresa e informada.',
       siguen: 'Pese a mi reclamo, la empresa sigue contactándome con fines comerciales o publicitarios.'
     }[d.situacion];
-    var nombre = v(d.nombre, '[su nombre completo]');
-    var doc = d.tipoDoc + ' n.° ' + v(d.doc, '[número]');
+    var nombre = ve(d.nombre, '[su nombre completo]');
+    var doc = e(d.tipoDoc) + ' n.° ' + ve(d.doc, '[número]');
     return [
-      v(d.ciudad, '[ciudad]') + ', ' + fechaLarga(hoy), '',
-      'Señores', 'Superintendencia de Industria y Comercio', 'Delegatura para la Protección de Datos Personales', 'contactenos@sic.gov.co', '',
-      'Asunto: ' + ASUNTO_SIC, '',
-      nombre + ', mayor de edad, identificado(a) con ' + doc + ', actuando en nombre propio y como titular de los datos, presento queja contra ' + empresa + ', por los siguientes hechos.', '',
-      'HECHOS',
-      num([
-        'He recibido ' + canales + ' con fines comerciales o publicitarios de ' + v(d.empresa, 'la empresa') + ' en: ' + v(d.contactos, '[sus números o correos]') + ', sin haber autorizado ese uso de mis datos.',
-        'El ' + envio + ' presenté reclamo ante la empresa ' + canal + ', en el que pedí la supresión de mis datos, la revocatoria de cualquier autorización y copia de la autorización que dicen tener.',
-        resultado
-      ]), '',
-      'PRETENSIONES',
-      num([
-        'Que se investigue a ' + v(d.empresa, 'la empresa') + ' por el tratamiento de mis datos personales sin autorización y por no atender mi reclamo.',
-        'Que se le ordene suprimir mis datos personales de sus bases de datos y de las de los terceros a quienes los haya entregado (arts. 21 y 22, Ley 1581 de 2012).',
-        'Que se le ordene abstenerse de contactarme con fines comerciales o publicitarios (Ley 2300 de 2023).',
-        'Que se impongan las sanciones previstas en el artículo 23 de la Ley 1581 de 2012.'
-      ]), '',
-      'FUNDAMENTOS',
-      '- Ley Estatutaria 1581 de 2012: arts. 8, 9, 15, 16, 21, 22 y 23.',
-      '- Ley 2300 de 2023.',
-      '- Cumplo el requisito de procedibilidad del artículo 16 de la Ley 1581 de 2012: presenté reclamo previo ante la empresa.', '',
-      'ANEXOS',
-      '- Copia del reclamo enviado a la empresa el ' + envio + '.',
-      '- Copia de mi documento de identidad.',
-      '- [Opcional] Capturas de las llamadas, mensajes o de la respuesta de la empresa.', '',
-      'NOTIFICACIONES', 'Recibo notificaciones en el correo ' + v(d.correo, '[su correo]') + '.', '',
-      'Atentamente,', '', nombre, doc
-    ].join('\n');
+      P(ve(d.ciudad, '[ciudad]') + ', ' + fechaLarga(hoy)),
+      P('Señores<br><b>Superintendencia de Industria y Comercio</b><br>Delegatura para la Protección de Datos Personales<br>contactenos@sic.gov.co'),
+      P('<b>Asunto:</b> ' + ASUNTO_SIC),
+      P('<b>' + nombre + '</b>, mayor de edad, identificado(a) con ' + doc + ', actuando en nombre propio y como titular de los datos, presento <b>queja</b> contra ' + empresa + ', por los siguientes hechos.'),
+      sec('HECHOS', [
+        'He recibido ' + e(canales) + ' con fines comerciales o publicitarios de ' + emp + ' en: <b>' + ve(d.contactos, '[sus números o correos]') + '</b>, sin haber autorizado ese uso de mis datos.',
+        'El <b>' + envio + '</b> presenté reclamo ante la empresa ' + canal + ', en el que pedí la supresión de mis datos, la revocatoria de cualquier autorización y copia de la autorización que dicen tener.',
+        '<b>' + resultado + '</b>'
+      ], true),
+      sec('PRETENSIONES', [
+        'Que se investigue a ' + emp + ' por el tratamiento de mis datos personales sin autorización y por no atender mi reclamo.',
+        'Que se le ordene <b>suprimir mis datos personales</b> de sus bases de datos y de las de los terceros a quienes los haya entregado (<i>arts. 21 y 22, Ley 1581 de 2012</i>).',
+        'Que se le ordene <b>abstenerse de contactarme</b> con fines comerciales o publicitarios (<i>Ley 2300 de 2023</i>).',
+        'Que se impongan las sanciones previstas en el <i>artículo 23 de la Ley 1581 de 2012</i>.'
+      ], true),
+      sec('FUNDAMENTOS', [
+        '<i>Ley Estatutaria 1581 de 2012</i>: arts. 8, 9, 15, 16, 21, 22 y 23.',
+        '<i>Ley 2300 de 2023</i>.',
+        'Cumplo el <b>requisito de procedibilidad</b> del artículo 16 de la Ley 1581 de 2012: presenté reclamo previo ante la empresa.'
+      ].concat(JURIS.map(function(j){ return j.carta; })), false),
+      sec('ANEXOS', [
+        'Copia del reclamo enviado a la empresa el ' + envio + '.',
+        'Copia de mi documento de identidad.',
+        '<i>[Opcional]</i> Capturas de las llamadas, mensajes o de la respuesta de la empresa.'
+      ], false),
+      sec('NOTIFICACIONES', ['Recibo notificaciones en el correo ' + ve(d.correo, '[su correo]') + '.'], false).replace('• ', ''),
+      P('Atentamente,'),
+      P('<b>' + nombre + '</b><br>' + doc)
+    ].join('');
+  }
+
+  // Texto plano del documento (para el correo): respeta lo que la persona haya editado en pantalla.
+  function plano(el){
+    return [].map.call(el.children, function(n){
+      var t = n.innerText.trim();
+      return n.tagName === 'H4' ? '\n' + t : n.tagName === 'P' ? t + '\n' : t;
+    }).join('\n').replace(/\n{3,}/g, '\n\n').trim();
   }
 
   // Días hábiles: lunes a viernes que no sean festivos en Colombia (API pública Nager.Date).
@@ -715,7 +781,7 @@ footer.nav{position:fixed; left:0; right:0; bottom:0; z-index:10; background:var
     }).catch(function(){});
   })();
   var notaFestivos = function(){ return festivosOk ? 'Ya descontamos los festivos.' : 'No pudimos cargar los festivos: revise si hay alguno, porque corre la fecha.'; };
-  window.__test = { armarCarta: armarCarta, armarQueja: armarQueja, sumarHabiles: sumarHabiles, habilesEntre: habilesEntre, recordatorio: function(){ return recordatorio(); } };
+  window.__test = { armarCarta: armarCarta, armarQueja: armarQueja, sumarHabiles: sumarHabiles, habilesEntre: habilesEntre, recordatorio: function(){ return recordatorio(); }, plano: plano };
 
   var empresaNit = '';
   function leer(){
@@ -750,7 +816,14 @@ footer.nav{position:fixed; left:0; right:0; bottom:0; z-index:10; background:var
     nope: function(){ tone(220, 0, 0.16, 'square', 0.04); tone(185, 0.12, 0.22, 'square', 0.04); },
     ring: function(){ for (var i = 0; i < 6; i++) tone(i % 2 ? 1180 : 940, i * 0.07, 0.07, 'square', 0.025); },
     letter: function(){ [523, 659, 784].forEach(function(fr, i){ tone(fr, i * 0.1, 0.3, 'sine', 0.06); }); },
-    chao: function(){ swoosh(); [523, 659, 784, 1047, 1319].forEach(function(fr, i){ tone(fr, 0.12 + i * 0.09, 0.45, 'triangle', 0.07); }); tone(1568, 0.62, 0.7, 'sine', 0.05); }
+    chao: function(){ swoosh(); [523, 659, 784, 1047, 1319].forEach(function(fr, i){ tone(fr, 0.12 + i * 0.09, 0.45, 'triangle', 0.07); }); tone(1568, 0.62, 0.7, 'sine', 0.05); },
+    // Avanzar sube de tono en cada paso (se siente el progreso); retroceder baja.
+    step: function(){ var f0 = 440 + pos * 70; tone(f0, 0, 0.09, 'triangle', 0.05); tone(f0 * 1.5, 0.07, 0.14, 'sine', 0.05); },
+    back: function(){ tone(560, 0, 0.08, 'triangle', 0.045); tone(420, 0.06, 0.12, 'sine', 0.04); },
+    pop: function(){ tone(980, 0, 0.06, 'sine', 0.04); },                       // un campo quedó bien
+    ready: function(){ tone(784, 0, 0.12, 'sine', 0.045); tone(1175, 0.09, 0.2, 'sine', 0.045); }, // la pantalla está completa
+    copy: function(){ tone(1046, 0, 0.07, 'triangle', 0.05); tone(1568, 0.06, 0.12, 'sine', 0.04); },
+    fanfare: function(){ [523, 659, 784, 1047].forEach(function(fr, i){ tone(fr, i * 0.12, 0.45, 'triangle', 0.07); }); tone(1319, 0.5, 0.9, 'sine', 0.05); }
   };
   function play(name){ if (soundOn && sfx[name]) try { sfx[name](); } catch(e){} }
   var snd = document.getElementById('snd');
@@ -791,7 +864,9 @@ footer.nav{position:fixed; left:0; right:0; bottom:0; z-index:10; background:var
     error: 'Falta un dato. Revise el campo marcado.',
     calendario: 'Listo. Se abrió su calendario con el recordatorio. Solo toque Guardar. Ese día le recordaremos volver aquí si la empresa no cumplió.',
     cuenta: 'Su correo se abrirá en unos segundos. Recuerde adjuntar: {lista}.',
-    chao: '¡Chao, spam! Ya se abrió su correo. Adjunte los documentos y presione Enviar. ¡Bien hecho!'
+    chao: '¡Chao, spam! Ya se abrió su correo. Adjunte los documentos y presione Enviar. ¡Bien hecho!',
+    gracias: '¡Gracias! Ya hizo su parte. Ahora la empresa debe responderle. Agregue el recordatorio a su calendario, y si quiere, comparta este servicio con alguien a quien también lo llamen.',
+    graciasSic: '¡Gracias! Su queja va camino a la Superintendencia. Ellos le responderán a su correo. Si quiere, comparta este servicio con alguien a quien también lo llamen.'
   };
   function elegirVoz(){
     var vs = synth.getVoices(), pref = ['es-CO', 'es-419', 'es-MX', 'es-US', 'es-ES', 'es'];
@@ -856,7 +931,7 @@ footer.nav{position:fixed; left:0; right:0; bottom:0; z-index:10; background:var
     pos = Math.max(0, Math.min(ruta.length - 1, i));
     var id = ruta[pos];
     Object.keys(steps).forEach(function(k){ steps[k].hidden = k !== id; });
-    if (id === 'carta') { var c = armarCarta(leer(), new Date()); carta.value = c.cuerpo; carta.dataset.asunto = c.asunto;
+    if (id === 'carta') { var c = armarCarta(leer(), new Date()); carta.innerHTML = c.html; carta.dataset.asunto = c.asunto; carta.scrollTop = 0;
       actualizarVence(); document.getElementById('estado').textContent = ''; }
     if (id === 'sic') pintarQueja();
     if (id === 'usted') cargarMunicipios();
@@ -869,6 +944,7 @@ footer.nav{position:fixed; left:0; right:0; bottom:0; z-index:10; background:var
     var first = steps[id].querySelector('input:not([type=checkbox]):not([type=radio]):not([type=date])');
     if (first && !first.value && matchMedia('(pointer:fine)').matches) setTimeout(function(){ first.focus({ preventScroll:true }); }, 300);
     hablarPaso();
+    listo = true; actualizarListo(); // al entrar no suena "ready", solo se marca
   }
   function empezar(m){ modo = m; go(1); play(m === 'carta' ? 'ring' : 'tick'); }
   document.querySelectorAll('[data-start]').forEach(function(b){ b.addEventListener('click', function(){ if (b.dataset.voz) setVoz(true); empezar(b.dataset.start); }); });
@@ -878,9 +954,25 @@ footer.nav{position:fixed; left:0; right:0; bottom:0; z-index:10; background:var
     if (pos === ruta.length - 1) { go(0); play('tick'); return; }
     if (!valido(s)) { play('nope'); return; }
     go(pos + 1);
-    play(ruta[pos] === 'carta' || ruta[pos] === 'sic' ? 'letter' : 'tick');
+    play(ruta[pos] === 'carta' || ruta[pos] === 'sic' ? 'letter' : 'step');
   });
-  prev.addEventListener('click', function(){ go(pos - 1); play('tick'); });
+  prev.addEventListener('click', function(){ go(pos - 1); play('back'); });
+
+  // El botón Siguiente "brilla" cuando la pantalla está completa: así se sabe que ya puede avanzar.
+  var listo = false;
+  function actualizarListo(){
+    var s = steps[RUTAS[modo][pos]]; if (!s) return;
+    var ok = [].every.call(s.querySelectorAll('input, select'), function(x){ return x.checkValidity(); }) &&
+             (!s.querySelector('[name=canal]') || !!s.querySelector('[name=canal]:checked')) &&
+             pos < RUTAS[modo].length - 1; // en la última pantalla lo principal es Enviar, no "Volver al inicio"
+    if (ok && !listo && pos > 0) play('ready');
+    listo = ok; next.classList.toggle('ready', ok);
+  }
+  f.addEventListener('input', actualizarListo);
+  f.addEventListener('change', function(ev){
+    if (ev.target.required && ev.target.value && ev.target.checkValidity()) play('pop');
+    actualizarListo();
+  });
   document.addEventListener('keydown', function(e){
     if (viewer.open) return;
     if (e.key === 'Enter' && e.target.tagName === 'INPUT' && e.target.type !== 'search' && e.target.type !== 'checkbox' && e.target.type !== 'radio') { e.preventDefault(); next.click(); }
@@ -889,9 +981,14 @@ footer.nav{position:fixed; left:0; right:0; bottom:0; z-index:10; background:var
   // ---------- Enviar ----------
   var carta = document.getElementById('carta'), queja = document.getElementById('queja');
   function mailto(to, asunto, cuerpo){ return 'mailto:' + encodeURIComponent(to) + '?subject=' + encodeURIComponent(asunto) + '&body=' + encodeURIComponent(cuerpo); }
-  function copiar(texto, el, msg){
-    var ok = function(){ el.textContent = msg; play('ding'); };
-    if (navigator.clipboard) navigator.clipboard.writeText(texto).then(ok, ok); else ok();
+  // Copia con formato (negrillas y cursivas al pegar en Gmail, Outlook o Word) y, como respaldo, texto plano.
+  function copiar(texto, el, msg, html){
+    var ok = function(){ el.textContent = msg; play('copy'); };
+    var cb = navigator.clipboard;
+    if (cb && html && window.ClipboardItem) {
+      cb.write([new ClipboardItem({ 'text/html': new Blob([html], { type:'text/html' }), 'text/plain': new Blob([texto], { type:'text/plain' }) })])
+        .then(ok, function(){ cb.writeText(texto).then(ok, ok); });
+    } else if (cb) cb.writeText(texto).then(ok, ok); else ok();
   }
   // Antes de abrir el correo: cuenta regresiva con lo que debe adjuntar, y luego "¡Chao, spam!".
   var launch = document.getElementById('launch'), lcard = document.getElementById('lcard'), lTimer = null;
@@ -928,7 +1025,7 @@ footer.nav{position:fixed; left:0; right:0; bottom:0; z-index:10; background:var
       '<p>Se abrió su correo. <b>Adjunte los documentos</b> y presione <b>Enviar</b>.</p>' +
       '<button class="btn next" type="button" id="lok" style="width:100%">Listo</button>';
     play('chao'); hablar(VOZ.chao);
-    document.getElementById('lok').onclick = function(){ cerrarLaunch(); };
+    document.getElementById('lok').onclick = function(){ cerrarLaunch(); gracias(); };
     document.getElementById('lok').focus();
     estadoEl.textContent = '✓ Se abrió su correo. Adjunte los documentos y envíe.';
     // mailto lo resuelve su propio equipo: abre su programa de correo, no pasa por ningún servidor.
@@ -937,20 +1034,43 @@ footer.nav{position:fixed; left:0; right:0; bottom:0; z-index:10; background:var
   launch.addEventListener('keydown', function(e){ if (e.key === 'Escape') cerrarLaunch(); });
 
   document.getElementById('abrir').addEventListener('click', function(){
-    lanzar(mailto(leer().correoEmpresa, carta.dataset.asunto, carta.value),
+    lanzar(mailto(leer().correoEmpresa, carta.dataset.asunto, plano(carta)),
       ['Una foto o PDF de su documento de identidad'], document.getElementById('estado'));
   });
   document.getElementById('copiar').addEventListener('click', function(){
-    copiar('Asunto: ' + carta.dataset.asunto + '\n\n' + carta.value, document.getElementById('estado'), '✓ Copiado. Péguelo en el correo, chat o formulario de la empresa.');
+    copiar('Asunto: ' + carta.dataset.asunto + '\n\n' + plano(carta), document.getElementById('estado'),
+      '✓ Copiado con formato. Péguelo en su correo, chat o formulario.', '<p><b>Asunto:</b> ' + e(carta.dataset.asunto) + '</p>' + carta.innerHTML);
   });
   document.getElementById('abrirSic').addEventListener('click', function(){
-    lanzar(mailto('contactenos@sic.gov.co', ASUNTO_SIC, queja.value),
+    lanzar(mailto('contactenos@sic.gov.co', ASUNTO_SIC, plano(queja)),
       ['La carta que envió a la empresa', 'Su documento de identidad', 'Capturas de las llamadas o mensajes (si las tiene)'],
       document.getElementById('estadoSic'));
   });
   document.getElementById('copiarSic').addEventListener('click', function(){
-    copiar(queja.value, document.getElementById('estadoSic'), '✓ Copiado. Péguelo en el formulario de la SIC.');
+    copiar(plano(queja), document.getElementById('estadoSic'), '✓ Copiado con formato. Péguelo en el formulario de la SIC.', queja.innerHTML);
   });
+
+  // ---------- Pantalla de despedida ----------
+  var URL_SERVICIO = 'https://sebastian09781.github.io/peticion-antispam/';
+  function gracias(){
+    var sic = modo === 'sic';
+    Object.keys(steps).forEach(function(k){ steps[k].hidden = k !== 'gracias'; });
+    bar.hidden = true; count.textContent = ''; document.querySelector('footer.nav').hidden = true;
+    document.getElementById('gTexto').textContent = sic
+      ? 'Su queja va camino a la Superintendencia de Industria y Comercio. Ellos le responderán al correo que escribió.'
+      : 'Su carta va en camino. La empresa tiene plazo ' + fechaPlazo() + ' para responderle.';
+    document.getElementById('gCal').hidden = sic;
+    window.scrollTo(0, 0); play('fanfare'); hablar(sic ? VOZ.graciasSic : VOZ.gracias);
+  }
+  document.getElementById('gCal').addEventListener('click', function(){ document.getElementById('cal').click(); });
+  document.getElementById('gShare').addEventListener('click', function(){
+    var datos = { title:'Chao llamadas spam', text:'Pide que borren tu número y dejen de llamarte. Gratis y en 5 minutos:', url:URL_SERVICIO };
+    if (navigator.share) navigator.share(datos).catch(function(){});
+    else copiar(URL_SERVICIO, document.getElementById('gEstado'), '✓ Enlace copiado. Compártalo por WhatsApp o donde quiera.');
+    play('tick');
+  });
+  document.getElementById('gOtra').addEventListener('click', function(){ document.getElementById('otra').click(); });
+  document.getElementById('gInicio').addEventListener('click', function(){ go(0); play('back'); });
 
   function actualizarVence(){
     // La empresa recibe hoy; el plazo corre desde el día siguiente.
@@ -1003,7 +1123,7 @@ footer.nav{position:fixed; left:0; right:0; bottom:0; z-index:10; background:var
     document.getElementById('calEstado').textContent = esAndroid || esIOS ? '✓ Toque "Guardar" en su calendario.' : '✓ Abra el archivo descargado para guardarlo en su calendario.';
     play('ding'); hablar(VOZ.calendario);
   });
-  function pintarQueja(){ queja.value = armarQueja(leer(), new Date()); pintarPlazo(); }
+  function pintarQueja(){ queja.innerHTML = armarQueja(leer(), new Date()); pintarPlazo(); }
   function pintarPlazo(){
     var d = leer();
     var box = document.getElementById('plazo');
@@ -1169,7 +1289,7 @@ footer.nav{position:fixed; left:0; right:0; bottom:0; z-index:10; background:var
     f.empresa.value = ''; f.correoEmpresa.value = ''; f.correoEmpresa.required = true; empresaNit = '';
     elegida.hidden = true; buscar.value = ''; resultados.innerHTML = '';
     manualBox.hidden = true; manualBtn.textContent = 'No la encuentro: escribir los datos a mano';
-    go(RUTAS.carta.indexOf('empresa')); play('tick');
+    modo = 'carta'; go(RUTAS.carta.indexOf('empresa')); play('back');
   });
 
   // Enlace del recordatorio: #sic=AAAA-MM-DD abre directo la queja con la fecha de envío puesta.

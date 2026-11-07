@@ -34,6 +34,14 @@ Sigue el mismo camino que recomienda la SIC en su guía oficial (pregunta 9). Al
 
 Cada pantalla tiene **una sola acción principal**. Lo secundario (copiar el texto, ver la carta completa, las fuentes) queda en enlaces discretos o plegado. Tiene tarjetas que se voltean y sonidos suaves, que se pueden apagar.
 
+## ✍️ La carta, con formato
+
+La carta y la queja se ven en pantalla como un documento real (títulos, **negrillas**, *cursivas*) y se pueden editar ahí mismo. El botón de copiar copia **con formato** para pegar en Gmail, Outlook o Word. El botón de enviar abre el correo con el texto ordenado; va sin negrillas porque los enlaces `mailto:` solo admiten texto plano.
+
+## 🔔 Sonidos y señales
+
+Avanzar suena cada vez más agudo y retroceder más grave. Hay un "pop" suave cuando un campo queda bien y un acorde cuando la pantalla está completa. En ese momento el botón **Siguiente** empieza a brillar con un degradado suave para indicar que ya se puede avanzar. Al final aparece una pantalla de **gracias** con la fecha límite, el calendario y la opción de compartir.
+
 ## 🎧 Guía por voz
 
 Con el botón **"Prefiero que una voz me guíe"** (o el botón **Voz** de arriba), una voz acompaña todo el recorrido. Explica cada pantalla, lee las tarjetas que se voltean y comenta cada caso: empresa con o sin correo, plazo vencido o no, qué adjuntar antes de enviar y el "¡Chao, spam!" final. Hay un botón para repetir.
@@ -114,7 +122,9 @@ La página cuenta los 15 días hábiles **descontando los festivos de Colombia**
 
 ## Aviso
 
-Es una herramienta educativa y no reemplaza la asesoría de un abogado. Antes de enviar, verifica que el texto se ajuste a tu caso.
+Es un servicio gratuito que facilita el trámite. No reemplaza la asesoría de un abogado: antes de enviar, verifica que el texto se ajuste a tu caso.
+
+Creado por [Juan Sebastián Rodríguez Casas](https://sebastian-09781.blogspot.com/).
 
 ## Licencia
 
