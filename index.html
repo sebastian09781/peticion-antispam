@@ -1,0 +1,276 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chao llamadas spam</title>
+<meta name="description" content="Genera en 3 minutos un derecho de petición para que una empresa borre tus datos y deje de llamarte. Nada se guarda: todo ocurre en tu navegador.">
+<style>
+  :root {
+    --bg: #faf8f5; --card: #ffffff; --ink: #1f1d1a; --muted: #6b655c;
+    --line: #e4dfd6; --accent: #0f6e5c; --accent-ink: #ffffff; --soft: #e8f3f0;
+    --warn: #8a5a00; --warn-bg: #fff4dc;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #161513; --card: #201f1c; --ink: #ece8e1; --muted: #a39d93;
+      --line: #36332e; --accent: #4fc2a8; --accent-ink: #0d1f1b; --soft: #1d2d29;
+      --warn: #f0c46a; --warn-bg: #2e2716;
+    }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink);
+    font: 17px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+  main { max-width: 760px; margin: 0 auto; padding: 32px 16px 64px; }
+  h1 { font-size: clamp(1.8rem, 5vw, 2.4rem); line-height: 1.2; margin: 0 0 8px; }
+  h2 { font-size: 1.25rem; margin: 0 0 4px; display: flex; gap: 10px; align-items: center; }
+  .n { flex: none; width: 30px; height: 30px; border-radius: 50%; background: var(--accent);
+    color: var(--accent-ink); display: grid; place-items: center; font-size: .95rem; }
+  .lead { color: var(--muted); font-size: 1.1rem; margin: 0 0 24px; }
+  section { background: var(--card); border: 1px solid var(--line); border-radius: 14px;
+    padding: 20px; margin: 0 0 18px; }
+  .hint { color: var(--muted); margin: 0 0 14px; }
+  .privacy { background: var(--soft); border: 0; }
+  .grid { display: grid; gap: 14px; grid-template-columns: 1fr 1fr; }
+  .full { grid-column: 1 / -1; }
+  @media (max-width: 560px) { .grid { grid-template-columns: 1fr; } }
+  label { display: block; font-weight: 600; font-size: .95rem; }
+  label small { font-weight: 400; color: var(--muted); }
+  input, select, textarea { width: 100%; margin-top: 4px; padding: 10px 12px; font: inherit;
+    color: var(--ink); background: var(--bg); border: 1px solid var(--line); border-radius: 10px; }
+  input:focus, select:focus, textarea:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
+  fieldset { border: 0; padding: 0; margin: 0; }
+  legend { font-weight: 600; font-size: .95rem; margin-bottom: 6px; }
+  .checks { display: flex; flex-wrap: wrap; gap: 8px 18px; }
+  .checks label { font-weight: 400; display: flex; gap: 6px; align-items: center; }
+  .checks input { width: auto; margin: 0; }
+  textarea#carta { min-height: 420px; font: 15px/1.55 ui-monospace, Consolas, monospace; }
+  .actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 14px; }
+  button { font: inherit; font-weight: 600; padding: 11px 18px; border-radius: 10px; cursor: pointer;
+    border: 1px solid var(--accent); background: var(--accent); color: var(--accent-ink); }
+  button.ghost { background: transparent; color: var(--accent); }
+  .note { background: var(--warn-bg); color: var(--warn); border-radius: 10px; padding: 10px 14px; margin-top: 14px; }
+  #estado { min-height: 1.6em; margin-top: 8px; font-weight: 600; color: var(--accent); }
+  ol.steps { margin: 0; padding-left: 22px; } ol.steps li { margin-bottom: 8px; }
+  a { color: var(--accent); }
+  footer { color: var(--muted); font-size: .9rem; text-align: center; margin-top: 28px; }
+</style>
+</head>
+<body>
+<main>
+  <h1>¿Te llaman a toda hora para venderte algo?</h1>
+  <p class="lead">Llenas unos datos y la página arma un <strong>derecho de petición</strong> listo para enviar por correo. Con él le pides a la empresa que borre tus datos y deje de contactarte. Hay que hacer uno por cada empresa que te llame.</p>
+
+  <section class="privacy">
+    <h2>🔒 Tus datos no salen de aquí</h2>
+    <p class="hint" style="margin:0">Esta página no tiene servidor, base de datos, cookies ni analítica. El texto se arma en tu propio navegador y desaparece al cerrar la pestaña. Lo único que sale es el correo que tú decidas enviar.</p>
+  </section>
+
+  <form id="f" novalidate>
+    <section>
+      <h2><span class="n">1</span> ¿Quién eres?</h2>
+      <p class="hint">La empresa necesita saber que eres el dueño (titular) de los datos.</p>
+      <div class="grid">
+        <label class="full">Nombre completo <input name="nombre" required autocomplete="name"></label>
+        <label>Tipo de documento
+          <select name="tipoDoc">
+            <option>cédula de ciudadanía</option><option>cédula de extranjería</option>
+            <option>permiso por protección temporal</option><option>pasaporte</option>
+          </select></label>
+        <label>Número de documento <input name="doc" required inputmode="numeric"></label>
+        <label>Ciudad <input name="ciudad" required autocomplete="address-level2" placeholder="Bogotá D.C."></label>
+        <label>Correo donde quieres la respuesta <input name="correo" type="email" required autocomplete="email"></label>
+      </div>
+    </section>
+
+    <section>
+      <h2><span class="n">2</span> ¿Cómo te están molestando?</h2>
+      <div class="grid">
+        <label class="full">Número(s) o correo(s) donde te contactan <small>(separa con comas)</small>
+          <input name="contactos" required placeholder="300 123 4567, micorreo@ejemplo.com"></label>
+        <fieldset class="full"><legend>¿Por dónde?</legend>
+          <div class="checks">
+            <label><input type="checkbox" name="canal" value="llamadas" checked> Llamadas</label>
+            <label><input type="checkbox" name="canal" value="mensajes de texto (SMS)"> SMS</label>
+            <label><input type="checkbox" name="canal" value="mensajes de WhatsApp"> WhatsApp</label>
+            <label><input type="checkbox" name="canal" value="correos electrónicos"> Correo</label>
+          </div></fieldset>
+        <label class="full">¿Qué relación tienes con la empresa?
+          <select name="relacion">
+            <option value="nunca">Nunca he sido cliente</option>
+            <option value="antes">Fui cliente, pero ya no</option>
+            <option value="actual">Soy cliente actualmente</option>
+          </select></label>
+      </div>
+      <p class="note" id="notaCliente" hidden>Si eres cliente, la empresa puede conservar los datos que necesita para tu contrato. Por eso la carta pide solo que no los use para publicidad ni ventas.</p>
+    </section>
+
+    <section>
+      <h2><span class="n">3</span> ¿Qué empresa es?</h2>
+      <p class="hint">Busca en su página web la <em>"Política de tratamiento de datos personales"</em>. Allí aparece su nombre legal (razón social) y el correo para "consultas y reclamos". Si no lo encuentras, búscala en el <a href="https://rnbd.sic.gov.co/sisi/consultaTitulares/consulta" target="_blank" rel="noopener">Registro Nacional de Bases de Datos de la SIC</a>.</p>
+      <div class="grid">
+        <label class="full">Razón social <input name="empresa" required placeholder="Ej.: Empresa Ejemplo S.A.S."></label>
+        <label class="full">Correo de protección de datos de la empresa <input name="correoEmpresa" type="email" required placeholder="datospersonales@empresa.com"></label>
+      </div>
+    </section>
+  </form>
+
+  <section>
+    <h2><span class="n">4</span> Revisa y envía</h2>
+    <p class="hint">El texto se arma solo mientras llenas los pasos. Si quieres cambiar algo, hazlo aquí al final.</p>
+    <label for="carta">Tu derecho de petición</label>
+    <textarea id="carta" spellcheck="true"></textarea>
+    <div class="actions">
+      <button type="button" id="abrir">✉️ Abrir en mi correo</button>
+      <button type="button" class="ghost" id="copiar">📋 Copiar texto</button>
+    </div>
+    <div id="estado" role="status"></div>
+    <p class="note">📎 <strong>Antes de enviar, adjunta una copia de tu documento de identidad.</strong> La página no puede adjuntar archivos por ti. Si "Abrir en mi correo" no hace nada, copia el texto y pégalo en un correo nuevo.</p>
+  </section>
+
+  <section>
+    <h2><span class="n">5</span> ¿Y después?</h2>
+    <ol class="steps">
+      <li><strong>Guarda el correo enviado.</strong> Es tu prueba. La empresa tiene <strong>15 días hábiles</strong> para responder y puede pedir 8 más si explica por qué (art. 15, Ley 1581 de 2012).</li>
+      <li><strong>Inscríbete en el Registro de Números Excluidos (RNE).</strong> Es gratis, lo maneja la CRC y frena también a las empresas que aún no te han llamado. Se hace en el <a href="https://tramitescrcom.gov.co/tramitesCRC/publico/index.xhtml" target="_blank" rel="noopener">Portal de Trámites de la CRC</a>.</li>
+      <li><strong>Si no responden o siguen llamando,</strong> pon una queja ante la <a href="https://www.sic.gov.co/" target="_blank" rel="noopener">Superintendencia de Industria y Comercio</a>. Adjunta tu petición, la prueba del envío y capturas de las llamadas o mensajes.</li>
+    </ol>
+  </section>
+
+  <footer>Herramienta educativa. No reemplaza la asesoría de un abogado.<br>Código abierto: revisa tú mismo que nada se guarda.</footer>
+</main>
+
+<script>
+const f = document.getElementById('f');
+const carta = document.getElementById('carta');
+const estado = document.getElementById('estado');
+
+function lista(items) {
+  if (items.length < 2) return items.join('');
+  return items.slice(0, -1).join(', ') + ' y ' + items[items.length - 1];
+}
+
+// Puro: recibe los datos y devuelve { asunto, cuerpo }. No toca el DOM.
+function armarCarta(d, hoy) {
+  const v = (x, ph) => (x || '').trim() || ph;
+  const fecha = hoy.toLocaleDateString('es-CO', { day: 'numeric', month: 'long', year: 'numeric' });
+  const canales = lista(d.canales.length ? d.canales : ['llamadas']);
+  const cliente = d.relacion === 'actual';
+
+  const hechos = [
+    { nunca: 'No tengo ni he tenido ningún contrato o relación comercial con su compañía.',
+      antes: 'Fui cliente de su compañía, pero esa relación ya terminó.',
+      actual: 'Soy cliente de su compañía, pero no deseo recibir contactos con fines comerciales o publicitarios.' }[d.relacion],
+    `He recibido ${canales} con fines comerciales o publicitarios en: ${v(d.contactos, '[tus números o correos]')}.`,
+    cliente ? 'Revoco cualquier autorización que haya dado para usar mis datos con fines comerciales, publicitarios o de mercadeo.'
+            : 'No recuerdo haber dado autorización previa, expresa e informada para que su compañía trate mis datos.'
+  ];
+
+  const peticiones = cliente ? [
+    'Revocatoria. Que se tenga por revocada mi autorización para usar mis datos con fines comerciales, publicitarios o de mercadeo, y que mis datos se usen solo para la ejecución de mi contrato.',
+    'Terceros. Que se ordene lo mismo a los encargados, aliados, call centers y demás terceros a quienes hayan entregado mis datos, y se me informe quiénes son.',
+    'Contacto comercial. Que se abstengan de contactarme con fines comerciales o publicitarios por cualquier canal (Ley 2300 de 2023).',
+    'Certificación. Que se me confirme por escrito que la solicitud fue atendida.'
+  ] : [
+    'Supresión. Que se supriman de forma total y definitiva mis datos personales (nombre, documento, teléfonos, correos, dirección y cualquier otro) de todas sus bases de datos.',
+    'Revocatoria. Que se tenga por revocada cualquier autorización que hubiere otorgado para el tratamiento de mis datos.',
+    'Terceros. Que se ordene la misma supresión a los encargados, aliados, call centers y demás terceros a quienes hayan entregado mis datos, y se me informe quiénes son.',
+    'Origen. Que se me informe cómo y cuándo obtuvieron mis datos y se me entregue copia de la autorización que, según ustedes, otorgué (art. 8, lit. b, Ley 1581 de 2012).',
+    'Contacto comercial. Que se abstengan de contactarme con fines comerciales o publicitarios por cualquier canal (Ley 2300 de 2023).',
+    'Conservación legal. Si una norma les obliga a conservar algún dato, que se indique cuál norma, qué dato, para qué y por cuánto tiempo, y que ese dato se bloquee para cualquier otro uso.',
+    'Certificación. Que se me expida constancia escrita de la supresión realizada.'
+  ];
+
+  const num = (arr) => arr.map((t, i) => `${i + 1}. ${t}`).join('\n');
+  const nombre = v(d.nombre, '[tu nombre completo]');
+  const doc = `${d.tipoDoc} n.° ${v(d.doc, '[número]')}`;
+  const asunto = cliente
+    ? 'Derecho de petición – revocatoria de autorización para fines comerciales'
+    : 'Derecho de petición – supresión de datos personales y revocatoria de autorización';
+
+  const cuerpo =
+`${v(d.ciudad, '[ciudad]')}, ${fecha}
+
+Señores
+${v(d.empresa, '[RAZÓN SOCIAL DE LA EMPRESA]')}
+Área de Protección de Datos Personales
+E. S. D.
+
+Asunto: ${asunto} (art. 23 C. P.; arts. 8, 9 y 15 de la Ley 1581 de 2012; Ley 1755 de 2015).
+
+${nombre}, mayor de edad, identificado(a) con ${doc}, actuando en nombre propio y como titular de los datos, presento la siguiente petición.
+
+HECHOS
+${num(hechos)}
+
+PETICIONES
+${num(peticiones)}
+
+FUNDAMENTOS DE DERECHO
+- Artículos 15 y 23 de la Constitución Política.
+- Ley Estatutaria 1581 de 2012: art. 8 (derechos del titular, incluido revocar la autorización y pedir la supresión), art. 9 (autorización previa) y art. 15 (reclamos).
+- Decreto 1074 de 2015, capítulo 25 (reglamentario de la Ley 1581).
+- Ley 1755 de 2015 (derecho de petición).
+- Ley 2300 de 2023, que limita los contactos con fines comerciales o publicitarios.
+
+TÉRMINO
+Solicito respuesta dentro de los quince (15) días hábiles previstos en el artículo 15 de la Ley 1581 de 2012. Si no recibo respuesta de fondo, acudiré a la Superintendencia de Industria y Comercio.
+
+ANEXOS
+- Copia de mi documento de identidad.
+
+NOTIFICACIONES
+Recibo respuesta en el correo ${v(d.correo, '[tu correo]')}.
+
+Atentamente,
+
+${nombre}
+${doc}`;
+  return { asunto, cuerpo };
+}
+
+function leer() {
+  const fd = new FormData(f);
+  return {
+    nombre: fd.get('nombre'), tipoDoc: fd.get('tipoDoc'), doc: fd.get('doc'),
+    ciudad: fd.get('ciudad'), correo: fd.get('correo'), contactos: fd.get('contactos'),
+    canales: fd.getAll('canal'), relacion: fd.get('relacion'),
+    empresa: fd.get('empresa'), correoEmpresa: (fd.get('correoEmpresa') || '').trim()
+  };
+}
+
+let actual = armarCarta(leer(), new Date());
+function render() {
+  const d = leer();
+  document.getElementById('notaCliente').hidden = d.relacion !== 'actual';
+  actual = armarCarta(d, new Date());
+  carta.value = actual.cuerpo;
+}
+f.addEventListener('input', render);
+f.addEventListener('change', render);
+render();
+
+function completo() {
+  if (f.checkValidity()) return true;
+  f.reportValidity();
+  estado.textContent = 'Te falta completar algún dato de los pasos 1 a 3.';
+  return false;
+}
+
+document.getElementById('abrir').addEventListener('click', () => {
+  if (!completo()) return;
+  const d = leer();
+  // mailto se resuelve en tu propio equipo: abre tu programa de correo, no pasa por ningún servidor nuestro.
+  location.href = `mailto:${encodeURIComponent(d.correoEmpresa)}?subject=${encodeURIComponent(actual.asunto)}&body=${encodeURIComponent(carta.value)}`;
+  estado.textContent = 'Listo. Revisa tu correo, adjunta tu documento y envía.';
+});
+
+document.getElementById('copiar').addEventListener('click', async () => {
+  const texto = `Para: ${leer().correoEmpresa}\nAsunto: ${actual.asunto}\n\n${carta.value}`;
+  try { await navigator.clipboard.writeText(texto); }
+  catch { carta.select(); document.execCommand('copy'); }
+  estado.textContent = 'Texto copiado. Pégalo en un correo nuevo.';
+});
+</script>
+</body>
+</html>
