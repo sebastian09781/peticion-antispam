@@ -33,7 +33,7 @@ p{margin:0}
 .muted{color:var(--muted)} .small{font-size:.92rem}
 
 /* Barra superior */
-header.top{position:sticky; top:0; z-index:5; background:var(--bg); border-bottom:1px solid var(--line)}
+header.top{position:sticky; top:0; z-index:10; background:var(--bg); border-bottom:1px solid var(--line)}
 .top-in{max-width:46rem; margin:0 auto; padding-block:10px 8px; display:flex; flex-direction:column; gap:8px}
 .top-row{display:flex; justify-content:space-between; align-items:center; gap:12px}
 .brand{font-family:var(--font-display); font-weight:650; font-size:1rem; display:flex; gap:8px; align-items:center; white-space:nowrap; background:none; border:0; padding:0; color:var(--ink); cursor:pointer}
@@ -197,6 +197,25 @@ details.peek[open] summary{margin-bottom:8px}
 .deadline{background:var(--amber-soft); border-radius:18px; padding:18px; text-align:center; display:flex; flex-direction:column; align-items:center; gap:4px}
 .deadline .date{font-family:var(--font-display); font-size:1.45rem; font-weight:650; color:var(--amber); line-height:1.25}
 .deadline .cta.alt{margin-top:10px; width:100%; justify-content:center; gap:10px; font-weight:700; background:var(--bg); min-height:50px}
+/* Lista de municipios propia (en lugar del desplegable del navegador) */
+.combo{position:relative}
+.fields:has(.combo){position:relative; z-index:5} /* la animación de entrada crea capas: la lista debe quedar encima */
+.sugg{position:absolute; left:0; right:0; top:100%; z-index:6; margin:4px 0 0; padding:6px; list-style:none; background:var(--bg); border:1px solid var(--line); border-radius:14px; box-shadow:0 18px 36px -18px rgba(23,32,43,.45); max-height:264px; overflow-y:auto}
+.sugg button{font:inherit; width:100%; text-align:left; display:flex; gap:10px; align-items:center; padding:10px 12px; border:0; border-radius:10px; background:none; color:var(--ink); cursor:pointer; font-size:1rem}
+.sugg button .ico{color:var(--blue); font-size:1.1rem}
+.sugg button small{color:var(--muted); font-size:.88rem}
+.sugg button:hover, .sugg button.act{background:var(--blue-soft)}
+@media (prefers-reduced-motion: no-preference){ .sugg:not([hidden]){animation:rise .18s ease-out} }
+
+.sendbar{display:flex; gap:10px; align-items:stretch}
+.sendbar .cta.big{flex:1}
+.iconcta{flex:none; width:58px; min-height:58px; border-radius:14px; border:2px solid var(--line); background:var(--surface); color:var(--blue); display:grid; place-items:center; font-size:1.45rem; cursor:pointer}
+.iconcta:hover{background:var(--blue-soft)}
+.chipbtn{font:inherit; font-size:.92rem; font-weight:700; display:inline-flex; gap:6px; align-items:center; align-self:center; color:var(--blue); background:var(--blue-soft); border:0; border-radius:999px; padding:7px 14px; cursor:pointer; text-decoration:none}
+.chips-row{display:flex; flex-wrap:wrap; gap:8px; justify-content:center}
+.deadline .big-ico{font-size:2rem; color:var(--amber)}
+.paper textarea{height:46vh}
+.step > .qnum{margin-bottom:-10px}
 .more-links{display:flex; flex-direction:column; gap:8px}
 .more-links a, .more-links button{font:inherit; display:flex; gap:12px; align-items:center; text-align:left; padding:12px 14px; border:1px solid var(--line); border-radius:14px; background:var(--bg); color:var(--ink); text-decoration:none; cursor:pointer}
 .more-links .ico{font-size:1.5rem; color:var(--blue)}
@@ -246,7 +265,7 @@ details.peek[open] summary{margin-bottom:8px}
 @keyframes burst{0%{opacity:1; transform:translate(-50%,0) rotate(0)} 100%{opacity:0; transform:translate(calc(-50% + var(--x)), var(--y)) rotate(320deg)}}
 
 /* Navegación */
-footer.nav{position:fixed; left:0; right:0; bottom:0; z-index:5; background:var(--bg); border-top:1px solid var(--line); padding-bottom:env(safe-area-inset-bottom, 0px)}
+footer.nav{position:fixed; left:0; right:0; bottom:0; z-index:10; background:var(--bg); border-top:1px solid var(--line); padding-bottom:env(safe-area-inset-bottom, 0px)}
 .nav-in{max-width:46rem; margin:0 auto; padding-block:10px; display:flex; justify-content:space-between; align-items:center; gap:12px}
 .btn{font:inherit; font-size:1rem; font-weight:700; border-radius:12px; padding:10px 20px; cursor:pointer; border:2px solid var(--blue); min-height:46px}
 .btn.next{background:var(--blue); color:#fff}
@@ -267,7 +286,7 @@ footer.nav{position:fixed; left:0; right:0; bottom:0; z-index:5; background:var(
   .flip, .flip .in{min-height:136px}
   .timeline{grid-template-columns:minmax(0,1fr)}
 }
-@media (max-width: 600px){ .paper textarea{height:34vh; min-height:220px} }
+@media (max-width: 600px){ .paper textarea{height:50vh; min-height:300px} }
 </style>
 </head>
 <body>
@@ -299,6 +318,8 @@ footer.nav{position:fixed; left:0; right:0; bottom:0; z-index:5; background:var(
   <symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol>
   <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
   <symbol id="i-ext" viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-9 9M18 14v6H4V6h6"/></symbol>
+  <symbol id="i-pencil" viewBox="0 0 24 24"><path d="M4 20l4-1 11-11-3-3L5 16z"/><path d="M14 6l3 3"/></symbol>
+  <symbol id="i-clip" viewBox="0 0 24 24"><path d="M21 11l-8.5 8.5a5 5 0 0 1-7-7L14 4a3.5 3.5 0 0 1 5 5l-8.5 8.5a2 2 0 0 1-3-3L15 7"/></symbol>
   <symbol id="i-headset" viewBox="0 0 24 24"><path d="M4 14v-2a8 8 0 0 1 16 0v2"/><rect x="3" y="14" width="4" height="6" rx="1.5"/><rect x="17" y="14" width="4" height="6" rx="1.5"/></symbol>
   <symbol id="i-replay" viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 3-6.7L3 8M3 3v5h5"/></symbol>
   <symbol id="i-sound" viewBox="0 0 24 24"><path d="M4 9v6h4l5 4V5L8 9z"/><path d="M16 9a4 4 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11"/></symbol>
@@ -335,8 +356,7 @@ footer.nav{position:fixed; left:0; right:0; bottom:0; z-index:5; background:var(
       <button class="linkbtn" type="button" data-start="sic">Ya envié mi carta y no me respondieron →</button>
       <p class="foot"><svg class="ico"><use href="#i-lock"/></svg>Nada se guarda ·
         <a href="https://github.com/sebastian09781/peticion-antispam" target="_blank" rel="noopener">Código abierto</a> ·
-        <button type="button" class="linkbtn sm" data-src="politica">Privacidad</button> ·
-        <button type="button" class="linkbtn sm" data-src="sic9">Guía oficial de la SIC</button></p>
+        <button type="button" class="linkbtn sm" data-src="politica">Privacidad</button></p>
       <p class="credit">Creado por Juan Sebastián Rodríguez Casas. Herramienta educativa: no reemplaza a un abogado.</p>
     </div>
   </section>
@@ -360,7 +380,7 @@ footer.nav{position:fixed; left:0; right:0; bottom:0; z-index:5; background:var(
         <span class="f"><svg class="ico"><use href="#i-coins"/></svg><b>La SIC puede multarlos</b></span>
         <span class="b">Hasta 2.000 salarios mínimos, y ordenar que borren sus datos.</span></span></button>
     </div>
-    <button type="button" class="linkbtn sm" data-src="lista:sic9,art15,l2300,art23"><svg class="ico"><use href="#i-eye"/></svg>¿De dónde sale esto? Ver las normas</button>
+    <button type="button" class="chipbtn" data-src="lista:sic9,art15,l2300,art23"><svg class="ico"><use href="#i-scale"/></svg>Normas</button>
   </section>
 
   <!-- USTED -->
@@ -373,8 +393,10 @@ footer.nav{position:fixed; left:0; right:0; bottom:0; z-index:5; background:var(
       <label class="field">Documento
         <select name="tipoDoc"><option value="cédula de ciudadanía">Cédula de ciudadanía</option><option value="cédula de extranjería">Cédula de extranjería</option><option value="permiso por protección temporal">PPT</option><option value="pasaporte">Pasaporte</option></select></label>
       <label class="field">Número<input name="doc" required inputmode="numeric" autocomplete="off"></label>
-      <label class="field">Ciudad o municipio<input name="ciudad" required list="ciudades" autocomplete="off" placeholder="Escriba y elija…"></label>
-      <datalist id="ciudades"></datalist>
+      <div class="combo">
+        <label class="field">Ciudad o municipio<input name="ciudad" required autocomplete="off" placeholder="Escriba y elija…" role="combobox" aria-expanded="false" aria-controls="ciudadLista" aria-autocomplete="list"></label>
+        <ul class="sugg" id="ciudadLista" role="listbox" aria-label="Municipios" hidden></ul>
+      </div>
       <label class="field">Su correo<input name="correo" type="email" required autocomplete="email"></label>
     </div>
     <h3 class="subhead">¿Cómo lo molestan?</h3>
@@ -421,27 +443,32 @@ footer.nav{position:fixed; left:0; right:0; bottom:0; z-index:5; background:var(
   <!-- CARTA -->
   <section class="step" data-id="carta" style="--c:var(--green);--cs:var(--green-soft)" hidden>
     <div class="qhead"><div class="badge"><svg class="ico"><use href="#i-doc"/></svg></div>
-      <div><p class="qnum">Su carta</p><h2 class="qtext">¡Lista para enviar!</h2></div></div>
-    <p class="attach"><svg class="ico"><use href="#i-alert"/></svg>Antes de enviar, adjunte una foto de su cédula.</p>
-    <button class="cta main big" type="button" id="abrir"><svg class="ico"><use href="#i-send"/></svg>Enviar por correo</button>
-    <div class="row2"><button class="linkbtn sm" type="button" id="copiar"><svg class="ico"><use href="#i-copy"/></svg>Copiar el texto</button>
-      <details class="peek"><summary>Ver o editar la carta</summary><div class="paper"><textarea id="carta" aria-label="Su carta a la empresa" spellcheck="true"></textarea></div></details></div>
+      <div><p class="qnum">1 · Léala</p><h2 class="qtext">Su carta</h2></div></div>
+    <div class="paper"><textarea id="carta" aria-label="Su carta a la empresa" spellcheck="true"></textarea></div>
+    <p class="hint"><svg class="ico" style="color:var(--blue)"><use href="#i-pencil"/></svg>Puede tocar el texto para corregirlo.</p>
+
+    <p class="qnum" style="color:var(--green)">2 · Envíela</p>
+    <p class="attach"><svg class="ico"><use href="#i-clip"/></svg>Adjunte una foto de su cédula</p>
+    <div class="sendbar">
+      <button class="cta main big" type="button" id="abrir"><svg class="ico"><use href="#i-send"/></svg>Enviar por correo</button>
+      <button class="iconcta" type="button" id="copiar" aria-label="Copiar el texto" title="Copiar el texto"><svg class="ico"><use href="#i-copy"/></svg></button>
+    </div>
     <p class="status" id="estado" role="status"></p>
 
+    <p class="qnum" style="color:var(--amber)">3 · Agéndelo</p>
     <div class="deadline">
-      <p class="qnum" style="color:var(--amber)">¿Y después?</p>
-      <p>La empresa debe responderle</p>
+      <svg class="ico big-ico"><use href="#i-calendar"/></svg>
       <p class="date" id="vence">en 15 días hábiles</p>
-      <p class="small muted"><span id="venceNota"></span> Si no cumple, vuelva aquí y presente la queja ante la SIC.</p>
-      <button class="cta alt" type="button" id="cal"><svg class="ico"><use href="#i-calendar"/></svg>Agregar a mi calendario</button>
+      <p class="small muted">Plazo de la empresa · <span id="venceNota"></span></p>
+      <button class="cta alt" type="button" id="cal"><svg class="ico"><use href="#i-plus"/></svg>Agregar a mi calendario</button>
       <p class="status" id="calEstado" role="status"></p>
     </div>
 
     <div class="more-links">
-      <a href="https://tramitescrcom.gov.co/tramites/comun/guia.xhtml?tit=&amp;subt=&amp;tram=ebhrEbS9qKn04bkBEBApXQ==&amp;pr1=3578LkxQ3TO3y3t5FY9/BQ==&amp;onA=S0etv8CCdHqPI8wYF9h5dtdTbijZh1Ii32LohKmsEd6aN1b0ia4DPDtKgFkbFjDn" target="_blank" rel="noopener"><svg class="ico"><use href="#i-shield"/></svg><span><b>Bloquee su número para todas las empresas</b><small>Registro de Números Excluidos de la CRC, gratis</small></span></a>
-      <button type="button" id="otra"><svg class="ico"><use href="#i-plus"/></svg><span><b>Escribir a otra empresa</b><small>Sus datos se mantienen</small></span></button>
+      <a href="https://tramitescrcom.gov.co/tramites/comun/guia.xhtml?tit=&amp;subt=&amp;tram=ebhrEbS9qKn04bkBEBApXQ==&amp;pr1=3578LkxQ3TO3y3t5FY9/BQ==&amp;onA=S0etv8CCdHqPI8wYF9h5dtdTbijZh1Ii32LohKmsEd6aN1b0ia4DPDtKgFkbFjDn" target="_blank" rel="noopener"><svg class="ico"><use href="#i-shield"/></svg><b>Bloquear mi número en la CRC</b></a>
+      <button type="button" id="otra"><svg class="ico"><use href="#i-plus"/></svg><b>Escribir a otra empresa</b></button>
     </div>
-    <button type="button" class="linkbtn sm" data-src="lista:art15,circ,sic9"><svg class="ico"><use href="#i-eye"/></svg>¿De dónde sale esto? Ver las normas</button>
+    <button type="button" class="chipbtn" data-src="lista:art15,circ,sic9"><svg class="ico"><use href="#i-scale"/></svg>Normas</button>
   </section>
 
   <!-- QUEJA SIC -->
@@ -456,13 +483,22 @@ footer.nav{position:fixed; left:0; right:0; bottom:0; z-index:5; background:var(
         <option value="siguen">Dijeron que sí, pero siguen llamando</option>
       </select></label>
     <div class="note" id="plazo" hidden></div>
-    <div class="attach"><svg class="ico"><use href="#i-alert"/></svg><span>Adjunte: <b>la carta que envió</b>, <b>su cédula</b> y capturas de las llamadas si las tiene.</span></div>
-    <button class="cta sic big" type="button" id="abrirSic"><svg class="ico"><use href="#i-send"/></svg>Enviar queja a la SIC</button>
-    <div class="row2"><button class="linkbtn sm" type="button" id="copiarSic"><svg class="ico"><use href="#i-copy"/></svg>Copiar el texto</button>
-      <details class="peek"><summary>Ver o editar la queja</summary><div class="paper"><textarea id="queja" aria-label="Su queja ante la SIC" spellcheck="true"></textarea></div></details></div>
+
+    <p class="qnum">1 · Léala</p>
+    <div class="paper"><textarea id="queja" aria-label="Su queja ante la SIC" spellcheck="true"></textarea></div>
+    <p class="hint"><svg class="ico" style="color:var(--blue)"><use href="#i-pencil"/></svg>Puede tocar el texto para corregirlo.</p>
+
+    <p class="qnum">2 · Envíela</p>
+    <div class="attach"><svg class="ico"><use href="#i-clip"/></svg><span>Adjunte <b>la carta que envió</b>, <b>su cédula</b> y capturas</span></div>
+    <div class="sendbar">
+      <button class="cta sic big" type="button" id="abrirSic"><svg class="ico"><use href="#i-send"/></svg>Enviar a la SIC</button>
+      <button class="iconcta" type="button" id="copiarSic" aria-label="Copiar el texto" title="Copiar el texto"><svg class="ico"><use href="#i-copy"/></svg></button>
+    </div>
     <p class="status" id="estadoSic" role="status"></p>
-    <p class="small muted">Se envía a contactenos@sic.gov.co con el asunto que pide la SIC. ¿Prefiere su <a href="https://servicioslinea.sic.gov.co/servilinea/pqrsf/" target="_blank" rel="noopener">formulario web</a>?</p>
-    <button type="button" class="linkbtn sm" data-src="lista:sic9,requisito,art16,circ,canales"><svg class="ico"><use href="#i-eye"/></svg>¿De dónde sale esto? Ver las normas</button>
+    <div class="chips-row">
+      <a class="chipbtn" href="https://servicioslinea.sic.gov.co/servilinea/pqrsf/" target="_blank" rel="noopener"><svg class="ico"><use href="#i-ext"/></svg>Formulario web SIC</a>
+      <button type="button" class="chipbtn" data-src="lista:sic9,requisito,art16,circ,canales"><svg class="ico"><use href="#i-scale"/></svg>Normas</button>
+    </div>
   </section>
 
 </form>
@@ -748,8 +784,8 @@ footer.nav{position:fixed; left:0; right:0; bottom:0; z-index:5; background:var(
     sinCorreo: 'Esta empresa no publica un correo para datos personales. Igual puede seguir. Al final, copie el texto y péguelo en el chat o formulario de la empresa.',
     ruesSinCorreo: 'Encontramos la empresa, pero no tenemos su correo. Búsquelo en la política de datos de su página web y escríbalo en el campo de correo.',
     manual: 'Escriba el nombre legal de la empresa y su correo para datos personales. Si no sabe dónde encontrarlo, toque: Cómo encuentro el correo.',
-    carta: '¡Su carta está lista! Antes de enviarla, adjunte una foto de su cédula. Toque Enviar por correo, y se abrirá su correo con todo listo. La empresa tiene plazo {fecha}. Le recomiendo agendar un recordatorio para ese día.',
-    sic: 'Vamos con la queja ante la Superintendencia de Industria y Comercio. Díganos qué día envió su carta a la empresa y qué pasó. Yo le diré si ya puede presentar la queja.',
+    carta: '¡Su carta está lista! Primero, léala con calma. Si quiere cambiar algo, toque el texto. Cuando esté de acuerdo, adjunte una foto de su cédula y toque Enviar por correo. Por último, agende el recordatorio: la empresa tiene plazo {fecha}.',
+    sic: 'Vamos con la queja ante la Superintendencia de Industria y Comercio. Díganos qué día envió su carta a la empresa y qué pasó. Luego lea la queja, y cuando esté de acuerdo, envíela.',
     plazoNo: 'Todavía no se ha vencido el plazo de la empresa. Podrá presentar la queja a partir del {fecha}.',
     plazoOk: 'Muy bien: ya puede presentar la queja. Adjunte su carta, su cédula y las capturas que tenga, y toque Enviar queja a la SIC.',
     error: 'Falta un dato. Revise el campo marcado.',
@@ -997,9 +1033,8 @@ footer.nav{position:fixed; left:0; right:0; bottom:0; z-index:5; background:var(
     fetch('https://www.datos.gov.co/resource/gdxc-w37w.json?$select=nom_mpio,dpto&$limit=2000&$order=nom_mpio')
       .then(function(r){ if (!r.ok) throw r; return r.json(); })
       .then(function(rows){
-        var dl = document.getElementById('ciudades');
         MUNICIPIOS = rows.map(function(x){ return titulo(x.nom_mpio) + (x.nom_mpio === x.dpto ? '' : ' (' + titulo(x.dpto) + ')'); });
-        dl.innerHTML = MUNICIPIOS.map(function(m){ return '<option value="' + esc(m) + '">'; }).join('');
+        if (document.activeElement === f.ciudad) sugerir();
       })
       .catch(function(){ MUNICIPIOS = []; }); // sin lista: se acepta texto libre
   }
@@ -1016,6 +1051,40 @@ footer.nav{position:fixed; left:0; right:0; bottom:0; z-index:5; background:var(
     // Si la lista cargó, se exige elegir un municipio real.
     var ok = !MUNICIPIOS || !MUNICIPIOS.length || MUNICIPIOS.indexOf(f.ciudad.value) > -1;
     f.ciudad.setCustomValidity(ok ? '' : 'Elija su ciudad o municipio de la lista.');
+    sugerir();
+  });
+
+  // Lista de sugerencias con el diseño de la página: primero los que empiezan por lo escrito.
+  var sugg = document.getElementById('ciudadLista'), activo = -1;
+  function cerrarSugg(){ sugg.hidden = true; f.ciudad.setAttribute('aria-expanded', 'false'); activo = -1; }
+  function sugerir(){
+    var q = norm(f.ciudad.value);
+    if (!MUNICIPIOS || !MUNICIPIOS.length || q.length < 2 || MUNICIPIOS.indexOf(f.ciudad.value) > -1) return cerrarSugg();
+    var empieza = [], contiene = [];
+    MUNICIPIOS.forEach(function(m){ var n = norm(m), i = n.indexOf(q); if (i === 0) empieza.push(m); else if (i > 0) contiene.push(m); });
+    var lista = empieza.concat(contiene).slice(0, 6);
+    if (!lista.length) { sugg.innerHTML = '<li><button type="button" disabled><small>No encontramos ese municipio. Revise cómo lo escribió.</small></button></li>'; }
+    else sugg.innerHTML = lista.map(function(m, i){
+      var p = m.match(/^(.*?)(?: \((.*)\))?$/);
+      return '<li><button type="button" role="option" id="mun' + i + '" data-v="' + esc(m) + '"><svg class="ico"><use href="#i-building"/></svg><span>' + esc(p[1]) + (p[2] ? ' <small>' + esc(p[2]) + '</small>' : '') + '</span></button></li>';
+    }).join('');
+    sugg.hidden = false; f.ciudad.setAttribute('aria-expanded', 'true'); activo = -1;
+  }
+  function elegirCiudad(v){ f.ciudad.value = v; f.ciudad.setCustomValidity(''); cerrarSugg(); play('tick'); }
+  // pointerdown: elige antes de que el campo pierda el foco
+  sugg.addEventListener('pointerdown', function(e){ var b = e.target.closest('button[data-v]'); if (b) { e.preventDefault(); elegirCiudad(b.dataset.v); } });
+  sugg.addEventListener('click', function(e){ var b = e.target.closest('button[data-v]'); if (b) elegirCiudad(b.dataset.v); });
+  f.ciudad.addEventListener('blur', function(){ setTimeout(cerrarSugg, 150); });
+  f.ciudad.addEventListener('keydown', function(e){
+    if (sugg.hidden) return;
+    var bs = sugg.querySelectorAll('button[data-v]');
+    if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+      e.preventDefault(); activo = (activo + (e.key === 'ArrowDown' ? 1 : -1) + bs.length) % bs.length;
+      bs.forEach(function(b, i){ b.classList.toggle('act', i === activo); });
+      f.ciudad.setAttribute('aria-activedescendant', bs[activo] ? bs[activo].id : '');
+    } else if (e.key === 'Enter' && bs.length) {
+      e.preventDefault(); e.stopPropagation(); elegirCiudad(bs[Math.max(activo, 0)].dataset.v);
+    } else if (e.key === 'Escape') cerrarSugg();
   });
 
   // ---------- Buscador de empresas ----------
