@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Chao llamadas spam</title>
-<meta name="description" content="Paso a paso para escribir un derecho de petición y que las empresas dejen de llamarle. Nada se guarda: todo ocurre en su navegador.">
+<meta name="description" content="Herramienta gratuita para que las empresas dejen de llamarle: escriba su carta en 5 minutos y, si no cumplen, presente la queja ante la SIC. Nada se guarda.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Literata:opsz,wght@7..72,500;7..72,650&display=swap">
@@ -17,225 +17,187 @@
   --green:#22704a; --green-soft:#e4f3ea;
   --amber:#93590f; --amber-soft:#fbf0dc;
   --red:#a33a2c; --red-soft:#fbe8e5;
-  --accent-ink:#ffffff;
   --font-display:"Literata", Georgia, serif;
   --font-body:"Atkinson Hyperlegible", "Segoe UI", Arial, sans-serif;
 }
 *{box-sizing:border-box}
 [hidden]{display:none!important}
-.brand{white-space:nowrap}
-html{scroll-padding-top:120px}
-body{margin:0; background:var(--bg); color:var(--ink); font-family:var(--font-body); font-size:1.125rem; line-height:1.6}
+html{scroll-padding-top:100px}
+body{margin:0; background:var(--bg); color:var(--ink); font-family:var(--font-body); font-size:1.1rem; line-height:1.55}
 a{color:var(--blue); text-underline-offset:3px}
-a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible, label.opt:focus-within{outline:3px solid var(--blue); outline-offset:3px; border-radius:10px}
+:focus-visible{outline:3px solid var(--blue); outline-offset:3px; border-radius:10px}
 h1,h2,h3{font-family:var(--font-display); font-weight:650; line-height:1.18; text-wrap:balance; margin:0}
 p{margin:0}
 .wrap{padding-left:max(16px, env(safe-area-inset-left, 0px)); padding-right:max(16px, env(safe-area-inset-right, 0px))}
 .ico{width:1em; height:1em; fill:none; stroke:currentColor; stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round; flex:none}
+.muted{color:var(--muted)} .small{font-size:.92rem}
 
 /* Barra superior */
 header.top{position:sticky; top:0; z-index:5; background:var(--bg); border-bottom:1px solid var(--line)}
-.top-in{max-width:52rem; margin:0 auto; padding-block:12px 10px; display:flex; flex-direction:column; gap:10px}
-.top-row{display:flex; justify-content:space-between; align-items:center; gap:16px}
-.brand{font-family:var(--font-display); font-weight:650; font-size:1rem; display:flex; gap:8px; align-items:center}
+.top-in{max-width:46rem; margin:0 auto; padding-block:10px 8px; display:flex; flex-direction:column; gap:8px}
+.top-row{display:flex; justify-content:space-between; align-items:center; gap:12px}
+.brand{font-family:var(--font-display); font-weight:650; font-size:1rem; display:flex; gap:8px; align-items:center; white-space:nowrap; background:none; border:0; padding:0; color:var(--ink); cursor:pointer}
 .brand .ico{color:var(--red); font-size:1.2rem}
 .tools{display:flex; gap:8px; align-items:center}
-.count{color:var(--muted); font-size:.92rem; font-variant-numeric:tabular-nums}
-.iconbtn{font:inherit; width:38px; height:38px; border-radius:10px; border:1px solid var(--line); background:var(--bg); color:var(--blue); display:grid; place-items:center; cursor:pointer; font-size:20px}
-.iconbtn:hover{background:var(--blue-soft)}
+.count{color:var(--muted); font-size:.9rem; font-variant-numeric:tabular-nums; white-space:nowrap}
+.iconbtn{font:inherit; width:36px; height:36px; border-radius:10px; border:1px solid var(--line); background:var(--bg); color:var(--blue); display:grid; place-items:center; cursor:pointer; font-size:19px}
 .bar{display:grid; grid-auto-flow:column; grid-auto-columns:1fr; gap:5px}
-.bar button{height:7px; border:0; border-radius:999px; background:var(--line); cursor:pointer; padding:0; transition:background .3s}
-.bar button.done{background:var(--blue)}
-.bar button.now{background:var(--blue); box-shadow:0 0 0 3px var(--blue-soft)}
-.bar button:disabled{cursor:default}
+.bar i{height:6px; border-radius:999px; background:var(--line); transition:background .3s}
+.bar i.done, .bar i.now{background:var(--blue)}
+.bar i.now{box-shadow:0 0 0 3px var(--blue-soft)}
 
-main{max-width:52rem; margin:0 auto; padding-block:clamp(14px, 3vh, 28px) 110px}
+main{max-width:46rem; margin:0 auto; padding-block:18px 96px}
 
-/* Paso: pregunta grande -> respuesta */
-.step{display:flex; flex-direction:column; gap:26px}
-.qhead{display:flex; flex-direction:column; align-items:center; text-align:center; gap:clamp(12px, 2.4vh, 22px); padding-top:clamp(8px, 7vh, 72px); transition:padding .45s ease, gap .45s ease}
-.badge{width:120px; height:120px; border-radius:32px; display:grid; place-items:center; font-size:58px; color:var(--c); background:var(--cs); transition:all .45s ease}
-.qnum{font-size:.95rem; font-weight:700; letter-spacing:.07em; text-transform:uppercase; color:var(--c)}
-.qtext{font-size:clamp(2rem, 4.6vw, 3.1rem); max-width:16em; transition:font-size .45s ease}
-.hint{color:var(--muted); font-size:1rem}
-.step.open .qhead{flex-direction:row; text-align:left; padding-top:0; gap:18px}
-.step.open .badge{width:64px; height:64px; border-radius:18px; font-size:30px}
-.step.open .qtext{font-size:clamp(1.5rem, 3vw, 1.9rem)}
-.step.open .hint{display:none}
-.step.open .qmeta{display:flex; flex-direction:column; gap:4px}
-.answer{display:flex; flex-direction:column; gap:22px}
-.step:not(.open) .answer{display:none}
+/* Paso */
+.step{display:flex; flex-direction:column; gap:18px}
+.qhead{display:flex; align-items:center; gap:14px}
+.badge{width:56px; height:56px; border-radius:16px; display:grid; place-items:center; font-size:28px; color:var(--c); background:var(--cs); flex:none}
+.qnum{font-size:.85rem; font-weight:700; letter-spacing:.07em; text-transform:uppercase; color:var(--c)}
+.qtext{font-size:clamp(1.45rem, 3.6vw, 2rem)}
+.lead{font-size:1.15rem}
 @media (prefers-reduced-motion: no-preference){
-  .step:not([hidden]) .qhead{animation:pop .5s cubic-bezier(.2,.9,.3,1.3)}
-  .step.open .answer > *{animation:rise .5s ease-out both}
-  .step.open .answer > *:nth-child(2){animation-delay:.08s}
-  .step.open .answer > *:nth-child(3){animation-delay:.16s}
-  .step.open .answer > *:nth-child(4){animation-delay:.24s}
-  .step.open .answer > *:nth-child(5){animation-delay:.32s}
-  .step.open .answer > *:nth-child(6){animation-delay:.4s}
+  .step:not([hidden]) > *{animation:rise .45s ease-out both}
+  .step:not([hidden]) > *:nth-child(2){animation-delay:.06s}
+  .step:not([hidden]) > *:nth-child(3){animation-delay:.12s}
+  .step:not([hidden]) > *:nth-child(4){animation-delay:.18s}
+  .step:not([hidden]) > *:nth-child(5){animation-delay:.24s}
 }
-@keyframes pop{from{opacity:0; transform:scale(.92)} to{opacity:1; transform:none}}
-@keyframes rise{from{opacity:0; transform:translateY(14px)} to{opacity:1; transform:none}}
+@keyframes rise{from{opacity:0; transform:translateY(12px)} to{opacity:1; transform:none}}
 
-.big{font-size:1.4rem; line-height:1.5}
-.muted{color:var(--muted)}
-.analogy{display:flex; gap:16px; align-items:center; background:var(--amber-soft); border-radius:16px; padding:18px 22px}
-.analogy .ico{font-size:2.4rem; color:var(--amber)}
-.analogy p{font-size:1.15rem}
-.analogy.safe{background:var(--green-soft)} .analogy.safe .ico{color:var(--green)}
-.warn{display:flex; gap:14px; align-items:flex-start; background:var(--red-soft); border-radius:14px; padding:16px 20px}
-.warn .ico{font-size:1.6rem; color:var(--red); margin-top:2px}
-.taphint{display:flex; gap:10px; align-items:center; color:var(--muted); font-size:1rem}
-.taphint .ico{font-size:1.4rem; color:var(--amber)}
+.note{display:flex; gap:12px; align-items:flex-start; border-radius:14px; padding:12px 16px; background:var(--amber-soft)}
+.note > .ico{font-size:1.5rem; color:var(--amber); margin-top:2px}
+.note.ok{background:var(--green-soft)} .note.ok > .ico{color:var(--green)}
+.note.bad{background:var(--red-soft)} .note.bad > .ico{color:var(--red)}
+.note.info{background:var(--blue-soft)} .note.info > .ico{color:var(--blue)}
 
-/* Tarjetas que se voltean */
-.flips{display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:14px}
-.flip{display:block; perspective:1200px; border:0; background:none; padding:0; text-align:left; font:inherit; color:inherit; cursor:pointer; min-height:170px}
-.flip .in{position:relative; display:grid; height:100%; min-height:170px; transition:transform .6s; transform-style:preserve-3d}
-.flip.on .in{transform:rotateY(180deg)}
-.flip .f, .flip .b{grid-area:1/1; backface-visibility:hidden; -webkit-backface-visibility:hidden; border-radius:16px; padding:18px; display:flex; flex-direction:column; gap:8px}
-.flip .f{position:relative; background:var(--cs); border:1px solid var(--line); justify-content:center; transition:box-shadow .2s, transform .2s}
-.flip:hover .f{box-shadow:0 10px 24px -14px rgba(23,32,43,.45); transform:translateY(-2px)}
-.flip .f .ico{font-size:2rem; color:var(--c)}
-.flip .f b{font-size:1.1rem}
-.flip .f small{color:var(--muted); font-size:.92rem; line-height:1.4}
-.flip .b{background:var(--bg); border:2px solid var(--c); transform:rotateY(180deg); justify-content:center}
-.flip .b p{font-size:1rem; line-height:1.45}
-.tapme{position:absolute; top:10px; right:10px; width:30px; height:30px; border-radius:50%; background:var(--bg); border:1px solid var(--line); display:grid; place-items:center; color:var(--c); font-size:16px}
-@media (prefers-reduced-motion: no-preference){
-  .tapme, .taphint .ico{animation:tap 1.8s ease-in-out infinite}
-  .btn.next.reveal{animation:ring 1.8s ease-out infinite}
-}
-@media (prefers-reduced-motion: reduce){ .flip .in{transition:none} }
-@keyframes tap{0%,100%{transform:scale(1)} 50%{transform:scale(1.15)}}
-@keyframes ring{0%{box-shadow:0 0 0 0 rgba(147,89,15,.45)} 100%{box-shadow:0 0 0 16px rgba(147,89,15,0)}}
+/* Botón "Ver fuente" */
+.src{font:inherit; font-size:.82rem; font-weight:700; display:inline-flex; gap:4px; align-items:center; color:var(--blue); background:var(--bg); border:1px solid var(--blue-soft); border-radius:999px; padding:2px 10px; cursor:pointer; white-space:nowrap; vertical-align:middle}
+.src .ico{font-size:.95rem}
+.src:hover{background:var(--blue-soft)}
 
-/* Línea de tiempo */
-.road{display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); position:relative}
-.road::before{content:""; position:absolute; left:12%; right:12%; top:34px; height:3px; background:var(--line)}
-.stop{display:flex; flex-direction:column; align-items:center; text-align:center; gap:8px; padding:0 8px; position:relative}
-.stop .dot{width:70px; height:70px; border-radius:50%; background:var(--bg); border:3px solid var(--c); color:var(--c); display:grid; place-items:center; font-size:30px}
-.stop b{color:var(--c)}
-.stop span{font-size:.98rem; color:var(--muted); line-height:1.4}
-
-/* Formularios */
-.fields{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px}
-.fields .full{grid-column:1/-1}
-.field{display:flex; flex-direction:column; gap:6px; font-weight:700; font-size:1rem}
-.field small{font-weight:400; color:var(--muted)}
-.field input, .field select{font:inherit; font-weight:400; font-size:1.1rem; padding:12px 14px; border:2px solid var(--line); border-radius:12px; background:var(--bg); color:var(--ink); width:100%}
-.field input:focus, .field select:focus{border-color:var(--blue); outline:none}
-.field input:user-invalid{border-color:var(--red)}
-.opts{display:grid; gap:12px}
-.opts.four{grid-template-columns:repeat(4,minmax(0,1fr))}
-.opts.three{grid-template-columns:repeat(3,minmax(0,1fr))}
-label.opt{position:relative; display:flex; flex-direction:column; gap:6px; background:var(--surface); border:2px solid var(--line); border-radius:16px; padding:16px; cursor:pointer; transition:all .2s}
-label.opt input{position:absolute; opacity:0; pointer-events:none}
-label.opt .ico{font-size:2rem; color:var(--c)}
-label.opt b{font-size:1.05rem}
-label.opt small{color:var(--muted); font-size:.92rem; line-height:1.4}
-label.opt:has(input:checked){border-color:var(--c); background:var(--cs)}
-label.opt:has(input:checked)::after{content:"✓"; position:absolute; top:10px; right:12px; width:26px; height:26px; border-radius:50%; background:var(--c); color:#fff; display:grid; place-items:center; font-size:.9rem; font-weight:700}
-.howto{display:flex; flex-direction:column; gap:10px; margin:0; padding:0; list-style:none}
-.howto li{display:flex; gap:14px; align-items:center; background:var(--surface); border:1px solid var(--line); border-radius:14px; padding:12px 16px}
-.howto .n{flex:none; width:32px; height:32px; border-radius:50%; background:var(--violet); color:#fff; display:grid; place-items:center; font-weight:700}
-.err{color:var(--red); font-weight:700; min-height:1.5em; font-size:1rem}
-.small{font-size:.92rem}
-.finder{display:flex; flex-direction:column; gap:10px}
-.results{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:8px}
-.results:empty{display:none}
-.results button{font:inherit; width:100%; text-align:left; display:grid; grid-template-columns:auto minmax(0,1fr) auto; gap:14px; align-items:center; background:var(--surface); border:2px solid var(--line); border-radius:14px; padding:12px 16px; cursor:pointer; color:var(--ink)}
-.results button:hover, .results button:focus-visible{border-color:var(--violet); background:var(--violet-soft)}
-.results .ico{font-size:1.6rem; color:var(--violet)}
-.results b{display:block} .results small{display:block; color:var(--muted); font-size:.9rem; line-height:1.35}
-.tag{font-size:.8rem; font-weight:700; border-radius:999px; padding:3px 10px; white-space:nowrap}
-.tag.ok{background:var(--green-soft); color:var(--green)} .tag.no{background:var(--amber-soft); color:var(--amber)}
-.picked{display:flex; gap:14px; align-items:flex-start; background:var(--green-soft); border-radius:16px; padding:16px 20px}
-.picked .ico{font-size:2rem; color:var(--green); margin-top:2px}
-.picked.partial{background:var(--amber-soft)} .picked.partial .ico{color:var(--amber)}
-.manual{background:var(--surface); border:1px solid var(--line); border-radius:14px; padding:12px 16px}
-.manual summary{cursor:pointer; font-weight:700; color:var(--violet)}
-.manual[open] summary{margin-bottom:12px}
-.manual .howto{margin-bottom:10px}
-@media (max-width: 560px){ .results button{grid-template-columns:minmax(0,1fr)} .results button > .ico{display:none} }
-
-/* La carta */
-.paper{background:#fff; border:1px solid var(--line); border-radius:14px; box-shadow:0 18px 40px -24px rgba(23,32,43,.55); padding:6px}
-.paper textarea{width:100%; min-height:460px; border:0; resize:vertical; padding:22px 24px; font-family:var(--font-display); font-size:1.02rem; line-height:1.7; color:var(--ink); background:transparent}
-.paper textarea:focus{outline:none}
-.sendrow{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px}
-.cta{font:inherit; display:grid; grid-template-columns:auto minmax(0,1fr); gap:16px; align-items:center; text-align:left; border-radius:18px; padding:18px 22px; cursor:pointer; border:0}
-.cta .ci{width:52px; height:52px; border-radius:16px; display:grid; place-items:center; font-size:28px}
-.cta strong{display:block; font-family:var(--font-display); font-size:1.25rem; line-height:1.25}
-.cta small{display:block; font-size:.95rem; margin-top:2px}
-.cta.main{color:#fff; background:linear-gradient(120deg, var(--blue), var(--violet)); box-shadow:0 18px 36px -20px var(--blue)}
-.cta.main .ci{background:rgba(255,255,255,.18)} .cta.main small{opacity:.9}
-.cta.alt{color:var(--ink); background:var(--surface); border:2px solid var(--line)}
-.cta.alt .ci{background:var(--blue-soft); color:var(--blue)} .cta.alt small{color:var(--muted)}
-.cta:hover{filter:brightness(1.05)}
-.status{font-weight:700; color:var(--green); min-height:1.5em}
-
-/* Lista final */
-.checks{display:flex; flex-direction:column; gap:10px}
-.check{display:flex; gap:14px; align-items:center; background:var(--surface); border:1px solid var(--line); border-radius:14px; padding:12px 16px; cursor:pointer}
-.check input{width:24px; height:24px; accent-color:var(--green); flex:none}
-.check:has(input:checked){background:var(--green-soft)}
-.check:has(input:checked) span{color:var(--muted); text-decoration:line-through}
-.meter{height:12px; border-radius:999px; background:var(--line); overflow:hidden}
-.meter i{display:block; height:100%; width:0; background:var(--green); border-radius:999px; transition:width .4s}
-
-/* Bienvenida */
-.hero{display:flex; flex-direction:column; align-items:center; text-align:center; gap:clamp(10px, 1.8vh, 18px); padding-top:clamp(4px, 2vh, 24px)}
-.phone{position:relative; width:150px; height:150px; display:grid; place-items:center; margin-top:6px}
-.phone .core{width:96px; height:96px; border-radius:28px; background:var(--red); color:#fff; display:grid; place-items:center; font-size:52px; box-shadow:0 18px 40px -18px var(--red)}
-.phone .wave{position:absolute; inset:27px; border-radius:32px; border:3px solid var(--red); opacity:0}
-.calls{display:flex; flex-direction:column; gap:8px; width:min(100%, 26rem)}
-.call{display:flex; gap:12px; align-items:center; text-align:left; background:var(--surface); border:1px solid var(--line); border-radius:14px; padding:10px 14px}
-.call .ico{font-size:1.5rem; color:var(--red)}
-.call b{display:block; font-size:1rem} .call small{color:var(--muted); font-size:.9rem}
+/* Inicio */
+.hero{display:flex; flex-direction:column; align-items:center; text-align:center; gap:12px}
+.phone{position:relative; width:88px; height:88px; display:grid; place-items:center}
+.phone .core{width:64px; height:64px; border-radius:20px; background:var(--red); color:#fff; display:grid; place-items:center; font-size:34px; box-shadow:0 14px 30px -14px var(--red)}
+.phone .wave{position:absolute; inset:12px; border-radius:24px; border:3px solid var(--red); opacity:0}
 @media (prefers-reduced-motion: no-preference){
   .step:not([hidden]) .phone .core{animation:shake 1.4s ease-in-out infinite}
   .step:not([hidden]) .phone .wave{animation:wave 1.4s ease-out infinite}
-  .step:not([hidden]) .phone .wave.w2{animation-delay:.45s}
-  .step:not([hidden]) .call{animation:rise .5s ease-out both}
-  .step:not([hidden]) .call:nth-child(1){animation-delay:.4s}
-  .step:not([hidden]) .call:nth-child(2){animation-delay:1.1s}
-  .step:not([hidden]) .call:nth-child(3){animation-delay:1.8s}
+  .step:not([hidden]) .phone .w2{animation-delay:.45s}
 }
 @keyframes shake{0%,40%,100%{transform:rotate(0)} 5%,15%,25%{transform:rotate(-9deg)} 10%,20%,30%{transform:rotate(9deg)}}
-@keyframes wave{from{opacity:.6; transform:scale(1)} to{opacity:0; transform:scale(1.6)}}
-.hero h1{font-size:clamp(1.9rem, min(4.4vw, 6vh), 2.7rem)}
-.chips{display:flex; flex-wrap:wrap; justify-content:center; gap:10px; margin:0; padding:0; list-style:none}
-.chips li{display:flex; gap:8px; align-items:center; background:var(--surface); border:1px solid var(--line); border-radius:999px; padding:6px 16px; font-size:1rem}
-.chips .ico{color:var(--blue)}
-.credit{font-size:.92rem; color:var(--muted); border-top:1px solid var(--line); padding-top:14px}
-.done-mark{width:84px; height:84px; border-radius:50%; background:var(--green); display:grid; place-items:center; margin:0 auto}
-.done-mark svg{width:58px; height:58px; fill:none; stroke:#fff; stroke-width:3; stroke-linecap:round; stroke-linejoin:round; stroke-dasharray:30}
-@media (prefers-reduced-motion: no-preference){ .step:not([hidden]) .done-mark svg{animation:draw .8s ease-out .2s both} }
-@keyframes draw{from{stroke-dashoffset:30}}
-.sources{display:flex; flex-direction:column; gap:4px; font-size:.95rem}
+@keyframes wave{from{opacity:.6; transform:scale(1)} to{opacity:0; transform:scale(1.5)}}
+.hero h1{font-size:clamp(1.7rem, 5vw, 2.4rem)}
+.how{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:10px; width:100%; margin:0; padding:0; list-style:none; counter-reset:h}
+.how li{background:var(--surface); border:1px solid var(--line); border-radius:14px; padding:12px; display:flex; flex-direction:column; align-items:center; gap:6px; text-align:center; font-size:.95rem; line-height:1.35}
+.how .ico{font-size:1.7rem; color:var(--c)}
+.how b{font-size:1rem}
+.chips{display:flex; flex-wrap:wrap; justify-content:center; gap:8px; margin:0; padding:0; list-style:none}
+.chips li{display:flex; gap:6px; align-items:center; background:var(--surface); border:1px solid var(--line); border-radius:999px; padding:4px 12px; font-size:.92rem}
+.chips .ico{color:var(--green)}
+.paths{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; width:100%}
+.credit{font-size:.85rem; color:var(--muted)}
+
+/* Tarjetas de derechos */
+.rights{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px}
+.flip{display:block; perspective:1000px; border:0; background:none; padding:0; text-align:left; font:inherit; color:inherit; cursor:pointer; min-height:150px}
+.flip .in{position:relative; display:grid; height:100%; min-height:150px; transition:transform .55s; transform-style:preserve-3d}
+.flip.on .in{transform:rotateY(180deg)}
+.flip .f, .flip .b{grid-area:1/1; backface-visibility:hidden; -webkit-backface-visibility:hidden; border-radius:14px; padding:14px; display:flex; flex-direction:column; gap:6px}
+.flip .f{position:relative; background:var(--cs); border:1px solid var(--line); justify-content:center}
+.flip .f .ico{font-size:1.8rem; color:var(--c)}
+.flip .f b{font-size:1.05rem; line-height:1.3}
+.flip .b{background:var(--bg); border:2px solid var(--c); transform:rotateY(180deg); justify-content:center; font-size:.95rem; line-height:1.4}
+.tapme{position:absolute; top:8px; right:8px; width:26px; height:26px; border-radius:50%; background:var(--bg); border:1px solid var(--line); display:grid; place-items:center; color:var(--c); font-size:14px}
+@media (prefers-reduced-motion: no-preference){ .tapme{animation:tap 1.8s ease-in-out infinite} }
+@media (prefers-reduced-motion: reduce){ .flip .in{transition:none} }
+@keyframes tap{0%,100%{transform:scale(1)} 50%{transform:scale(1.15)}}
+
+/* Formularios */
+.fields{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px}
+.fields .full{grid-column:1/-1}
+.field{display:flex; flex-direction:column; gap:4px; font-weight:700; font-size:.95rem}
+.field small{font-weight:400; color:var(--muted)}
+.field input, .field select{font:inherit; font-weight:400; font-size:1.05rem; padding:10px 12px; border:2px solid var(--line); border-radius:12px; background:var(--bg); color:var(--ink); width:100%; min-height:46px}
+.field input:focus, .field select:focus{border-color:var(--blue); outline:none}
+.field input:user-invalid{border-color:var(--red)}
+.group{display:flex; flex-direction:column; gap:6px}
+.group > b{font-size:.95rem}
+.pills{display:flex; flex-wrap:wrap; gap:8px}
+label.pill{position:relative; display:inline-flex; gap:6px; align-items:center; background:var(--surface); border:2px solid var(--line); border-radius:999px; padding:7px 14px; cursor:pointer; font-size:.98rem}
+label.pill input{position:absolute; opacity:0; pointer-events:none}
+label.pill .ico{color:var(--c, var(--blue)); font-size:1.15rem}
+label.pill:has(input:checked){border-color:var(--c, var(--blue)); background:var(--cs, var(--blue-soft)); font-weight:700}
+label.pill:has(input:focus-visible){outline:3px solid var(--blue); outline-offset:2px}
+.err{color:var(--red); font-weight:700; font-size:.95rem; min-height:1.4em}
+
+/* Buscador */
+.results{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:6px}
+.results:empty{display:none}
+.results button{font:inherit; width:100%; text-align:left; display:flex; justify-content:space-between; gap:10px; align-items:center; background:var(--surface); border:2px solid var(--line); border-radius:12px; padding:10px 14px; cursor:pointer; color:var(--ink)}
+.results button:hover, .results button:focus-visible{border-color:var(--violet); background:var(--violet-soft)}
+.results b{display:block; line-height:1.3} .results small{display:block; color:var(--muted); font-size:.85rem; line-height:1.3}
+.tag{font-size:.75rem; font-weight:700; border-radius:999px; padding:2px 8px; white-space:nowrap}
+.tag.ok{background:var(--green-soft); color:var(--green)} .tag.no{background:var(--amber-soft); color:var(--amber)}
+details.more{background:var(--surface); border:1px solid var(--line); border-radius:12px; padding:10px 14px; font-size:.98rem}
+details.more summary{cursor:pointer; font-weight:700; color:var(--violet)}
+details.more[open] summary{margin-bottom:10px}
+details.more ol{margin:0 0 10px; padding-left:20px}
+
+/* Carta */
+.paper{background:#fff; border:1px solid var(--line); border-radius:14px; box-shadow:0 14px 30px -22px rgba(23,32,43,.55)}
+.paper textarea{display:block; width:100%; height:42vh; min-height:260px; border:0; resize:vertical; padding:16px 18px; font-family:var(--font-display); font-size:.98rem; line-height:1.65; color:var(--ink); background:transparent; border-radius:14px}
+.paper textarea:focus{outline:none}
+.sendrow{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px}
+.cta{font:inherit; display:flex; gap:12px; align-items:center; text-align:left; border-radius:14px; padding:12px 16px; cursor:pointer; border:0; text-decoration:none; min-height:60px}
+.cta .ci{width:40px; height:40px; border-radius:12px; display:grid; place-items:center; font-size:22px; flex:none}
+.cta strong{display:block; font-size:1.05rem; line-height:1.2}
+.cta small{display:block; font-size:.85rem; margin-top:2px; line-height:1.3}
+.cta.main{color:#fff; background:linear-gradient(120deg, var(--blue), var(--violet)); box-shadow:0 14px 28px -18px var(--blue)}
+.cta.main .ci{background:rgba(255,255,255,.18)} .cta.main small{opacity:.9}
+.cta.alt{color:var(--ink); background:var(--surface); border:2px solid var(--line)}
+.cta.alt .ci{background:var(--blue-soft); color:var(--blue)} .cta.alt small{color:var(--muted)}
+.cta.sic{color:#fff; background:linear-gradient(120deg, var(--red), var(--amber))}
+.cta.sic .ci{background:rgba(255,255,255,.18)}
+.cta:hover{filter:brightness(1.05)}
+.status{font-weight:700; color:var(--green); min-height:1.4em}
+.timeline{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:8px; margin:0; padding:0; list-style:none}
+.timeline li{border-top:4px solid var(--c); background:var(--surface); border-radius:10px; padding:10px; font-size:.9rem; line-height:1.35}
+.timeline b{display:block; color:var(--c); font-size:.98rem}
+
+/* Visor de fuentes */
+dialog.viewer{border:0; padding:0; border-radius:18px; width:min(44rem, calc(100vw - 24px)); max-height:calc(100dvh - 24px); box-shadow:0 30px 60px -20px rgba(0,0,0,.45)}
+dialog.viewer::backdrop{background:rgba(23,32,43,.55)}
+.vhead{position:sticky; top:0; background:var(--bg); display:flex; gap:12px; align-items:center; padding:12px 16px; border-bottom:1px solid var(--line)}
+.vhead strong{flex:1; font-family:var(--font-display); font-size:1.05rem; line-height:1.25}
+.vbody{padding:16px; display:flex; flex-direction:column; gap:12px}
+.vbody img{width:100%; height:auto; border:1px solid var(--line); border-radius:10px}
+.vbody blockquote{margin:0; padding:12px 16px; border-left:4px solid var(--blue); background:var(--surface); border-radius:0 10px 10px 0; font-family:var(--font-display); font-size:1rem; line-height:1.6}
+@media (prefers-reduced-motion: no-preference){ dialog.viewer[open]{animation:rise .3s ease-out} }
 
 /* Navegación */
 footer.nav{position:fixed; left:0; right:0; bottom:0; z-index:5; background:var(--bg); border-top:1px solid var(--line); padding-bottom:env(safe-area-inset-bottom, 0px)}
-.nav-in{max-width:52rem; margin:0 auto; padding-block:10px; display:flex; justify-content:space-between; align-items:center; gap:12px}
-.btn{font:inherit; font-size:1rem; font-weight:700; border-radius:12px; padding:10px 22px; cursor:pointer; border:2px solid var(--blue); display:flex; gap:8px; align-items:center}
-.btn.next{background:var(--blue); color:var(--accent-ink)}
-.btn.next.reveal{background:var(--amber); border-color:var(--amber)}
+.nav-in{max-width:46rem; margin:0 auto; padding-block:10px; display:flex; justify-content:space-between; align-items:center; gap:12px}
+.btn{font:inherit; font-size:1rem; font-weight:700; border-radius:12px; padding:10px 20px; cursor:pointer; border:2px solid var(--blue); min-height:46px}
+.btn.next{background:var(--blue); color:#fff}
 .btn.prev{background:var(--bg); color:var(--blue)}
 .btn:disabled{visibility:hidden}
-.keys{color:var(--muted); font-size:.85rem}
 
-@media (max-width: 820px){
-  .flips, .opts.four{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .road{grid-template-columns:repeat(2,minmax(0,1fr)); row-gap:24px} .road::before{display:none}
-  .keys{display:none}
+@media (max-width: 600px){
+  body{font-size:1.03rem}
+  .fields{grid-template-columns:minmax(0,1fr)}
+  .fields .half{grid-column:auto}
+  .sendrow, .paths{grid-template-columns:minmax(0,1fr)}
+  .how{grid-template-columns:minmax(0,1fr)}
+  .how{gap:6px}
+  .how li{flex-direction:row; text-align:left; padding:8px 12px; font-size:.9rem}
+  .how .ico{font-size:1.4rem}
+  .hero{gap:10px} .phone{width:72px; height:72px} .phone .core{width:54px; height:54px; font-size:28px}
+  main{padding-bottom:90px}
+  .flip, .flip .in{min-height:136px}
+  .timeline{grid-template-columns:minmax(0,1fr)}
 }
-@media (max-width: 560px){
-  body{font-size:1.05rem}
-  .fields, .opts.three, .sendrow{grid-template-columns:minmax(0,1fr)}
-  .badge{width:96px; height:96px; font-size:46px}
-  .paper textarea{padding:16px; min-height:380px}
-}
+@media (max-width: 600px){ .paper textarea{height:34vh; min-height:220px} }
 </style>
 </head>
 <body>
@@ -246,7 +208,6 @@ footer.nav{position:fixed; left:0; right:0; bottom:0; z-index:5; background:var(
   <symbol id="i-sms" viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4z"/><path d="M8 9.5h8M8 12.5h5"/></symbol>
   <symbol id="i-wa" viewBox="0 0 24 24"><path d="M4 20l1.3-4A8 8 0 1 1 8 18.7z"/><path d="M9 9c0 3 2 5 5 6l1.2-1.4-1.8-1-1 .8a4 4 0 0 1-1.8-1.8l.8-1-1-1.8z"/></symbol>
   <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></symbol>
-  <symbol id="i-key" viewBox="0 0 24 24"><circle cx="8" cy="15" r="4"/><path d="M11 12l9-9M17 6l3 3M15 8l2 2"/></symbol>
   <symbol id="i-scale" viewBox="0 0 24 24"><path d="M12 3v18M7 21h10M4 7h16"/><path d="M7 7l-3 6a3 3 0 0 0 6 0z"/><path d="M17 7l-3 6a3 3 0 0 0 6 0z"/></symbol>
   <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></symbol>
   <symbol id="i-building" viewBox="0 0 24 24"><path d="M4 21V5l8-2v18M12 8h8v13M3 21h18M7 8h2M7 12h2M7 16h2M15 12h2M15 16h2"/></symbol>
@@ -255,221 +216,192 @@ footer.nav{position:fixed; left:0; right:0; bottom:0; z-index:5; background:var(
   <symbol id="i-alert" viewBox="0 0 24 24"><path d="M12 3l10 18H2z"/><path d="M12 10v5M12 18h.01"/></symbol>
   <symbol id="i-lock" viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></symbol>
   <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 4.5-3.4 8.2-8 9-4.6-.8-8-4.5-8-9V6z"/><path d="M9 12l2 2 4-4"/></symbol>
+  <symbol id="i-trash" viewBox="0 0 24 24"><path d="M4 7h16M9 7V4h6v3M6 7l1 14h10l1-14"/></symbol>
   <symbol id="i-stamp" viewBox="0 0 24 24"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4M9 14l2 2 4-4"/></symbol>
   <symbol id="i-copy" viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V4H4v12h4"/></symbol>
   <symbol id="i-send" viewBox="0 0 24 24"><path d="M21 3L10 14M21 3l-7 18-4-7-7-4z"/></symbol>
-  <symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></symbol>
   <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
-  <symbol id="i-flag" viewBox="0 0 24 24"><path d="M5 21V4M5 4h12l-2 4 2 4H5"/></symbol>
-  <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M21 21l-5-5"/></symbol>
+  <symbol id="i-coins" viewBox="0 0 24 24"><ellipse cx="9" cy="7" rx="6" ry="3"/><path d="M3 7v5c0 1.7 2.7 3 6 3s6-1.3 6-3V7M9 15v2c0 1.7 2.7 3 6 3s6-1.3 6-3v-5c0-1.6-2.4-2.9-5.5-3"/></symbol>
+  <symbol id="i-moon" viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/></symbol>
   <symbol id="i-hand" viewBox="0 0 24 24"><path d="M9 11V5a1.5 1.5 0 0 1 3 0v5M12 10V4a1.5 1.5 0 0 1 3 0v6M15 10.5V6.5a1.5 1.5 0 0 1 3 0V14a7 7 0 0 1-7 7h-.5a6 6 0 0 1-5-2.7L3.8 15a1.6 1.6 0 0 1 2.6-1.8L9 16V11"/></symbol>
-  <symbol id="i-store" viewBox="0 0 24 24"><path d="M4 9l1-5h14l1 5M4 9h16v12H4zM4 9a2.7 2.7 0 0 0 5.3 0 2.7 2.7 0 0 0 5.4 0 2.7 2.7 0 0 0 5.3 0M10 21v-5h4v5"/></symbol>
-  <symbol id="i-gift" viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="5"/><path d="M5 13v8h14v-8M12 8v13M12 8S10 3 7.5 4.5 9 8 12 8zM12 8s2-5 4.5-3.5S15 8 12 8z"/></symbol>
-  <symbol id="i-history" viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 3-6.7L3 8M3 3v5h5M12 7v5l3 2"/></symbol>
-  <symbol id="i-share" viewBox="0 0 24 24"><circle cx="6" cy="12" r="2.5"/><circle cx="18" cy="6" r="2.5"/><circle cx="18" cy="18" r="2.5"/><path d="M8.2 10.8l7.6-3.6M8.2 13.2l7.6 3.6"/></symbol>
+  <symbol id="i-eye" viewBox="0 0 24 24"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol>
   <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+  <symbol id="i-ext" viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-9 9M18 14v6H4V6h6"/></symbol>
   <symbol id="i-sound" viewBox="0 0 24 24"><path d="M4 9v6h4l5 4V5L8 9z"/><path d="M16 9a4 4 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11"/></symbol>
   <symbol id="i-mute" viewBox="0 0 24 24"><path d="M4 9v6h4l5 4V5L8 9z"/><path d="M17 9l5 6M22 9l-5 6"/></symbol>
 </svg>
 
 <header class="top">
   <div class="top-in wrap">
-    <div class="top-row"><span class="brand"><svg class="ico"><use href="#i-phoneoff"/></svg>Chao llamadas spam</span>
-      <span class="tools"><span class="count" id="count">Bienvenida</span><button class="iconbtn" id="snd" type="button" aria-label="Apagar el sonido" aria-pressed="true"><svg class="ico"><use href="#i-sound"/></svg></button></span></div>
-    <div class="bar" id="bar" aria-label="Avance"></div>
+    <div class="top-row"><button class="brand" id="home" type="button" aria-label="Ir al inicio"><svg class="ico"><use href="#i-phoneoff"/></svg>Chao llamadas spam</button>
+      <span class="tools"><span class="count" id="count"></span><button class="iconbtn" id="snd" type="button" aria-label="Apagar el sonido" aria-pressed="true"><svg class="ico"><use href="#i-sound"/></svg></button></span></div>
+    <div class="bar" id="bar" aria-hidden="true"></div>
   </div>
 </header>
 
 <main class="wrap">
 <form id="f" novalidate onsubmit="return false">
 
-  <!-- 0 Bienvenida -->
-  <section class="step" data-title="Bienvenida">
+  <!-- INICIO -->
+  <section class="step" data-id="inicio">
     <div class="hero">
       <div class="phone" aria-hidden="true"><span class="wave"></span><span class="wave w2"></span><div class="core"><svg class="ico"><use href="#i-phone"/></svg></div></div>
-      <div class="calls" aria-label="Ejemplos de llamadas no deseadas">
-        <div class="call"><svg class="ico"><use href="#i-phone"/></svg><span><b>Domingo, 7:02 a. m.</b><small>“Tiene una tarjeta de crédito preaprobada…”</small></span></div>
-        <div class="call"><svg class="ico"><use href="#i-sms"/></svg><span><b>Martes, 9:40 p. m.</b><small>“¡Últimos días! Seguro de vida con 50 % de descuento”</small></span></div>
-        <div class="call"><svg class="ico"><use href="#i-phone"/></svg><span><b>Jueves, en plena reunión</b><small>“Le hablamos de su operador, tenemos un plan…”</small></span></div>
+      <h1>¿Lo llaman para venderle algo que nunca pidió?</h1>
+      <p class="lead">Esta herramienta le ayuda a <b>exigir que borren su número</b>, con la ley de su lado. Así funciona:</p>
+      <ol class="how">
+        <li style="--c:var(--blue)"><svg class="ico"><use href="#i-doc"/></svg><span><b>1. Escriba su carta</b><br>Le pide a la empresa que lo borre. Toma 5 minutos.</span></li>
+        <li style="--c:var(--amber)"><svg class="ico"><use href="#i-clock"/></svg><span><b>2. La empresa responde</b><br>Tiene 15 días hábiles para hacerlo.</span></li>
+        <li style="--c:var(--red)"><svg class="ico"><use href="#i-stamp"/></svg><span><b>3. Si no cumple, queja</b><br>Ante la Superintendencia de Industria y Comercio (SIC).</span></li>
+      </ol>
+      <div class="paths">
+        <button class="cta main" type="button" data-start="carta"><span class="ci"><svg class="ico"><use href="#i-doc"/></svg></span><span><strong>Escribir mi carta</strong><small>Primer paso: a la empresa</small></span></button>
+        <button class="cta alt" type="button" data-start="sic"><span class="ci"><svg class="ico"><use href="#i-stamp"/></svg></span><span><strong>Ya envié la carta</strong><small>No respondieron: queja ante la SIC</small></span></button>
       </div>
-      <h1>¿Le suena conocido?</h1>
-      <p class="big">Usted no dio su número, pero lo llaman igual. La buena noticia: <b>la ley le permite exigir que lo borren</b>. Aquí le explicamos cómo y le ayudamos a escribir la carta.</p>
       <ul class="chips">
-        <li><svg class="ico"><use href="#i-flag"/></svg>7 pasos</li>
-        <li><svg class="ico"><use href="#i-clock"/></svg>Unos 5 minutos</li>
+        <li><svg class="ico"><use href="#i-check"/></svg>Gratis</li>
+        <li><svg class="ico"><use href="#i-check"/></svg>Sin abogado</li>
         <li><svg class="ico"><use href="#i-lock"/></svg>Nada se guarda</li>
       </ul>
+      <p class="small muted">Es el camino que recomienda la propia SIC <button type="button" class="src" data-src="sic9"><svg class="ico"><use href="#i-eye"/></svg>Ver fuente</button></p>
       <p class="credit">Creado por Juan Sebastián Rodríguez Casas · Herramienta educativa, no reemplaza la asesoría de un abogado</p>
     </div>
   </section>
 
-  <!-- 1 Por qué -->
-  <section class="step" data-title="Por qué me llaman" style="--c:var(--red);--cs:var(--red-soft)" hidden>
-    <div class="qhead"><div class="badge"><svg class="ico"><use href="#i-search"/></svg></div>
-      <div class="qmeta"><p class="qnum">Paso 1</p><h2 class="qtext">¿Cómo consiguieron su número?</h2></div>
-      <p class="hint">Piénselo un momento…</p></div>
-    <div class="answer">
-      <p class="big">Sus datos <b>se piden, se comparten y se venden</b> entre empresas. Casi siempre usted dio el número sin saber para qué lo iban a usar.</p>
-      <p class="taphint"><svg class="ico"><use href="#i-hand"/></svg>Toque cada tarjeta. ¿Alguna le pasó a usted?</p>
-      <div class="flips">
-        <button class="flip" type="button" style="--c:var(--blue);--cs:var(--blue-soft)"><span class="in">
-          <span class="f"><svg class="ico"><use href="#i-store"/></svg><b>La tienda</b><small>“¿Su cédula para la factura?”</small></span>
-          <span class="b"><p>Con la cédula y el celular de la factura lo pueden meter en una base de mercadeo.</p></span></span></button>
-        <button class="flip" type="button" style="--c:var(--violet);--cs:var(--violet-soft)"><span class="in">
-          <span class="f"><svg class="ico"><use href="#i-gift"/></svg><b>El concurso</b><small>Llenó un formulario para ganarse algo</small></span>
-          <span class="b"><p>En la letra pequeña aceptó que sus datos se compartieran con “aliados comerciales”.</p></span></span></button>
-        <button class="flip" type="button" style="--c:var(--amber);--cs:var(--amber-soft)"><span class="in">
-          <span class="f"><svg class="ico"><use href="#i-history"/></svg><b>El exoperador</b><small>Fue cliente hace años</small></span>
-          <span class="b"><p>Usted cerró el contrato, pero sus datos se quedaron en la base y lo siguen llamando.</p></span></span></button>
-        <button class="flip" type="button" style="--c:var(--green);--cs:var(--green-soft)"><span class="in">
-          <span class="f"><svg class="ico"><use href="#i-share"/></svg><b>El call center</b><small>Una empresa que ni conoce</small></span>
-          <span class="b"><p>Las empresas contratan a terceros para vender. Esos terceros también tienen sus datos.</p></span></span></button>
-      </div>
-      <div class="analogy"><svg class="ico"><use href="#i-key"/></svg><p>Sus datos son como <b>las llaves de su casa</b>. Usted decide a quién se las presta, y en cualquier momento puede pedir que se las devuelvan.</p></div>
-    </div>
-  </section>
-
-  <!-- 2 Qué dice la ley -->
-  <section class="step" data-title="Qué dice la ley" style="--c:var(--violet);--cs:var(--violet-soft)" hidden>
+  <!-- DERECHOS -->
+  <section class="step" data-id="derechos" style="--c:var(--violet);--cs:var(--violet-soft)" hidden>
     <div class="qhead"><div class="badge"><svg class="ico"><use href="#i-scale"/></svg></div>
-      <div class="qmeta"><p class="qnum">Paso 2</p><h2 class="qtext">¿Qué puede hacer usted?</h2></div>
-      <p class="hint">Piénselo un momento…</p></div>
-    <div class="answer">
-      <p class="big">Pedirle a la empresa que <b>borre sus datos y deje de contactarlo</b>. No es un favor: es un derecho que se llama <b>habeas data</b>.</p>
-      <div class="road">
-        <div class="stop" style="--c:var(--blue)"><div class="dot"><svg class="ico"><use href="#i-shield"/></svg></div><b>Constitución</b><span>Art. 15: derecho a la intimidad y a los datos. Art. 23: derecho de petición</span></div>
-        <div class="stop" style="--c:var(--violet)"><div class="dot"><svg class="ico"><use href="#i-key"/></svg></div><b>Ley 1581 de 2012</b><span>Puede revocar su permiso y pedir que lo borren</span></div>
-        <div class="stop" style="--c:var(--amber)"><div class="dot"><svg class="ico"><use href="#i-doc"/></svg></div><b>Ley 1755 de 2015</b><span>Regula el derecho de petición</span></div>
-        <div class="stop" style="--c:var(--green)"><div class="dot"><svg class="ico"><use href="#i-phoneoff"/></svg></div><b>Ley 2300 de 2023</b><span>“Dejen de fregar”: limita llamadas y mensajes comerciales</span></div>
-      </div>
-      <div class="analogy"><svg class="ico"><use href="#i-mail"/></svg><p>Es como cancelar suscripciones de revistas: <b>una carta para cada revista</b>. Aquí va a hacer una carta por cada empresa que lo llama.</p></div>
-      <div class="analogy safe"><svg class="ico"><use href="#i-lock"/></svg><p>En los siguientes pasos va a escribir algunos datos. <b>No se guardan en ningún lado</b>: la carta se arma en su propio navegador y desaparece al cerrar la página.</p></div>
+      <div><p class="qnum">Sus derechos</p><h2 class="qtext">Lo que la ley le garantiza</h2></div></div>
+    <p class="muted"><svg class="ico" style="color:var(--amber)"><use href="#i-hand"/></svg> Toque cada tarjeta.</p>
+    <div class="rights">
+      <button class="flip" type="button" style="--c:var(--blue);--cs:var(--blue-soft)"><span class="in">
+        <span class="f"><svg class="ico"><use href="#i-trash"/></svg><b>Puede pedir que lo borren</b></span>
+        <span class="b">Y que le muestren la autorización que dicen que usted firmó. Si no la tienen, no podían llamarlo.</span></span></button>
+      <button class="flip" type="button" style="--c:var(--amber);--cs:var(--amber-soft)"><span class="in">
+        <span class="f"><svg class="ico"><use href="#i-clock"/></svg><b>Deben responder en 15 días hábiles</b></span>
+        <span class="b">Pueden pedir 8 días más, pero solo si le avisan por qué se demoran.</span></span></button>
+      <button class="flip" type="button" style="--c:var(--green);--cs:var(--green-soft)"><span class="in">
+        <span class="f"><svg class="ico"><use href="#i-moon"/></svg><b>Hay horarios para llamarlo</b></span>
+        <span class="b">Lunes a viernes de 7 a. m. a 7 p. m. y sábados de 8 a. m. a 3 p. m. Nunca domingos ni festivos.</span></span></button>
+      <button class="flip" type="button" style="--c:var(--red);--cs:var(--red-soft)"><span class="in">
+        <span class="f"><svg class="ico"><use href="#i-coins"/></svg><b>La SIC puede multarlos</b></span>
+        <span class="b">Hasta 2.000 salarios mínimos, y ordenar que borren sus datos.</span></span></button>
     </div>
+    <p class="small muted">Fuentes:
+      <button type="button" class="src" data-src="sic9"><svg class="ico"><use href="#i-eye"/></svg>Borrar</button>
+      <button type="button" class="src" data-src="art15"><svg class="ico"><use href="#i-eye"/></svg>15 días</button>
+      <button type="button" class="src" data-src="l2300"><svg class="ico"><use href="#i-eye"/></svg>Horarios</button>
+      <button type="button" class="src" data-src="art23"><svg class="ico"><use href="#i-eye"/></svg>Multas</button></p>
+    <div class="note ok"><svg class="ico"><use href="#i-lock"/></svg><p class="small">Ahora le pediremos algunos datos para la carta. <b>No se guardan en ningún lado</b>: todo pasa en su celular o computador.</p></div>
   </section>
 
-  <!-- 3 Quién es -->
-  <section class="step open" data-title="Sus datos" style="--c:var(--blue);--cs:var(--blue-soft)" hidden>
+  <!-- USTED -->
+  <section class="step" data-id="usted" style="--c:var(--blue);--cs:var(--blue-soft)" hidden>
     <div class="qhead"><div class="badge"><svg class="ico"><use href="#i-user"/></svg></div>
-      <div class="qmeta"><p class="qnum">Paso 3</p><h2 class="qtext">¿Quién es usted?</h2></div></div>
-    <div class="answer">
-      <p class="big">La empresa necesita saber que usted es <b>el dueño de los datos</b>. Por eso la carta lleva su nombre y su documento.</p>
-      <div class="fields">
-        <label class="field full">Nombre completo<input name="nombre" required autocomplete="name"></label>
-        <label class="field">Tipo de documento
-          <select name="tipoDoc"><option>cédula de ciudadanía</option><option>cédula de extranjería</option><option>permiso por protección temporal</option><option>pasaporte</option></select></label>
-        <label class="field">Número de documento<input name="doc" required inputmode="numeric" autocomplete="off"></label>
-        <label class="field">Ciudad<input name="ciudad" required autocomplete="address-level2" placeholder="Bogotá D.C."></label>
-        <label class="field">Correo para la respuesta<input name="correo" type="email" required autocomplete="email"></label>
-      </div>
-      <p class="err" role="alert"></p>
+      <div><p class="qnum">Sus datos</p><h2 class="qtext">¿Quién es y cómo lo molestan?</h2></div></div>
+    <div class="fields">
+      <label class="field full">Nombre completo<input name="nombre" required autocomplete="name"></label>
+      <label class="field">Documento
+        <select name="tipoDoc"><option value="cédula de ciudadanía">Cédula de ciudadanía</option><option value="cédula de extranjería">Cédula de extranjería</option><option value="permiso por protección temporal">PPT</option><option value="pasaporte">Pasaporte</option></select></label>
+      <label class="field">Número<input name="doc" required inputmode="numeric" autocomplete="off"></label>
+      <label class="field">Ciudad<input name="ciudad" required autocomplete="address-level2" placeholder="Bogotá D.C."></label>
+      <label class="field">Su correo<input name="correo" type="email" required autocomplete="email"></label>
     </div>
+    <div class="group"><b>¿Por dónde lo contactan?</b>
+      <div class="pills">
+        <label class="pill" style="--c:var(--red);--cs:var(--red-soft)"><input type="checkbox" name="canal" value="llamadas" checked><svg class="ico"><use href="#i-phone"/></svg>Llamadas</label>
+        <label class="pill"><input type="checkbox" name="canal" value="mensajes de texto (SMS)"><svg class="ico"><use href="#i-sms"/></svg>SMS</label>
+        <label class="pill" style="--c:var(--green);--cs:var(--green-soft)"><input type="checkbox" name="canal" value="mensajes de WhatsApp"><svg class="ico"><use href="#i-wa"/></svg>WhatsApp</label>
+        <label class="pill" style="--c:var(--violet);--cs:var(--violet-soft)"><input type="checkbox" name="canal" value="correos electrónicos"><svg class="ico"><use href="#i-mail"/></svg>Correo</label>
+      </div></div>
+    <label class="field">¿A qué número o correo?<input name="contactos" required placeholder="300 123 4567" autocomplete="off"></label>
+    <div class="group"><b>¿Es o fue cliente de esa empresa?</b>
+      <div class="pills">
+        <label class="pill"><input type="radio" name="relacion" value="nunca" checked>Nunca</label>
+        <label class="pill"><input type="radio" name="relacion" value="antes">Fui cliente</label>
+        <label class="pill"><input type="radio" name="relacion" value="actual">Soy cliente</label>
+      </div>
+      <p class="small muted" id="relNota">La carta pide que lo borren por completo.</p></div>
+    <p class="err" role="alert"></p>
   </section>
 
-  <!-- 4 Cómo lo molestan -->
-  <section class="step open" data-title="Cómo lo molestan" style="--c:var(--red);--cs:var(--red-soft)" hidden>
-    <div class="qhead"><div class="badge"><svg class="ico"><use href="#i-phone"/></svg></div>
-      <div class="qmeta"><p class="qnum">Paso 4</p><h2 class="qtext">¿Cómo lo están molestando?</h2></div></div>
-    <div class="answer">
-      <p class="taphint"><svg class="ico"><use href="#i-hand"/></svg>Toque todos los que le pasen.</p>
-      <div class="opts four">
-        <label class="opt" style="--c:var(--red);--cs:var(--red-soft)"><input type="checkbox" name="canal" value="llamadas" checked><svg class="ico"><use href="#i-phone"/></svg><b>Llamadas</b></label>
-        <label class="opt" style="--c:var(--blue);--cs:var(--blue-soft)"><input type="checkbox" name="canal" value="mensajes de texto (SMS)"><svg class="ico"><use href="#i-sms"/></svg><b>Mensajes de texto</b></label>
-        <label class="opt" style="--c:var(--green);--cs:var(--green-soft)"><input type="checkbox" name="canal" value="mensajes de WhatsApp"><svg class="ico"><use href="#i-wa"/></svg><b>WhatsApp</b></label>
-        <label class="opt" style="--c:var(--violet);--cs:var(--violet-soft)"><input type="checkbox" name="canal" value="correos electrónicos"><svg class="ico"><use href="#i-mail"/></svg><b>Correo</b></label>
-      </div>
-      <div class="fields"><label class="field full">¿A qué número o correo le llegan?<small>Si son varios, sepárelos con comas.</small><input name="contactos" required placeholder="300 123 4567"></label></div>
-      <p class="big" style="font-size:1.2rem">¿Y qué relación tiene con esa empresa?</p>
-      <div class="opts three">
-        <label class="opt" style="--c:var(--violet);--cs:var(--violet-soft)"><input type="radio" name="relacion" value="nunca" checked><b>Nunca he sido cliente</b><small>La carta pide que lo borren por completo.</small></label>
-        <label class="opt" style="--c:var(--amber);--cs:var(--amber-soft)"><input type="radio" name="relacion" value="antes"><b>Fui cliente, ya no</b><small>También pide borrar todo lo que no estén obligados a guardar.</small></label>
-        <label class="opt" style="--c:var(--blue);--cs:var(--blue-soft)"><input type="radio" name="relacion" value="actual"><b>Soy cliente</b><small>Pide que no usen sus datos para vender ni hacer publicidad.</small></label>
-      </div>
-      <p class="err" role="alert"></p>
-    </div>
-  </section>
-
-  <!-- 5 Empresa -->
-  <section class="step open" data-title="La empresa" style="--c:var(--violet);--cs:var(--violet-soft)" hidden>
+  <!-- EMPRESA -->
+  <section class="step" data-id="empresa" style="--c:var(--violet);--cs:var(--violet-soft)" hidden>
     <div class="qhead"><div class="badge"><svg class="ico"><use href="#i-building"/></svg></div>
-      <div class="qmeta"><p class="qnum">Paso 5</p><h2 class="qtext">¿Qué empresa lo está llamando?</h2></div></div>
-    <div class="answer">
-      <p class="big">Escriba el nombre con el que la conoce. Si está en nuestro directorio, <b>llenamos todo por usted</b>.</p>
-      <div class="finder">
-        <label class="field">Buscar empresa<input id="buscar" type="search" placeholder="Ej.: Claro, Bancolombia, Tigo…" autocomplete="off" aria-controls="resultados"></label>
-        <ul class="results" id="resultados" role="listbox" aria-label="Empresas encontradas"></ul>
-        <p class="muted small" id="buscarEstado" role="status">Solo se envía a internet el nombre de la empresa que usted escribe, para buscarla en el registro de las Cámaras de Comercio (RUES).</p>
-      </div>
-      <div class="picked" id="elegida" hidden></div>
-      <details class="manual" id="manual">
-      <summary>¿No aparece o el correo está vacío? Así lo encuentra usted</summary>
-      <ol class="howto">
-        <li><span class="n">1</span><span>Entre a la página web de la empresa y baje hasta el final.</span></li>
-        <li><span class="n">2</span><span>Busque <b>“Política de tratamiento de datos personales”</b> o “Habeas data”.</span></li>
-        <li><span class="n">3</span><span>Allí aparece la razón social (por ejemplo, “… S.A.S.”) y el correo para <b>consultas y reclamos</b>.</span></li>
-      </ol>
-      <p class="muted">¿No lo encuentra? Búsquela en el <a href="https://rnbd.sic.gov.co/sisi/consultaTitulares/consulta" target="_blank" rel="noopener">Registro Nacional de Bases de Datos de la SIC</a>.</p>
-      </details>
-      <div class="fields">
-        <label class="field full">Razón social de la empresa<input name="empresa" required placeholder="Empresa Ejemplo S.A.S." autocomplete="off"></label>
-        <label class="field full">Correo de protección de datos<input name="correoEmpresa" type="email" required placeholder="datospersonales@empresa.com" autocomplete="off"></label>
-      </div>
-      <p class="err" role="alert"></p>
+      <div><p class="qnum">La empresa</p><h2 class="qtext">¿Quién lo está llamando?</h2></div></div>
+    <label class="field">Escriba el nombre con el que la conoce<input id="buscar" type="search" placeholder="Claro, Bancolombia, Tigo…" autocomplete="off" aria-controls="resultados"></label>
+    <ul class="results" id="resultados" aria-label="Empresas encontradas"></ul>
+    <p class="small muted" id="buscarEstado" role="status">Solo el nombre de la empresa se consulta en internet, en el registro de las Cámaras de Comercio.</p>
+    <div class="note" id="elegida" hidden></div>
+    <div class="fields">
+      <label class="field full">Razón social<input name="empresa" required placeholder="Empresa Ejemplo S.A.S." autocomplete="off"></label>
+      <label class="field full">Correo de datos personales<input name="correoEmpresa" type="email" required placeholder="datospersonales@empresa.com" autocomplete="off"></label>
     </div>
+    <details class="more" id="manual"><summary>¿Cómo encuentro el correo?</summary>
+      <ol><li>Entre a la página web de la empresa y baje hasta el final.</li>
+        <li>Abra la <b>"Política de tratamiento de datos personales"</b>.</li>
+        <li>Copie el correo para <b>consultas y reclamos</b>.</li></ol>
+      <p class="small">También puede buscarla en el <a href="https://rnbd.sic.gov.co/sisi/consultaTitulares/consulta" target="_blank" rel="noopener">Registro Nacional de Bases de Datos de la SIC</a>.</p></details>
+    <p class="err" role="alert"></p>
   </section>
 
-  <!-- 6 La carta -->
-  <section class="step open" data-title="Su carta" style="--c:var(--green);--cs:var(--green-soft)" hidden>
+  <!-- CARTA -->
+  <section class="step" data-id="carta" style="--c:var(--green);--cs:var(--green-soft)" hidden>
     <div class="qhead"><div class="badge"><svg class="ico"><use href="#i-doc"/></svg></div>
-      <div class="qmeta"><p class="qnum">Paso 6</p><h2 class="qtext">Su carta está lista</h2></div></div>
-    <div class="answer">
-      <p class="big">Léala con calma. Si quiere cambiar algo, <b>puede escribir directamente sobre la hoja</b>.</p>
-      <div class="paper"><textarea id="carta" aria-label="Su derecho de petición" spellcheck="true"></textarea></div>
-      <div class="warn"><svg class="ico"><use href="#i-alert"/></svg><p><b>Antes de enviar, adjunte una foto o PDF de su documento de identidad.</b> Así la empresa no puede decir que no sabe quién es usted.</p></div>
-      <div class="sendrow">
-        <button class="cta main" type="button" id="abrir"><span class="ci"><svg class="ico"><use href="#i-send"/></svg></span><span><strong>Abrir en mi correo</strong><small>Queda listo con destinatario y asunto</small></span></button>
-        <button class="cta alt" type="button" id="copiar"><span class="ci"><svg class="ico"><use href="#i-copy"/></svg></span><span><strong>Copiar el texto</strong><small>Si el botón de la izquierda no abre nada</small></span></button>
-      </div>
-      <p class="status" id="estado" role="status"></p>
+      <div><p class="qnum">Su carta</p><h2 class="qtext">Lista para enviar</h2></div></div>
+    <div class="note bad"><svg class="ico"><use href="#i-alert"/></svg><p class="small"><b>Adjunte una foto de su documento de identidad</b> antes de enviarla. Puede editar el texto tocando la hoja.</p></div>
+    <div class="sendrow">
+      <button class="cta main" type="button" id="abrir"><span class="ci"><svg class="ico"><use href="#i-send"/></svg></span><span><strong>Abrir en mi correo</strong><small>Con destinatario y asunto listos</small></span></button>
+      <button class="cta alt" type="button" id="copiar"><span class="ci"><svg class="ico"><use href="#i-copy"/></svg></span><span><strong>Copiar el texto</strong><small>Para pegarlo en un chat o formulario</small></span></button>
     </div>
+    <p class="status" id="estado" role="status"></p>
+    <div class="paper"><textarea id="carta" aria-label="Su carta a la empresa" spellcheck="true"></textarea></div>
+    <ol class="timeline">
+      <li style="--c:var(--blue)"><b>Hoy</b>Envíe la carta y guarde el correo enviado: es su prueba.</li>
+      <li style="--c:var(--amber)"><b id="vence">15 días hábiles</b>Plazo de la empresa: 15 días hábiles (más si hay festivos). <button type="button" class="src" data-src="art15"><svg class="ico"><use href="#i-eye"/></svg>Ver</button></li>
+      <li style="--c:var(--red)"><b>¿No cumplen?</b>Vuelva aquí y presente la queja ante la SIC.</li>
+    </ol>
+    <div class="note info"><svg class="ico"><use href="#i-shield"/></svg><p class="small"><b>Extra:</b> inscriba su número en el <a href="https://tramitescrcom.gov.co/tramitesCRC/publico/index.xhtml" target="_blank" rel="noopener">Registro de Números Excluidos de la CRC</a>. Es gratis y las empresas deben consultarlo antes de llamar. <button type="button" class="src" data-src="circ"><svg class="ico"><use href="#i-eye"/></svg>Ver fuente</button></p></div>
+    <button class="cta alt" type="button" id="otra"><span class="ci"><svg class="ico"><use href="#i-plus"/></svg></span><span><strong>Escribir a otra empresa</strong><small>Sus datos se mantienen</small></span></button>
   </section>
 
-  <!-- 7 Después -->
-  <section class="step open" data-title="Y después" style="--c:var(--amber);--cs:var(--amber-soft)" hidden>
-    <div class="qhead"><div class="badge"><svg class="ico"><use href="#i-calendar"/></svg></div>
-      <div class="qmeta"><p class="qnum">Paso 7</p><h2 class="qtext">¿Y ahora qué pasa?</h2></div></div>
-    <div class="answer">
-      <div class="road">
-        <div class="stop" style="--c:var(--blue)"><div class="dot"><svg class="ico"><use href="#i-send"/></svg></div><b>Hoy</b><span>Envía la carta y guarda el correo enviado</span></div>
-        <div class="stop" style="--c:var(--violet)"><div class="dot"><svg class="ico"><use href="#i-clock"/></svg></div><b>15 días hábiles</b><span>Plazo de la empresa para responder</span></div>
-        <div class="stop" style="--c:var(--amber)"><div class="dot"><svg class="ico"><use href="#i-calendar"/></svg></div><b>+8 días</b><span>Solo si la empresa avisa por qué se demora</span></div>
-        <div class="stop" style="--c:var(--red)"><div class="dot"><svg class="ico"><use href="#i-stamp"/></svg></div><b>Queja ante la SIC</b><span>Si no responden o siguen llamando</span></div>
-      </div>
-      <div class="analogy safe"><svg class="ico"><use href="#i-shield"/></svg><p><b>Un paso extra que ayuda mucho:</b> inscriba su número en el <a href="https://tramitescrcom.gov.co/tramitesCRC/publico/index.xhtml" target="_blank" rel="noopener">Registro de Números Excluidos de la CRC</a>. Es gratis y frena también a las empresas que todavía no lo han llamado.</p></div>
-      <p class="big" style="font-size:1.2rem">Su lista de chequeo:</p>
-      <div class="checks" id="checks">
-        <label class="check"><input type="checkbox"><span>Envié la carta con mi documento adjunto</span></label>
-        <label class="check"><input type="checkbox"><span>Guardé el correo enviado como prueba</span></label>
-        <label class="check"><input type="checkbox"><span>Anoté en el calendario la fecha límite (unas 3 semanas)</span></label>
-        <label class="check"><input type="checkbox"><span>Me inscribí en el Registro de Números Excluidos</span></label>
-      </div>
-      <div class="meter" aria-hidden="true"><i id="meter"></i></div>
-      <button class="cta alt" type="button" id="otra"><span class="ci"><svg class="ico"><use href="#i-plus"/></svg></span><span><strong>Escribir a otra empresa</strong><small>Sus datos se mantienen; solo cambia la empresa</small></span></button>
-      <div class="sources muted"><b>Fuentes</b>
-        <a href="https://normograma.mintic.gov.co/docs/pdf/ley_2300_2023.pdf" target="_blank" rel="noopener">Ley 2300 de 2023 (MinTIC)</a>
-        <a href="https://leyonline.co/laws/ley-1581-de-2012/articulo-15-reclamos" target="_blank" rel="noopener">Ley 1581 de 2012, art. 15</a>
-        <a href="https://www.crcom.gov.co/sites/default/files/webcrc/documents/2026-08/ABC-ACTUALIZACION-REGISTRO-NUMEROS-EXCLUIDOS-200826.pdf" target="_blank" rel="noopener">ABC del Registro de Números Excluidos (CRC)</a>
-      </div>
+  <!-- QUEJA SIC -->
+  <section class="step" data-id="sic" style="--c:var(--red);--cs:var(--red-soft)" hidden>
+    <div class="qhead"><div class="badge"><svg class="ico"><use href="#i-stamp"/></svg></div>
+      <div><p class="qnum">Queja ante la SIC</p><h2 class="qtext">La empresa no cumplió</h2></div></div>
+    <div class="fields two">
+      <label class="field">¿Cuándo envió la carta?<input name="fechaEnvio" type="date" required></label>
+      <label class="field">¿Qué pasó?
+        <select name="situacion">
+          <option value="silencio">No me respondieron</option>
+          <option value="mala">Respondieron, pero no borraron mis datos</option>
+          <option value="siguen">Dijeron que sí, pero siguen llamando</option>
+        </select></label>
     </div>
+    <div class="note" id="plazo" hidden></div>
+    <div class="note bad"><svg class="ico"><use href="#i-alert"/></svg><p class="small"><b>Adjunte:</b> la carta que envió a la empresa (reenvíe ese correo o haga captura), su documento y, si las tiene, capturas de las llamadas o mensajes. <button type="button" class="src" data-src="sic9"><svg class="ico"><use href="#i-eye"/></svg>Ver fuente</button></p></div>
+    <div class="sendrow">
+      <button class="cta sic" type="button" id="abrirSic"><span class="ci"><svg class="ico"><use href="#i-send"/></svg></span><span><strong>Enviar a la SIC</strong><small>contactenos@sic.gov.co, con el asunto oficial</small></span></button>
+      <button class="cta alt" type="button" id="copiarSic"><span class="ci"><svg class="ico"><use href="#i-copy"/></svg></span><span><strong>Copiar el texto</strong><small>Para el formulario web de la SIC</small></span></button>
+    </div>
+    <p class="status" id="estadoSic" role="status"></p>
+    <div class="paper"><textarea id="queja" aria-label="Su queja ante la SIC" spellcheck="true"></textarea></div>
+    <p class="small muted">Correo y asunto según la SIC <button type="button" class="src" data-src="circ"><svg class="ico"><use href="#i-eye"/></svg>Circular 2024</button> <button type="button" class="src" data-src="sic9"><svg class="ico"><use href="#i-eye"/></svg>Guía SIC</button>.
+      Si prefiere, use el <a href="https://servicioslinea.sic.gov.co/servilinea/pqrsf/" target="_blank" rel="noopener">formulario web de la SIC</a> <button type="button" class="src" data-src="canales"><svg class="ico"><use href="#i-eye"/></svg>Canales</button>.</p>
   </section>
 
 </form>
 </main>
 
+<dialog class="viewer" id="viewer" aria-labelledby="vtitle">
+  <div class="vhead"><strong id="vtitle"></strong><button class="iconbtn" type="button" id="vclose" aria-label="Cerrar"><svg class="ico"><use href="#i-x"/></svg></button></div>
+  <div class="vbody" id="vbody"></div>
+</dialog>
+
 <footer class="nav">
   <div class="nav-in wrap">
-    <button class="btn prev" id="prev" type="button" disabled>← Atrás</button>
-    <span class="keys">Use las flechas ← → del teclado</span>
-    <button class="btn next" id="next" type="button">Empezar →</button>
+    <button class="btn prev" id="prev" type="button">← Atrás</button>
+    <button class="btn next" id="next" type="button">Siguiente →</button>
   </div>
 </footer>
 
@@ -477,14 +409,59 @@ footer.nav{position:fixed; left:0; right:0; bottom:0; z-index:5; background:var(
 <script>
 (function(){
   var f = document.getElementById('f');
-  var carta = document.getElementById('carta');
-  var estado = document.getElementById('estado');
 
-  // ---------- La carta (función pura) ----------
+  // ---------- Fuentes verificadas (se muestran dentro de la página) ----------
+  var L1581 = 'https://normograma.mintic.gov.co/mintic/compilacion/docs/ley_1581_2012.htm';
+  var FUENTES = {
+    sic9: { t:'SIC · Preguntas frecuentes de Protección de Datos (pregunta 9)', img:'img/sic-pregunta-9.png',
+      alt:'Pregunta 9 de la guía de la SIC: qué hacer si lo llaman con publicidad no autorizada',
+      q:'«PRIMERO: Presentar una reclamación directa ante la empresa que lo contactó. Solicite: (a) copia de la autorización suya para que ellos puedan usar sus datos con fines de marketing o publicidad, y (b) que eliminen sus datos de contacto…»\n\n«SEGUNDO: Si la respuesta que recibe es desfavorable o no le respondieron dentro del término legal de 15 días hábiles, usted podrá dirigirse a la Superintendencia… Deberá adjuntar copia de la reclamación realizada ante la empresa…»\n\n«Correo electrónico a la dirección contactenos@sic.gov.co refiriendo en el asunto “Queja por Protección de Datos Personales Ley Estatutaria 1581 de 2012”.»',
+      nota:'Ojo: la dirección física cambió. Hoy la SIC está en la Calle 24 n.° 7-43, Bogotá.',
+      url:'https://www.sic.gov.co/sites/default/files/files/2022/Preguntas%20frecuentes%20Delegatura%20Datos%20Personales%202022.pdf' },
+    requisito: { t:'SIC · Consultas y reclamos: requisito de procedibilidad', img:'img/sic-requisito.png',
+      alt:'Texto de la SIC: solo puede quejarse ante la SIC después de reclamar ante la empresa',
+      q:'«El Titular o causahabiente solo podrá elevar el reclamo ante esta Superintendencia una vez haya agotado el trámite de consulta o reclamo ante el Responsable del Tratamiento o Encargado del tratamiento y haya transcurido un término de 15 días hábiles sin recibir respuesta o cuando haya recibido una respuesta inadecuada.»',
+      url:'https://www.sic.gov.co/consultas-y-reclamos-pdp' },
+    canales: { t:'SIC · Canales de atención', img:'img/sic-canales.png', alt:'Dirección, teléfonos y formulario de la SIC',
+      url:'https://www.sic.gov.co/consultas-y-reclamos-pdp' },
+    art15: { t:'Ley 1581 de 2012, artículo 15 (reclamos)', url:L1581,
+      q:'El término máximo para atender el reclamo será de quince (15) días hábiles contados a partir del día siguiente a la fecha de su recibo. […] la cual en ningún caso podrá superar los ocho (8) días hábiles siguientes al vencimiento del primer término.' },
+    art16: { t:'Ley 1581 de 2012, artículo 16 (requisito de procedibilidad)', url:L1581,
+      q:'El Titular o causahabiente sólo podrá elevar queja ante la Superintendencia de Industria y Comercio una vez haya agotado el trámite de consulta o reclamo ante el Responsable del Tratamiento o Encargado del Tratamiento.' },
+    art23: { t:'Ley 1581 de 2012, artículo 23 (sanciones)', url:L1581,
+      q:'Multas de carácter personal e institucional hasta por el equivalente de dos mil (2.000) salarios mínimos mensuales legales vigentes al momento de la imposición de la sanción.' },
+    l2300: { t:'Ley 2300 de 2023 ("Dejen de fregar"), art. 3 y art. 5', url:'https://normograma.mintic.gov.co/mintic/compilacion/docs/ley_2300_2023.htm',
+      q:'Art. 3: «…dentro del horario de lunes a viernes y de 7:00 a. m. a 7:00 p. m., y sábados de 8:00 a. m. a 3:00 p. m., excluyendo cualquier tipo de contacto con el consumidor los domingos y días festivos.»\n\nArt. 5, parágrafo 3 (llamadas comerciales o publicitarias): «…solo podrán hacerlo por dentro de los horarios establecidos en el artículo 3o.»' },
+    circ: { t:'SIC · Circular Externa 001 de 2024', url:'https://normograma.mintic.gov.co/mintic/compilacion/docs/circular_superindustria_0001_2024.htm',
+      q:'Denuncias: «podrán radicar las denuncias a través del correo electrónico institucional contactenos@sic.gov.co o cualquier otro canal de atención al ciudadano».\n\nRegistro de Números Excluidos: los productores y proveedores «están obligados a consultar el listado del \'Registro de Números Excluidos\' de la Comisión de Regulación de Comunicaciones».' }
+  };
+  var viewer = document.getElementById('viewer'), vbody = document.getElementById('vbody');
+  function verFuente(id){
+    var s = FUENTES[id]; if (!s) return;
+    document.getElementById('vtitle').textContent = s.t;
+    vbody.innerHTML = '';
+    if (s.img) {
+      var ia = document.createElement('a'); ia.href = s.img; ia.target = '_blank'; ia.rel = 'noopener'; ia.title = 'Toque para ver en tamaño completo';
+      var im = new Image(); im.src = s.img; im.alt = s.alt; ia.appendChild(im); vbody.appendChild(ia);
+      var cap = document.createElement('p'); cap.className = 'small muted'; cap.textContent = 'Captura real del documento oficial. Tóquela para ampliarla.'; vbody.appendChild(cap);
+    }
+    if (s.q) s.q.split('\n\n').forEach(function(p){ var bq = document.createElement('blockquote'); bq.textContent = p; vbody.appendChild(bq); });
+    if (s.nota) { var n = document.createElement('p'); n.className = 'small muted'; n.textContent = s.nota; vbody.appendChild(n); }
+    var a = document.createElement('a'); a.href = s.url; a.target = '_blank'; a.rel = 'noopener';
+    a.innerHTML = 'Abrir el documento oficial <svg class="ico"><use href="#i-ext"/></svg>'; vbody.appendChild(a);
+    viewer.showModal(); play('reveal');
+  }
+  document.addEventListener('click', function(e){ var b = e.target.closest('[data-src]'); if (b) { e.preventDefault(); verFuente(b.dataset.src); } });
+  document.getElementById('vclose').addEventListener('click', function(){ viewer.close(); play('tick'); });
+  viewer.addEventListener('click', function(e){ if (e.target === viewer) viewer.close(); });
+
+  // ---------- Textos (funciones puras) ----------
   function lista(items){ return items.length < 2 ? items.join('') : items.slice(0, -1).join(', ') + ' y ' + items[items.length - 1]; }
+  var v = function(x, ph){ return (x || '').trim() || ph; };
+  var fechaLarga = function(d){ return d.toLocaleDateString('es-CO', { day:'numeric', month:'long', year:'numeric' }); };
+  var num = function(arr){ return arr.map(function(t, i){ return (i + 1) + '. ' + t; }).join('\n'); };
+
   function armarCarta(d, hoy){
-    var v = function(x, ph){ return (x || '').trim() || ph; };
-    var fecha = hoy.toLocaleDateString('es-CO', { day:'numeric', month:'long', year:'numeric' });
     var canales = lista(d.canales.length ? d.canales : ['llamadas']);
     var cliente = d.relacion === 'actual';
     var hechos = [
@@ -504,45 +481,97 @@ footer.nav{position:fixed; left:0; right:0; bottom:0; z-index:5; background:var(
       'Supresión. Que se supriman de forma total y definitiva mis datos personales (nombre, documento, teléfonos, correos, dirección y cualquier otro) de todas sus bases de datos.',
       'Revocatoria. Que se tenga por revocada cualquier autorización que hubiere otorgado para el tratamiento de mis datos.',
       'Terceros. Que se ordene la misma supresión a los encargados, aliados, call centers y demás terceros a quienes hayan entregado mis datos, y se me informe quiénes son.',
-      'Origen. Que se me informe cómo y cuándo obtuvieron mis datos y se me entregue copia de la autorización que, según ustedes, otorgué (art. 8, lit. b, Ley 1581 de 2012).',
+      'Autorización. Que se me entregue copia de la autorización que, según ustedes, otorgué para el uso de mis datos con fines comerciales o publicitarios, y se me informe cómo y cuándo obtuvieron mis datos (art. 8, lit. b, Ley 1581 de 2012).',
       'Contacto comercial. Que se abstengan de contactarme con fines comerciales o publicitarios por cualquier canal (Ley 2300 de 2023).',
       'Conservación legal. Si una norma les obliga a conservar algún dato, que se indique cuál norma, qué dato, para qué y por cuánto tiempo, y que ese dato se bloquee para cualquier otro uso.',
       'Certificación. Que se me expida constancia escrita de la supresión realizada.'
     ];
-    var num = function(arr){ return arr.map(function(t, i){ return (i + 1) + '. ' + t; }).join('\n'); };
     var nombre = v(d.nombre, '[su nombre completo]');
     var doc = d.tipoDoc + ' n.° ' + v(d.doc, '[número]');
     var asunto = cliente
       ? 'Derecho de petición – revocatoria de autorización para fines comerciales'
       : 'Derecho de petición – supresión de datos personales y revocatoria de autorización';
     var cuerpo = [
-      v(d.ciudad, '[ciudad]') + ', ' + fecha, '',
+      v(d.ciudad, '[ciudad]') + ', ' + fechaLarga(hoy), '',
       'Señores', v(d.empresa, '[RAZÓN SOCIAL DE LA EMPRESA]'), 'Área de Protección de Datos Personales', 'E. S. D.', '',
       'Asunto: ' + asunto + ' (art. 23 C. P.; arts. 8, 9 y 15 de la Ley 1581 de 2012; Ley 1755 de 2015).', '',
-      nombre + ', mayor de edad, identificado(a) con ' + doc + ', actuando en nombre propio y como titular de los datos, presento la siguiente petición.', '',
+      nombre + ', mayor de edad, identificado(a) con ' + doc + ', actuando en nombre propio y como titular de los datos, presento el siguiente reclamo.', '',
       'HECHOS', num(hechos), '',
       'PETICIONES', num(peticiones), '',
       'FUNDAMENTOS DE DERECHO',
       '- Artículos 15 y 23 de la Constitución Política.',
-      '- Ley Estatutaria 1581 de 2012: art. 8 (derechos del titular, incluido revocar la autorización y pedir la supresión), art. 9 (autorización previa) y art. 15 (reclamos).',
+      '- Ley Estatutaria 1581 de 2012: art. 8 (derechos del titular), art. 9 (autorización previa) y art. 15 (reclamos).',
       '- Decreto 1074 de 2015, capítulo 25 (reglamentario de la Ley 1581).',
       '- Ley 1755 de 2015 (derecho de petición).',
       '- Ley 2300 de 2023, que limita los contactos con fines comerciales o publicitarios.', '',
       'TÉRMINO',
-      'Solicito respuesta dentro de los quince (15) días hábiles previstos en el artículo 15 de la Ley 1581 de 2012. Si no recibo respuesta de fondo, acudiré a la Superintendencia de Industria y Comercio.', '',
+      'Solicito respuesta dentro de los quince (15) días hábiles previstos en el artículo 15 de la Ley 1581 de 2012. Si no recibo respuesta de fondo, presentaré queja ante la Superintendencia de Industria y Comercio (art. 16, Ley 1581 de 2012).', '',
       'ANEXOS', '- Copia de mi documento de identidad.', '',
       'NOTIFICACIONES', 'Recibo respuesta en el correo ' + v(d.correo, '[su correo]') + '.', '',
       'Atentamente,', '', nombre, doc
     ].join('\n');
     return { asunto: asunto, cuerpo: cuerpo };
   }
+
+  // Asunto que pide la SIC en su guía (pregunta 9).
+  var ASUNTO_SIC = 'Queja por Protección de Datos Personales Ley Estatutaria 1581 de 2012';
+  function armarQueja(d, hoy){
+    var canales = lista(d.canales.length ? d.canales : ['llamadas']);
+    var envio = d.fechaEnvio ? fechaLarga(new Date(d.fechaEnvio + 'T12:00:00')) : '[fecha en que envió la carta]';
+    var empresa = v(d.empresa, '[RAZÓN SOCIAL DE LA EMPRESA]') + (d.nit ? ', NIT ' + d.nit : '');
+    var canal = d.correoEmpresa ? 'al correo ' + d.correoEmpresa : 'por el canal de atención de la empresa';
+    var resultado = {
+      silencio: 'Han pasado más de quince (15) días hábiles desde que la empresa recibió mi reclamo y no he recibido respuesta.',
+      mala: 'La empresa respondió, pero no suprimió mis datos ni acreditó contar con mi autorización previa, expresa e informada.',
+      siguen: 'Pese a mi reclamo, la empresa sigue contactándome con fines comerciales o publicitarios.'
+    }[d.situacion];
+    var nombre = v(d.nombre, '[su nombre completo]');
+    var doc = d.tipoDoc + ' n.° ' + v(d.doc, '[número]');
+    return [
+      v(d.ciudad, '[ciudad]') + ', ' + fechaLarga(hoy), '',
+      'Señores', 'Superintendencia de Industria y Comercio', 'Delegatura para la Protección de Datos Personales', 'contactenos@sic.gov.co', '',
+      'Asunto: ' + ASUNTO_SIC, '',
+      'Denunciante: ' + nombre + ', ' + doc + '.',
+      'Denunciado: ' + empresa + '.', '',
+      'HECHOS',
+      num([
+        'He recibido ' + canales + ' con fines comerciales o publicitarios de ' + v(d.empresa, 'la empresa') + ' en: ' + v(d.contactos, '[sus números o correos]') + ', sin haber autorizado ese uso de mis datos.',
+        'El ' + envio + ' presenté reclamo ante la empresa ' + canal + ', en el que pedí la supresión de mis datos, la revocatoria de cualquier autorización y copia de la autorización que dicen tener.',
+        resultado
+      ]), '',
+      'PRETENSIONES',
+      num([
+        'Que se investigue a ' + v(d.empresa, 'la empresa') + ' por el tratamiento de mis datos personales sin autorización y por no atender mi reclamo.',
+        'Que se le ordene suprimir mis datos personales de sus bases de datos y de las de los terceros a quienes los haya entregado (arts. 21 y 22, Ley 1581 de 2012).',
+        'Que se le ordene abstenerse de contactarme con fines comerciales o publicitarios (Ley 2300 de 2023).',
+        'Que se impongan las sanciones previstas en el artículo 23 de la Ley 1581 de 2012.'
+      ]), '',
+      'FUNDAMENTOS',
+      '- Ley Estatutaria 1581 de 2012: arts. 8, 9, 15, 16, 21, 22 y 23.',
+      '- Ley 2300 de 2023.',
+      '- Cumplo el requisito de procedibilidad del artículo 16 de la Ley 1581 de 2012: presenté reclamo previo ante la empresa.', '',
+      'ANEXOS',
+      '- Copia del reclamo enviado a la empresa el ' + envio + '.',
+      '- Copia de mi documento de identidad.',
+      '- [Opcional] Capturas de las llamadas, mensajes o de la respuesta de la empresa.', '',
+      'NOTIFICACIONES', 'Recibo notificaciones en el correo ' + v(d.correo, '[su correo]') + '.', '',
+      'Atentamente,', '', nombre, doc
+    ].join('\n');
+  }
+
+  // Días hábiles: cuenta lunes a viernes. shortcut: no descuenta festivos; se advierte en pantalla.
+  function sumarHabiles(desde, n){ var d = new Date(desde); while (n > 0) { d.setDate(d.getDate() + 1); if (d.getDay() % 6) n--; } return d; }
+  function habilesEntre(a, b){ var n = 0, d = new Date(a); while (d < b) { d.setDate(d.getDate() + 1); if (d <= b && d.getDay() % 6) n++; } return n; }
+  window.__test = { armarCarta: armarCarta, armarQueja: armarQueja, sumarHabiles: sumarHabiles, habilesEntre: habilesEntre };
+
+  var empresaNit = '';
   function leer(){
     var fd = new FormData(f);
     return { nombre:fd.get('nombre'), tipoDoc:fd.get('tipoDoc'), doc:fd.get('doc'), ciudad:fd.get('ciudad'),
       correo:fd.get('correo'), contactos:fd.get('contactos'), canales:fd.getAll('canal'), relacion:fd.get('relacion'),
-      empresa:fd.get('empresa'), correoEmpresa:(fd.get('correoEmpresa') || '').trim() };
+      empresa:fd.get('empresa'), correoEmpresa:(fd.get('correoEmpresa') || '').trim(), nit:empresaNit,
+      fechaEnvio:fd.get('fechaEnvio'), situacion:fd.get('situacion') };
   }
-  window.armarCarta = armarCarta; // para pruebas desde la consola
 
   // ---------- Sonidos generados en el navegador (sin archivos) ----------
   var soundOn = true, ctx = null;
@@ -554,8 +583,8 @@ footer.nav{position:fixed; left:0; right:0; bottom:0; z-index:5; background:var(
     o.connect(g); g.connect(a.destination); o.start(t); o.stop(t + d + 0.05);
   }
   function swoosh(){
-    var a = ac(); if (!a) return; var n = Math.floor(a.sampleRate * 0.18), buf = a.createBuffer(1, n, a.sampleRate), d = buf.getChannelData(0);
-    for (var i = 0; i < n; i++) d[i] = (Math.random() * 2 - 1) * (1 - i / n);
+    var a = ac(); if (!a) return; var n = Math.floor(a.sampleRate * 0.18), buf = a.createBuffer(1, n, a.sampleRate), dd = buf.getChannelData(0);
+    for (var i = 0; i < n; i++) dd[i] = (Math.random() * 2 - 1) * (1 - i / n);
     var src = a.createBufferSource(), fl = a.createBiquadFilter(), g = a.createGain();
     src.buffer = buf; fl.type = 'bandpass'; fl.frequency.setValueAtTime(900, a.currentTime); fl.frequency.exponentialRampToValueAtTime(2600, a.currentTime + 0.16); g.gain.value = 0.12;
     src.connect(fl); fl.connect(g); g.connect(a.destination); src.start();
@@ -567,8 +596,7 @@ footer.nav{position:fixed; left:0; right:0; bottom:0; z-index:5; background:var(
     ding: function(){ tone(1318, 0, 0.35, 'sine', 0.06); },
     nope: function(){ tone(220, 0, 0.16, 'square', 0.04); tone(185, 0.12, 0.22, 'square', 0.04); },
     ring: function(){ for (var i = 0; i < 6; i++) tone(i % 2 ? 1180 : 940, i * 0.07, 0.07, 'square', 0.025); },
-    letter: function(){ [523, 659, 784].forEach(function(fr, i){ tone(fr, i * 0.1, 0.3, 'sine', 0.06); }); },
-    fanfare: function(){ [523, 659, 784, 1047].forEach(function(fr, i){ tone(fr, i * 0.11, 0.4, 'triangle', 0.07); }); }
+    letter: function(){ [523, 659, 784].forEach(function(fr, i){ tone(fr, i * 0.1, 0.3, 'sine', 0.06); }); }
   };
   function play(name){ if (soundOn && sfx[name]) try { sfx[name](); } catch(e){} }
   var snd = document.getElementById('snd');
@@ -585,81 +613,102 @@ footer.nav{position:fixed; left:0; right:0; bottom:0; z-index:5; background:var(
     t.innerHTML = '<svg class="ico"><use href="#i-hand"/></svg>'; fl.querySelector('.f').appendChild(t);
     fl.addEventListener('click', function(){ fl.classList.toggle('on'); play('flip'); });
   });
-  f.addEventListener('change', function(e){ if (e.target.closest('label.opt')) play(e.target.checked ? 'ding' : 'tick'); });
+  var REL = { nunca:'La carta pide que lo borren por completo.', antes:'La carta pide que borren todo lo que no estén obligados a guardar.',
+    actual:'Como es cliente, la carta pide que no usen sus datos para vender ni hacer publicidad.' };
+  f.addEventListener('change', function(e){
+    if (e.target.closest('label.pill')) play(e.target.checked ? 'ding' : 'tick');
+    if (e.target.name === 'relacion') document.getElementById('relNota').textContent = REL[e.target.value];
+    if (e.target.name === 'fechaEnvio' || e.target.name === 'situacion') pintarQueja();
+  });
 
-  // ---------- Pasos ----------
-  var steps = [].slice.call(document.querySelectorAll('.step'));
+  // ---------- Recorridos ----------
+  var RUTAS = { carta:['inicio','derechos','usted','empresa','carta'], sic:['inicio','usted','empresa','sic'] };
+  var modo = 'carta', pos = 0;
+  var steps = {}; [].forEach.call(document.querySelectorAll('.step'), function(s){ steps[s.dataset.id] = s; });
   var bar = document.getElementById('bar'), count = document.getElementById('count');
   var prev = document.getElementById('prev'), next = document.getElementById('next');
-  var cur = 0, last = steps.length - 1, reached = 0;
-  var revealable = steps.map(function(s){ return !s.classList.contains('open') && !!s.querySelector('.answer'); });
-
-  steps.forEach(function(s, i){
-    var b = document.createElement('button');
-    b.type = 'button'; b.title = s.dataset.title; b.setAttribute('aria-label', 'Ir a: ' + s.dataset.title);
-    b.addEventListener('click', function(){ if (i <= reached) { go(i); play('tick'); } });
-    bar.appendChild(b);
-  });
-  var dots = [].slice.call(bar.children);
 
   function valido(s){
-    var err = s.querySelector('.err'); if (!err) return true;
-    err.textContent = '';
-    var bad = [].slice.call(s.querySelectorAll('input, select')).filter(function(x){ return !x.checkValidity(); })[0];
-    if (bad) { bad.reportValidity(); bad.focus(); err.textContent = 'Revise el campo marcado para seguir.'; return false; }
-    if (s.querySelector('[name=canal]') && !s.querySelector('[name=canal]:checked')) { err.textContent = 'Elija al menos un medio por el que lo molestan.'; return false; }
+    var err = s.querySelector('.err'); if (err) err.textContent = '';
+    var bad = [].filter.call(s.querySelectorAll('input, select'), function(x){ return !x.checkValidity(); })[0];
+    if (bad) { bad.reportValidity(); bad.focus(); if (err) err.textContent = 'Revise el campo marcado para seguir.'; return false; }
+    if (s.querySelector('[name=canal]') && !s.querySelector('[name=canal]:checked')) { if (err) err.textContent = 'Elija al menos una forma en que lo contactan.'; return false; }
     return true;
   }
-  function label(){
-    var s = steps[cur];
-    next.classList.remove('reveal');
-    if (cur === 0) next.textContent = 'Empezar →';
-    else if (revealable[cur] && !s.classList.contains('open')) { next.textContent = 'Ver respuesta ↓'; next.classList.add('reveal'); }
-    else if (cur === 5) next.textContent = 'Crear mi carta ✓';
-    else if (cur === last) next.textContent = 'Volver al inicio';
-    else next.textContent = 'Siguiente →';
-  }
   function go(i){
-    cur = Math.max(0, Math.min(last, i)); reached = Math.max(reached, cur);
-    steps.forEach(function(s, k){ s.hidden = k !== cur; });
-    if (cur === 6) { var c = armarCarta(leer(), new Date()); carta.value = c.cuerpo; carta.dataset.asunto = c.asunto; estado.textContent = ''; }
-    dots.forEach(function(d, k){ d.className = k < cur ? 'done' : (k === cur ? 'now' : ''); d.disabled = k > reached; });
-    count.textContent = cur === 0 ? 'Bienvenida' : 'Paso ' + cur + ' de ' + last;
-    prev.disabled = cur === 0;
-    label();
+    var ruta = RUTAS[modo];
+    pos = Math.max(0, Math.min(ruta.length - 1, i));
+    var id = ruta[pos];
+    Object.keys(steps).forEach(function(k){ steps[k].hidden = k !== id; });
+    if (id === 'carta') { var c = armarCarta(leer(), new Date()); carta.value = c.cuerpo; carta.dataset.asunto = c.asunto;
+      document.getElementById('vence').textContent = 'Hacia el ' + sumarHabiles(new Date(), 15).toLocaleDateString('es-CO', { day:'numeric', month:'long' });
+      document.getElementById('estado').textContent = ''; }
+    if (id === 'sic') pintarQueja();
+    bar.innerHTML = ruta.slice(1).map(function(_, k){ return '<i class="' + (k + 1 < pos ? 'done' : k + 1 === pos ? 'now' : '') + '"></i>'; }).join('');
+    bar.hidden = pos === 0;
+    count.textContent = pos === 0 ? '' : 'Paso ' + pos + ' de ' + (ruta.length - 1);
+    document.querySelector('footer.nav').hidden = pos === 0;
+    next.textContent = pos === ruta.length - 1 ? 'Volver al inicio' : ruta[pos + 1] === 'carta' ? 'Ver mi carta ✓' : ruta[pos + 1] === 'sic' ? 'Ver mi queja ✓' : 'Siguiente →';
     window.scrollTo(0, 0);
-    var first = steps[cur].querySelector('.answer input:not([type=checkbox]):not([type=radio])');
-    if (first && !first.value) setTimeout(function(){ first.focus({ preventScroll:true }); }, 350);
+    var first = steps[id].querySelector('input:not([type=checkbox]):not([type=radio]):not([type=date])');
+    if (first && !first.value && matchMedia('(pointer:fine)').matches) setTimeout(function(){ first.focus({ preventScroll:true }); }, 300);
   }
+  function empezar(m){ modo = m; go(1); play(m === 'carta' ? 'ring' : 'tick'); }
+  document.querySelectorAll('[data-start]').forEach(function(b){ b.addEventListener('click', function(){ empezar(b.dataset.start); }); });
+  document.getElementById('home').addEventListener('click', function(){ go(0); play('tick'); });
   next.addEventListener('click', function(){
-    var s = steps[cur];
-    if (revealable[cur] && !s.classList.contains('open')) { s.classList.add('open'); play('reveal'); label(); return; }
+    var ruta = RUTAS[modo], s = steps[ruta[pos]];
+    if (pos === ruta.length - 1) { go(0); play('tick'); return; }
     if (!valido(s)) { play('nope'); return; }
-    if (cur === last) { go(0); play('tick'); return; }
-    go(cur + 1);
-    play(cur === 1 ? 'ring' : cur === 6 ? 'letter' : 'tick');
+    go(pos + 1);
+    play(ruta[pos] === 'carta' || ruta[pos] === 'sic' ? 'letter' : 'tick');
   });
-  prev.addEventListener('click', function(){ go(cur - 1); play('tick'); });
+  prev.addEventListener('click', function(){ go(pos - 1); play('tick'); });
   document.addEventListener('keydown', function(e){
-    if (/INPUT|TEXTAREA|SELECT/.test(e.target.tagName)) { if (e.key === 'Enter' && e.target.tagName === 'INPUT' && e.target.type !== 'search') { e.preventDefault(); next.click(); } return; }
-    if (e.key === 'ArrowRight') next.click();
-    if (e.key === 'ArrowLeft' && cur > 0) prev.click();
+    if (viewer.open) return;
+    if (e.key === 'Enter' && e.target.tagName === 'INPUT' && e.target.type !== 'search' && e.target.type !== 'checkbox' && e.target.type !== 'radio') { e.preventDefault(); next.click(); }
   });
 
   // ---------- Enviar ----------
+  var carta = document.getElementById('carta'), queja = document.getElementById('queja');
+  function mailto(to, asunto, cuerpo){ return 'mailto:' + encodeURIComponent(to) + '?subject=' + encodeURIComponent(asunto) + '&body=' + encodeURIComponent(cuerpo); }
+  function copiar(texto, el, msg){
+    var ok = function(){ el.textContent = msg; play('ding'); };
+    if (navigator.clipboard) navigator.clipboard.writeText(texto).then(ok, ok); else ok();
+  }
   document.getElementById('abrir').addEventListener('click', function(){
-    var d = leer();
     // mailto lo resuelve su propio equipo: abre su programa de correo, no pasa por ningún servidor.
-    location.href = 'mailto:' + encodeURIComponent(d.correoEmpresa) + '?subject=' + encodeURIComponent(carta.dataset.asunto) + '&body=' + encodeURIComponent(carta.value);
-    estado.textContent = '✓ Se abrió su correo. Adjunte su documento y envíe.';
-    play('ding');
+    location.href = mailto(leer().correoEmpresa, carta.dataset.asunto, carta.value);
+    document.getElementById('estado').textContent = '✓ Se abrió su correo. Adjunte su documento y envíe.'; play('ding');
   });
   document.getElementById('copiar').addEventListener('click', function(){
-    var texto = 'Para: ' + leer().correoEmpresa + '\nAsunto: ' + carta.dataset.asunto + '\n\n' + carta.value;
-    var ok = function(){ estado.textContent = '✓ Copiado. Péguelo en un correo nuevo y adjunte su documento.'; play('ding'); };
-    if (navigator.clipboard) navigator.clipboard.writeText(texto).then(ok, function(){ carta.select(); document.execCommand('copy'); ok(); });
-    else { carta.select(); document.execCommand('copy'); ok(); }
+    copiar('Asunto: ' + carta.dataset.asunto + '\n\n' + carta.value, document.getElementById('estado'), '✓ Copiado. Péguelo en el correo, chat o formulario de la empresa.');
   });
+  document.getElementById('abrirSic').addEventListener('click', function(){
+    location.href = mailto('contactenos@sic.gov.co', ASUNTO_SIC, queja.value);
+    document.getElementById('estadoSic').textContent = '✓ Se abrió su correo. Adjunte su carta, su documento y las capturas.'; play('ding');
+  });
+  document.getElementById('copiarSic').addEventListener('click', function(){
+    copiar(queja.value, document.getElementById('estadoSic'), '✓ Copiado. Péguelo en el formulario de la SIC.');
+  });
+
+  function pintarQueja(){
+    var d = leer();
+    queja.value = armarQueja(d, new Date());
+    var box = document.getElementById('plazo');
+    if (!d.fechaEnvio) { box.hidden = true; return; }
+    var env = new Date(d.fechaEnvio + 'T12:00:00'), hoy = new Date(), n = habilesEntre(env, hoy);
+    var cuando = sumarHabiles(env, 16).toLocaleDateString('es-CO', { day:'numeric', month:'long' });
+    box.hidden = false;
+    if (d.situacion === 'silencio' && n < 16) {
+      box.className = 'note bad';
+      box.innerHTML = '<svg class="ico"><use href="#i-clock"/></svg><p class="small"><b>Todavía no se ha vencido el plazo.</b> La empresa tiene 15 días hábiles desde el día siguiente a recibir su carta. Podrá quejarse a partir del <b>' + cuando + '</b> (más días si hay festivos). <button type="button" class="src" data-src="requisito"><svg class="ico"><use href="#i-eye"/></svg>Ver regla de la SIC</button></p>';
+    } else {
+      box.className = 'note ok';
+      box.innerHTML = '<svg class="ico"><use href="#i-check"/></svg><p class="small"><b>Cumple el requisito:</b> ya reclamó ante la empresa' + (d.situacion === 'silencio' ? ' y pasaron ' + n + ' días hábiles' : '') + '. Revise que no haya festivos que corran la fecha. <button type="button" class="src" data-src="art16"><svg class="ico"><use href="#i-eye"/></svg>Ver ley</button></p>';
+    }
+  }
+  [].forEach.call(document.querySelectorAll('[name=fechaEnvio]'), function(x){ x.max = new Date().toISOString().slice(0, 10); });
 
   // ---------- Buscador de empresas ----------
   // 1) Directorio propio (empresas.js): correos verificados en la política oficial de cada empresa.
@@ -673,8 +722,8 @@ footer.nav{position:fixed; left:0; right:0; bottom:0; z-index:5; background:var(
     resultados.innerHTML = '';
     lista.forEach(function(e){
       var li = document.createElement('li'), b = document.createElement('button');
-      b.type = 'button'; b.setAttribute('role', 'option');
-      b.innerHTML = '<svg class="ico"><use href="#i-building"/></svg><span><b>' + esc(e.marca || e.razon_social) + '</b><small>' +
+      b.type = 'button';
+      b.innerHTML = '<span><b>' + esc(e.marca || e.razon_social) + '</b><small>' +
         [e.marca ? esc(e.razon_social) : '', e.nit ? 'NIT ' + esc(e.nit) : ''].filter(Boolean).join(' · ') + '</small></span>' +
         (e.correo ? '<span class="tag ok">Correo verificado</span>' : '<span class="tag no">Sin correo</span>');
       b.addEventListener('click', function(){ elegir(e); });
@@ -682,27 +731,23 @@ footer.nav{position:fixed; left:0; right:0; bottom:0; z-index:5; background:var(
     });
   }
   function elegir(e){
-    f.empresa.value = e.razon_social; f.correoEmpresa.value = e.correo || '';
+    f.empresa.value = e.razon_social; f.correoEmpresa.value = e.correo || ''; empresaNit = e.nit || '';
     resultados.innerHTML = ''; buscar.value = '';
-    elegida.hidden = false; elegida.classList.toggle('partial', !e.correo);
     // Empresa del directorio sin correo publicado: se deja seguir sin él (la carta se pega en su chat o formulario).
     f.correoEmpresa.required = !(e.fuente && !e.correo);
     var q = encodeURIComponent('"' + e.razon_social + '" política de tratamiento de datos personales correo');
-    var pol = e.fuente ? ' · <a href="' + esc(e.fuente) + '" target="_blank" rel="noopener">ver la política</a>' : '';
-    elegida.innerHTML = '<svg class="ico"><use href="#' + (e.correo ? 'i-check' : 'i-alert') + '"/></svg><p><b>' + esc(e.razon_social) + '</b>' +
-      (e.nit ? ' · NIT ' + esc(e.nit) : '') + '<br>' +
-      (e.correo ? 'Correo: <b>' + esc(e.correo) + '</b>' + pol
-       : e.fuente ? (esc(e.nota || '') || 'Esta empresa no publica un correo para datos personales.') + pol +
-                    '<br><small>Si no tiene correo, en el paso siguiente use <b>Copiar el texto</b> y péguelo en el canal de la empresa.</small>'
-       : 'No tenemos su correo. <a href="https://www.google.com/search?q=' + q + '" target="_blank" rel="noopener">Búsquelo en su política de datos</a> y escríbalo abajo.') +
-      (e.correo && e.nota ? '<br><small>' + esc(e.nota) + '</small>' : '') + '</p>';
-    document.getElementById('manual').open = !e.correo;
+    var pol = e.fuente ? ' <a href="' + esc(e.fuente) + '" target="_blank" rel="noopener">Ver su política</a>' : '';
+    elegida.hidden = false; elegida.className = 'note ' + (e.correo ? 'ok' : '');
+    elegida.innerHTML = '<svg class="ico"><use href="#' + (e.correo ? 'i-check' : 'i-alert') + '"/></svg><p class="small"><b>' + esc(e.razon_social) + '</b>' + (e.nit ? ' · NIT ' + esc(e.nit) : '') + '<br>' +
+      (e.correo ? 'Correo verificado en su política oficial.' + pol + (e.nota ? '<br>' + esc(e.nota) : '')
+       : e.fuente ? esc(e.nota || 'Esta empresa no publica un correo para datos personales.') + pol + '<br>Puede seguir sin correo y luego usar <b>Copiar el texto</b>.'
+       : 'No tenemos su correo. <a href="https://www.google.com/search?q=' + q + '" target="_blank" rel="noopener">Búsquelo en su política de datos</a> y escríbalo abajo.') + '</p>';
+    document.getElementById('manual').open = !e.correo && !e.fuente;
     play(e.correo ? 'ding' : 'tick');
-    if (!e.correo && !e.fuente) f.correoEmpresa.focus();
   }
   function rues(q, id){
     var where = "estado_matricula='ACTIVA' AND codigo_categoria_matricula='01' AND upper(razon_social) like '" + q.replace(/'/g, "''") + "%' AND upper(razon_social) not like '%LIQUIDACION%'";
-    var url = 'https://www.datos.gov.co/resource/c82u-588k.json?$select=razon_social,nit,digito_verificacion&$limit=6&$where=' + encodeURIComponent(where);
+    var url = 'https://www.datos.gov.co/resource/c82u-588k.json?$select=razon_social,nit,digito_verificacion&$limit=5&$where=' + encodeURIComponent(where);
     return fetch(url).then(function(r){ if (!r.ok) throw r; return r.json(); }).then(function(rows){
       if (id !== pedido) return null;
       // El RUES a veces trae la sigla o aclaraciones pegadas al nombre: se cortan.
@@ -728,22 +773,16 @@ footer.nav{position:fixed; left:0; right:0; bottom:0; z-index:5; background:var(
         var todo = propios.concat(otros.filter(function(o){
           return nits.indexOf(nitBase(o.nit)) < 0 && nombres.indexOf(norm(o.razon_social).replace(/\W/g, '')) < 0; }));
         pintar(todo);
-        bEstado.textContent = todo.length ? 'Toque la empresa correcta.' : 'No la encontramos. Escriba el nombre legal completo o llénelo a mano abajo.';
-      }).catch(function(){ if (id === pedido) bEstado.textContent = 'El registro no respondió. Puede llenar los datos a mano abajo.'; });
+        bEstado.textContent = todo.length ? 'Toque la empresa correcta.' : 'No la encontramos. Escriba el nombre legal o llene los datos abajo.';
+      }).catch(function(){ if (id === pedido) bEstado.textContent = 'El registro no respondió. Llene los datos abajo.'; });
     }, 400);
   });
+  f.empresa.addEventListener('input', function(){ empresaNit = ''; });
 
-  // ---------- Lista final ----------
-  var boxes = [].slice.call(document.querySelectorAll('#checks input')), meter = document.getElementById('meter');
-  boxes.forEach(function(b){ b.addEventListener('change', function(){
-    var n = boxes.filter(function(x){ return x.checked; }).length;
-    meter.style.width = (n / boxes.length * 100) + '%';
-    if (b.checked) play(n === boxes.length ? 'fanfare' : 'ding');
-  }); });
   document.getElementById('otra').addEventListener('click', function(){
-    f.empresa.value = ''; f.correoEmpresa.value = ''; elegida.hidden = true; buscar.value = ''; resultados.innerHTML = ''; f.correoEmpresa.required = true;
-    boxes.forEach(function(b){ b.checked = false; }); meter.style.width = '0';
-    go(5); play('tick');
+    f.empresa.value = ''; f.correoEmpresa.value = ''; f.correoEmpresa.required = true; empresaNit = '';
+    elegida.hidden = true; buscar.value = ''; resultados.innerHTML = '';
+    go(RUTAS.carta.indexOf('empresa')); play('tick');
   });
 
   go(0);
