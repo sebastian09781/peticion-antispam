@@ -236,6 +236,17 @@ dialog.viewer::backdrop{background:rgba(23,32,43,.55)}
 .idejemplo svg{width:150px; fill:var(--blue-soft); stroke:currentColor; stroke-width:3; stroke-linecap:round}
 #idPrev{max-width:100%; max-height:42vh; justify-self:center; border-radius:12px; box-shadow:0 12px 26px -16px rgba(0,0,0,.5); animation:rise .35s ease}
 .idmas{display:flex; justify-content:center; gap:18px; flex-wrap:wrap}
+.cam{position:fixed; inset:0; z-index:40; background:#000; overflow:hidden}
+.cam video{position:absolute; inset:0; width:100%; height:100%; object-fit:cover}
+.cam-marco{position:absolute; border:3px solid #fff; border-radius:14px; box-shadow:0 0 0 100vmax rgba(0,0,0,.55); transition:border-color .2s}
+.cam-marco span{position:absolute; left:50%; top:-34px; transform:translateX(-50%); white-space:nowrap; color:#fff; font-weight:700; font-size:.9rem}
+.cam-tip{position:absolute; left:16px; right:16px; top:max(20px, env(safe-area-inset-top, 0px)); margin:0; text-align:center; color:#fff; font-size:1rem; text-shadow:0 1px 3px rgba(0,0,0,.6)}
+.cam-bar{position:absolute; left:0; right:0; bottom:0; display:flex; justify-content:space-between; align-items:center; padding:20px 28px calc(24px + env(safe-area-inset-bottom, 0px))}
+.cam-x{width:48px; height:48px; border-radius:50%; border:0; background:rgba(255,255,255,.18); color:#fff; display:grid; place-items:center; font-size:1.4rem; cursor:pointer}
+.cam-disparo{width:76px; height:76px; border-radius:50%; border:5px solid #fff; background:rgba(255,255,255,.9); background-clip:content-box; padding:4px; cursor:pointer; transition:transform .12s}
+.cam-disparo:active{transform:scale(.9)}
+.cam.flash::after{content:""; position:absolute; inset:0; background:#fff; animation:camFlash .35s ease forwards; pointer-events:none}
+@keyframes camFlash{from{opacity:.9} to{opacity:0}}
 .row2{display:flex; flex-direction:column; align-items:center; gap:2px; margin-top:-8px}
 details.peek{width:100%}
 details.peek summary{cursor:pointer; color:var(--blue); font-weight:700; font-size:.95rem; text-align:center; padding:8px; list-style:none; text-decoration:underline; text-underline-offset:4px}
@@ -590,11 +601,12 @@ footer.nav{position:fixed; left:0; right:0; bottom:0; z-index:10; background:var
         <span>Solo el frente · con buena luz</span>
       </div>
       <img id="idPrev" alt="Su cédula con la marca de agua" hidden>
-      <label class="cta main big" id="idTomar"><svg class="ico"><use href="#i-camera"/></svg>Tomar foto del frente
-        <input type="file" id="idCam" accept="image/*" capture="environment" hidden></label>
+      <button class="cta main big" type="button" id="idTomar"><svg class="ico"><use href="#i-camera"/></svg>Tomar foto del frente</button>
+      <input type="file" id="idCam" accept="image/*" capture="environment" hidden>
       <a class="cta main big" id="idGuardar" href="#" download="cedula.jpg" hidden><svg class="ico"><use href="#i-download"/></svg>Guardar foto</a>
       <div class="idmas">
         <button class="linkbtn sm" type="button" id="idOtra" hidden>Tomar otra</button>
+        <button class="linkbtn sm" type="button" id="idGirar" hidden>Girar ↻</button>
         <button class="linkbtn sm" type="button" id="idGaleria">Elegir de la galería</button>
         <input type="file" id="idGal" accept="image/*" hidden>
       </div>
@@ -689,6 +701,18 @@ footer.nav{position:fixed; left:0; right:0; bottom:0; z-index:10; background:var
 </dialog>
 
 <div class="launch" id="launch" hidden role="dialog" aria-modal="true" aria-live="polite"><div class="launch-card" id="lcard"></div></div>
+
+<!-- Cámara dentro de la app: marco del tamaño de una cédula; la foto se recorta al marco -->
+<div class="cam" id="cam" hidden role="dialog" aria-modal="true" aria-label="Cámara para la foto de su cédula">
+  <video id="camVideo" playsinline muted autoplay></video>
+  <div class="cam-marco" id="camMarco"><span>Frente de su cédula</span></div>
+  <p class="cam-tip">Ubique el <b>frente</b> de su cédula dentro del marco, con buena luz</p>
+  <div class="cam-bar">
+    <button type="button" class="cam-x" id="camCerrar" aria-label="Cerrar la cámara"><svg class="ico"><use href="#i-x"/></svg></button>
+    <button type="button" class="cam-disparo" id="camDisparo" aria-label="Tomar la foto"></button>
+    <span class="cam-x" aria-hidden="true" style="visibility:hidden"></span>
+  </div>
+</div>
 
 <footer class="nav">
   <div class="nav-in wrap">
@@ -1285,7 +1309,7 @@ footer.nav{position:fixed; left:0; right:0; bottom:0; z-index:10; background:var
         idUrl = URL.createObjectURL(b); idHecha = txt; idGuardada = false;
         var emp = (leer().empresa || 'empresa').normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 30);
         idPrev.src = idUrl; idGuardar.href = idUrl; idGuardar.download = 'cedula-' + (modo === 'sic' ? 'queja-sic-' : 'habeas-data-') + emp + '.jpg';
-        idPrev.hidden = idGuardar.hidden = idOtra.hidden = false; idTomar.hidden = idEjemplo.hidden = true;
+        idPrev.hidden = idGuardar.hidden = idOtra.hidden = idGirar.hidden = false; idTomar.hidden = idEjemplo.hidden = true;
         idEstado.textContent = 'Lista, con la marca. Guárdela para adjuntarla al correo (o mantenga presionada la foto).';
         play('ding'); hablar(VOZ.cedulaLista);
       }, 'image/jpeg', 0.85);
@@ -1295,7 +1319,67 @@ footer.nav{position:fixed; left:0; right:0; bottom:0; z-index:10; background:var
   }
   function alElegir(e){ var file = e.target.files && e.target.files[0]; e.target.value = ''; if (file) { idArchivo = file; marcar(file); } }
   idCam.addEventListener('change', alElegir); idGal.addEventListener('change', alElegir);
-  idOtra.addEventListener('click', function(){ idCam.click(); });
+  // Girar 90°: se gira la foto original (sin marca) y se vuelve a marcar, para que la marca no quede de lado.
+  var idGirar = document.getElementById('idGirar');
+  idGirar.addEventListener('click', function(){
+    if (!idArchivo) return;
+    var src = URL.createObjectURL(idArchivo), img = new Image();
+    img.onload = function(){
+      URL.revokeObjectURL(src);
+      var cv = document.createElement('canvas'); cv.width = img.naturalHeight; cv.height = img.naturalWidth;
+      var g = cv.getContext('2d'); g.translate(cv.width, 0); g.rotate(Math.PI / 2); g.drawImage(img, 0, 0);
+      cv.toBlob(function(b){ idArchivo = b; marcar(b); }, 'image/jpeg', 0.92);
+    };
+    img.src = src; play('tick');
+  });
+
+  // Cámara dentro de la app (getUserMedia): marco guía con la proporción de una cédula (85,6 × 54 mm).
+  // Si el navegador no la permite o la persona niega el permiso, se usa la cámara normal del celular.
+  var cam = document.getElementById('cam'), camVideo = document.getElementById('camVideo'), camMarco = document.getElementById('camMarco');
+  var camStream = null, camNativa = !(navigator.mediaDevices && navigator.mediaDevices.getUserMedia);
+  function marcoRect(){
+    var cw = cam.clientWidth, ch = cam.clientHeight, fw = Math.min(cw * 0.88, ch * 0.62 * 1.586), fh = fw / 1.586;
+    return { x:(cw - fw) / 2, y:(ch - fh) / 2 - ch * 0.03, w:fw, h:fh };
+  }
+  function ponerMarco(){ var r = marcoRect(); camMarco.style.cssText = 'left:' + r.x + 'px;top:' + r.y + 'px;width:' + r.w + 'px;height:' + r.h + 'px'; }
+  function cerrarCam(){
+    if (camStream) camStream.getTracks().forEach(function(t){ t.stop(); });
+    camStream = null; camVideo.srcObject = null; cam.hidden = true;
+    window.removeEventListener('resize', ponerMarco);
+  }
+  function abrirCam(){
+    if (camNativa) return idCam.click();
+    navigator.mediaDevices.getUserMedia({ audio:false, video:{ facingMode:{ ideal:'environment' }, width:{ ideal:1920 }, height:{ ideal:1080 } } })
+      .then(function(st){
+        camStream = st; camVideo.srcObject = st; cam.hidden = false; ponerMarco();
+        window.addEventListener('resize', ponerMarco);
+        document.getElementById('camDisparo').focus();
+        hablar('Ubique el frente de su cédula dentro del marco, con buena luz, y toque el botón redondo.');
+      })
+      .catch(function(){
+        camNativa = true; // la próxima vez abre directo la cámara normal
+        idEstado.textContent = 'No pudimos abrir la cámara aquí. Toque otra vez el botón para usar la cámara de su celular.';
+        play('nope');
+      });
+  }
+  function disparar(){
+    var vw = camVideo.videoWidth, vh = camVideo.videoHeight; if (!vw) return;
+    // El video se muestra con object-fit: cover; se convierte el marco de la pantalla a píxeles del video.
+    var cw = cam.clientWidth, ch = cam.clientHeight, s = Math.max(cw / vw, ch / vh), ox = (cw - vw * s) / 2, oy = (ch - vh * s) / 2;
+    var r = marcoRect(), m = r.w * 0.03; // un poco de margen para no cortar los bordes de la cédula
+    var sx = Math.max(0, (r.x - m - ox) / s), sy = Math.max(0, (r.y - m - oy) / s);
+    var sw = Math.min(vw - sx, (r.w + 2 * m) / s), sh = Math.min(vh - sy, (r.h + 2 * m) / s);
+    var cv = document.createElement('canvas'); cv.width = Math.round(sw); cv.height = Math.round(sh);
+    cv.getContext('2d').drawImage(camVideo, sx, sy, sw, sh, 0, 0, cv.width, cv.height);
+    cam.classList.remove('flash'); void cam.offsetWidth; cam.classList.add('flash'); play('pop');
+    cv.toBlob(function(b){ cerrarCam(); idArchivo = b; marcar(b); }, 'image/jpeg', 0.92);
+  }
+  idTomar.addEventListener('click', abrirCam);
+  idOtra.addEventListener('click', abrirCam);
+  document.getElementById('camDisparo').addEventListener('click', disparar);
+  document.getElementById('camCerrar').addEventListener('click', function(){ cerrarCam(); play('back'); });
+  cam.addEventListener('keydown', function(e){ if (e.key === 'Escape') { cerrarCam(); idTomar.focus(); } });
+  window.__test.marcoRect = marcoRect;
   document.getElementById('idGaleria').addEventListener('click', function(){ idGal.click(); });
   idGuardar.addEventListener('click', function(){
     idGuardada = true; play('copy');

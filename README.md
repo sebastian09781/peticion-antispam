@@ -40,7 +40,7 @@ Un paso por pantalla. **El botón grande de abajo siempre es la siguiente acció
 | 2. Sus datos: nombre, documento, municipio (lista oficial del DANE) y correo | Siguiente → |
 | 3. ¿Cómo lo molestan?: llamadas, SMS, WhatsApp o correo, a qué número y si es cliente | Siguiente → |
 | 4. La empresa: buscador que llena la razón social y el correo de datos personales | Siguiente → |
-| 5. Foto de su cédula: solo el frente; la marca de agua ("solo para hábeas data a [empresa] · fecha") se pone en el propio celular | **Ver mi carta** |
+| 5. Foto de su cédula: cámara con marco guía del tamaño de la cédula, recorte automático al marco, botón para girar; la marca de agua ("solo para hábeas data a [empresa] · fecha") se pone en el propio celular | **Ver mi carta** |
 | 6. Léala antes de enviarla: la carta con formato, editable | **Enviar por correo** |
 | 7. Agéndelo: la fecha límite, ya sin contar festivos | **Agregar al calendario** |
 | ¡Gracias! Compartir, bloquear el número en la CRC, escribir a otra empresa | **Terminar** |
