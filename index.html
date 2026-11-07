@@ -240,7 +240,8 @@ details.peek[open] summary{margin-bottom:8px}
 .brand span{overflow:hidden; text-overflow:ellipsis}
 .tools{flex:none}
 
-.terms{font-size:.8rem; line-height:1.4; color:var(--muted); margin-top:-4px; max-width:24rem}
+.terms{font-size:.8rem; line-height:1.5; color:var(--muted); max-width:24rem; padding-top:10px; border-top:1px solid var(--line)}
+.hero .foot{margin-top:-2px}
 .terms .linkbtn{padding:0; font-size:inherit; display:inline}
 
 /* Opciones para ver mejor */
@@ -465,20 +466,20 @@ footer.nav{position:fixed; left:0; right:0; bottom:0; z-index:10; background:var
       <div class="phone" aria-hidden="true"><span class="wave"></span><span class="wave w2"></span><div class="core"><svg class="ico"><use href="#i-phone"/></svg></div></div>
       <h1>¿Lo llaman para venderle algo que no pidió?</h1>
       <p class="lead">Le ayudamos a pedir que <b>borren su número</b>.<br>Gratis, sin abogado y en 5 minutos.</p>
+      <p class="foot">
+        <button type="button" class="badge-ok" data-src="politica"><svg class="ico"><use href="#i-lock"/></svg>Nada se guarda</button>
+        <a class="badge-ok" href="https://github.com/sebastian09781/peticion-antispam" target="_blank" rel="noopener"><svg class="ico"><use href="#i-code"/></svg>Código abierto</a>
+        <button type="button" class="badge-ok" data-src="politica"><svg class="ico"><use href="#i-shield"/></svg>Privacidad</button></p>
       <ol class="how">
         <li style="--c:var(--blue)"><svg class="ico"><use href="#i-doc"/></svg><span>Escriba su carta</span></li>
         <li style="--c:var(--amber)"><svg class="ico"><use href="#i-clock"/></svg><span>La empresa tiene 15 días hábiles</span></li>
         <li style="--c:var(--red)"><svg class="ico"><use href="#i-stamp"/></svg><span>Si no cumple, queja ante la SIC</span></li>
       </ol>
       <button class="cta main big" type="button" data-start="carta">Empezar mi carta →</button>
-      <p class="terms">Al continuar, acepta las <button type="button" class="linkbtn sm" data-src="politica">condiciones</button>: es un servicio gratuito que no es asesoría jurídica, y usted revisa y envía su carta.</p>
       <button class="cta voiceopt" type="button" data-start="carta" data-voz="on" id="startVoz" hidden><svg class="ico"><use href="#i-headset"/></svg>Prefiero que una voz me guíe</button>
       <button class="linkbtn" type="button" data-start="sic">Ya envié mi carta y no me respondieron →</button>
-      <p class="foot">
-        <button type="button" class="badge-ok" data-src="politica"><svg class="ico"><use href="#i-lock"/></svg>Nada se guarda</button>
-        <a class="badge-ok" href="https://github.com/sebastian09781/peticion-antispam" target="_blank" rel="noopener"><svg class="ico"><use href="#i-code"/></svg>Código abierto</a>
-        <button type="button" class="badge-ok" data-src="politica"><svg class="ico"><use href="#i-shield"/></svg>Privacidad</button></p>
-      <p class="credit">Servicio gratuito creado por <a href="https://sebastian-09781.blogspot.com/" target="_blank" rel="noopener">Juan Sebastián Rodríguez Casas</a>. No reemplaza la asesoría de un abogado.</p>
+      <p class="terms">Al continuar, acepta las <button type="button" class="linkbtn sm" data-src="politica">condiciones</button>: es un servicio gratuito que no es asesoría jurídica, y usted revisa y envía su carta.<br>
+        Creado por <a href="https://sebastian-09781.blogspot.com/" target="_blank" rel="noopener">Juan Sebastián Rodríguez Casas</a>.</p>
     </div>
   </section>
 
@@ -1426,7 +1427,9 @@ footer.nav{position:fixed; left:0; right:0; bottom:0; z-index:10; background:var
       if (id !== pedido) return null;
       // El RUES a veces trae la sigla o aclaraciones pegadas al nombre: se cortan.
       var limpio = function(s){ return s.replace(/\s*,?\s*(ADEM[AÁ]S|SIGLA|PODR[AÁ]|QUE PODR|PARA TODOS LOS EFECTOS|TAMBI[EÉ]N).*$/i, '').replace(/\s+/g, ' ').trim(); };
-      return rows.map(function(x){ return { razon_social: limpio(x.razon_social), nit: x.nit ? x.nit + (x.digito_verificacion ? '-' + x.digito_verificacion : '') : '' }; });
+      // Mayúsculas normales ("CLARO BIENESTAR SAS" → "Claro Bienestar SAS"); siglas societarias en mayúscula.
+      var bonito = function(s){ return titulo(s).replace(/\b(S\.?a\.?s|S\.?a|E\.?s\.?p|S\.?c\.?a|S\.?e\.?n\.?c)\b\.?/gi, function(m){ return m.toUpperCase(); }); };
+      return rows.map(function(x){ return { razon_social: bonito(limpio(x.razon_social)), nit: x.nit ? x.nit + (x.digito_verificacion ? '-' + x.digito_verificacion : '') : '' }; });
     });
   }
   buscar.addEventListener('input', function(){
