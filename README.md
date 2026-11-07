@@ -20,18 +20,22 @@ Esta herramienta resuelve esos cuatro pasos.
 
 ## ¿Cómo funciona? (en cristiano)
 
-1. **Llenas tus datos básicos:** nombre, documento, ciudad, correo.
-2. **Cuentas cómo te molestan:** por llamadas, SMS, WhatsApp o correo, y a qué número.
-3. **Escribes el nombre de la empresa** y su correo de protección de datos (la página te dice dónde encontrarlo).
-4. **La página arma la carta.** La revisas, das clic en *"Abrir en mi correo"*, adjuntas tu cédula y envías.
-5. **Esperas 15 días hábiles.** Si no responden o siguen llamando, te quejas ante la SIC.
+Es un paso a paso con historia, tarjetas que se voltean y sonidos suaves (se pueden apagar). Son 7 pasos:
+
+1. **¿Cómo consiguieron su número?** La tienda, el concurso, el exoperador, el call center.
+2. **¿Qué puede hacer usted?** Las cuatro normas que lo respaldan, explicadas en una línea cada una.
+3. **¿Quién es usted?** Nombre, documento, ciudad y correo.
+4. **¿Cómo lo están molestando?** Llamadas, SMS, WhatsApp o correo, y qué relación tiene con la empresa.
+5. **¿Qué empresa lo está llamando?** Con instrucciones para encontrar su correo de datos personales.
+6. **Su carta está lista.** La revisa, la abre en su correo, adjunta su documento y la envía.
+7. **¿Y ahora qué pasa?** Plazos, Registro de Números Excluidos, lista de chequeo y botón para escribirle a otra empresa sin volver a llenar sus datos.
 
 ## 🔒 ¿Y mis datos?
 
 **No se guardan en ningún lado.** Esta es una sola página HTML:
 
 - no tiene servidor ni base de datos,
-- no usa cookies, analítica ni librerías externas,
+- no usa cookies, analítica ni librerías externas (solo descarga dos tipografías de Google Fonts, sin enviar nada de lo que usted escribe),
 - el texto se arma dentro de tu navegador y se borra al cerrar la pestaña.
 
 No tienes que creernos: todo el código está en [`index.html`](index.html) y puedes revisarlo.
