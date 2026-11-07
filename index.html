@@ -409,7 +409,7 @@ footer.nav{position:fixed; left:0; right:0; bottom:0; z-index:10; background:var
         <span class="f"><svg class="ico"><use href="#i-coins"/></svg><b>La SIC puede multarlos</b></span>
         <span class="b">Hasta 2.000 salarios mínimos, y ordenar que borren sus datos.</span></span></button>
     </div>
-    <button type="button" class="chipbtn" data-src="lista:sic9,art15,l2300,art23"><svg class="ico"><use href="#i-scale"/></svg>Normas</button>
+    <button type="button" class="chipbtn" data-src="lista:sic9,art15,l2300,art23,c748,res78138"><svg class="ico"><use href="#i-scale"/></svg>Normas</button>
   </section>
 
   <!-- USTED -->
@@ -497,7 +497,7 @@ footer.nav{position:fixed; left:0; right:0; bottom:0; z-index:10; background:var
       <a href="https://tramitescrcom.gov.co/tramites/comun/guia.xhtml?tit=&amp;subt=&amp;tram=ebhrEbS9qKn04bkBEBApXQ==&amp;pr1=3578LkxQ3TO3y3t5FY9/BQ==&amp;onA=S0etv8CCdHqPI8wYF9h5dtdTbijZh1Ii32LohKmsEd6aN1b0ia4DPDtKgFkbFjDn" target="_blank" rel="noopener"><svg class="ico"><use href="#i-shield"/></svg><b>Bloquear mi número en la CRC</b></a>
       <button type="button" id="otra"><svg class="ico"><use href="#i-plus"/></svg><b>Escribir a otra empresa</b></button>
     </div>
-    <button type="button" class="chipbtn" data-src="lista:art15,circ,sic9"><svg class="ico"><use href="#i-scale"/></svg>Normas</button>
+    <button type="button" class="chipbtn" data-src="lista:c748,res78138,art15,circ,sic9"><svg class="ico"><use href="#i-scale"/></svg>Normas</button>
   </section>
 
   <!-- QUEJA SIC -->
@@ -526,7 +526,7 @@ footer.nav{position:fixed; left:0; right:0; bottom:0; z-index:10; background:var
     <p class="status" id="estadoSic" role="status"></p>
     <div class="chips-row">
       <a class="chipbtn" href="https://servicioslinea.sic.gov.co/servilinea/pqrsf/" target="_blank" rel="noopener"><svg class="ico"><use href="#i-ext"/></svg>Formulario web SIC</a>
-      <button type="button" class="chipbtn" data-src="lista:sic9,requisito,art16,circ,canales"><svg class="ico"><use href="#i-scale"/></svg>Normas</button>
+      <button type="button" class="chipbtn" data-src="lista:sic9,requisito,art16,c748,res78138,circ,canales"><svg class="ico"><use href="#i-scale"/></svg>Normas</button>
     </div>
   </section>
 
@@ -595,6 +595,11 @@ footer.nav{position:fixed; left:0; right:0; bottom:0; z-index:10; background:var
     circ: { t:'SIC · Circular Externa 001 de 2024', url:'https://normograma.mintic.gov.co/mintic/compilacion/docs/circular_superindustria_0001_2024.htm',
       q:'Denuncias: «podrán radicar las denuncias a través del correo electrónico institucional contactenos@sic.gov.co o cualquier otro canal de atención al ciudadano».\n\nRegistro de Números Excluidos: los productores y proveedores «están obligados a consultar el listado del \'Registro de Números Excluidos\' de la Comisión de Regulación de Comunicaciones».' }
   };
+  FUENTES.c748 = { t:'Corte Constitucional, Sentencia C-748 de 2011', url:'https://www.corteconstitucional.gov.co/relatoria/2011/C-748-11.htm',
+    q:'«El tratamiento sólo puede ejercerse con el consentimiento, previo, expreso e informado del titular.»\n\n«…el silencio del Titular nunca podría inferirse como autorización del uso de su información…»' };
+  FUENTES.res78138 = { t:'SIC, Resolución 78138 de 2025 (sanción por llamadas y mensajes comerciales)', url:'https://sedeelectronica.sic.gov.co/sites/default/files/normativa/2025078138RE0000000001.pdf',
+    q:'«Realizar actividades de prospección comercial mediante el envío de mensajes de texto, el uso de aplicaciones o la realización de llamadas telefónicas sin contar con la autorización previa, expresa e informada de los titulares vulnera el derecho fundamental al habeas data…»',
+    nota:'La SIC impuso una multa de 670 millones de pesos a Colombia Telecomunicaciones S.A. E.S.P. BIC (Movistar).' };
   // Texto fijo escrito aquí (no viene de afuera), por eso se inserta como HTML.
   FUENTES.politica = { t:'Privacidad y condiciones de uso', url:'https://github.com/sebastian09781/peticion-antispam', link:'Revisar el código fuente en GitHub', html:
     '<h3>¿Qué es esto?</h3><p>Un servicio gratuito y de código abierto (licencia MIT) que le ayuda a hacer el trámite de forma fácil. No es asesoría jurídica y no tiene relación con la SIC ni con las empresas mencionadas. Lo creó <a href="https://sebastian-09781.blogspot.com/" target="_blank" rel="noopener">Juan Sebastián Rodríguez Casas</a>.</p>' +
@@ -653,7 +658,11 @@ footer.nav{position:fixed; left:0; right:0; bottom:0; z-index:10; background:var
     return '<h4>' + titulo + '</h4>' + items.map(function(t, i){ return '<div class="it">' + (numerar ? '<b>' + (i + 1) + '.</b> ' : '• ') + t + '</div>'; }).join('');
   };
   // Jurisprudencia verificada en la relatoría de la Corte Constitucional (ver FUENTES). Se cita en cursiva.
-  var JURIS = [];
+  // Citas comprobadas textualmente en los documentos oficiales el 7 de noviembre de 2026.
+  var JURIS = [
+    { carta: 'Corte Constitucional, <i>Sentencia C-748 de 2011</i>: «El tratamiento sólo puede ejercerse con el consentimiento, previo, expreso e informado del titular», y «el silencio del Titular nunca podría inferirse como autorización del uso de su información».' },
+    { carta: 'Superintendencia de Industria y Comercio, <i>Resolución 78138 de 2025</i>: «Realizar actividades de prospección comercial mediante el envío de mensajes de texto, el uso de aplicaciones o la realización de llamadas telefónicas sin contar con la autorización previa, expresa e informada de los titulares vulnera el derecho fundamental al habeas data».' }
+  ];
 
   function armarCarta(d, hoy){
     var canales = lista(d.canales.length ? d.canales : ['llamadas']);

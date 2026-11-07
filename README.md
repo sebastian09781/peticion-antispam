@@ -61,7 +61,10 @@ Cada dato legal tiene un botón **"Ver fuente"** que abre, sin salir de la pági
 | Horarios permitidos para contactos | [Ley 2300 de 2023, art. 3 y art. 5, par. 3](https://normograma.mintic.gov.co/mintic/compilacion/docs/ley_2300_2023.htm) |
 | Correo de denuncias y Registro de Números Excluidos | [SIC, Circular Externa 001 de 2024](https://normograma.mintic.gov.co/mintic/compilacion/docs/circular_superindustria_0001_2024.htm) |
 
-Fuentes revisadas el 7 de noviembre de 2026.
+| La autorización debe ser previa, expresa e informada, y el silencio no es autorización (citado en la carta y la queja) | [Corte Constitucional, Sentencia C-748 de 2011](https://www.corteconstitucional.gov.co/relatoria/2011/C-748-11.htm) |
+| Las llamadas y los mensajes comerciales sin autorización vulneran el hábeas data; multa de $670 millones a Movistar (citado en la carta y la queja) | [SIC, Resolución 78138 de 2025](https://sedeelectronica.sic.gov.co/sites/default/files/normativa/2025078138RE0000000001.pdf) |
+
+Fuentes revisadas el 7 de noviembre de 2026. Las citas de jurisprudencia se comprobaron textualmente en los documentos oficiales.
 
 ## 🔎 Buscador de empresas
 
