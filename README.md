@@ -30,13 +30,23 @@ Es un paso a paso con historia, tarjetas que se voltean y sonidos suaves (se pue
 6. **Su carta está lista.** La revisa, la abre en su correo, adjunta su documento y la envía.
 7. **¿Y ahora qué pasa?** Plazos, Registro de Números Excluidos, lista de chequeo y botón para escribirle a otra empresa sin volver a llenar sus datos.
 
+## 🔎 Buscador de empresas
+
+En el paso 5 la persona escribe "Claro" o "Bancolombia" y la página llena la empresa sola. Usa dos fuentes:
+
+1. **[`empresas.js`](empresas.js): directorio propio** de las empresas que más llaman. Cada correo fue verificado en la política oficial de datos de la empresa, que va enlazada. Si la empresa no publica correo (algunos bancos solo atienden por chat o teléfono), la página lo dice y sugiere pegar la carta en ese canal.
+2. **[RUES en datos.gov.co](https://www.datos.gov.co/d/c82u-588k): cualquier otra empresa activa** registrada en las Cámaras de Comercio. Trae la razón social y el NIT, pero no el correo: ese lo busca la persona.
+
+¿Falta una empresa o cambió un correo? Abra un *issue* o un *pull request* en `empresas.js` con el enlace a la política oficial.
+
 ## 🔒 ¿Y mis datos?
 
 **No se guardan en ningún lado.** Esta es una sola página HTML:
 
 - no tiene servidor ni base de datos,
 - no usa cookies, analítica ni librerías externas (solo descarga dos tipografías de Google Fonts, sin enviar nada de lo que usted escribe),
-- el texto se arma dentro de tu navegador y se borra al cerrar la pestaña.
+- el texto se arma dentro de tu navegador y se borra al cerrar la pestaña,
+- lo único que sale a internet es **el nombre de la empresa** que escribes en el buscador, para consultarla en datos.gov.co.
 
 No tienes que creernos: todo el código está en [`index.html`](index.html) y puedes revisarlo.
 

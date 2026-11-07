@@ -675,7 +675,7 @@ footer.nav{position:fixed; left:0; right:0; bottom:0; z-index:5; background:var(
       var li = document.createElement('li'), b = document.createElement('button');
       b.type = 'button'; b.setAttribute('role', 'option');
       b.innerHTML = '<svg class="ico"><use href="#i-building"/></svg><span><b>' + esc(e.marca || e.razon_social) + '</b><small>' +
-        (e.marca ? esc(e.razon_social) + ' · ' : '') + 'NIT ' + esc(e.nit || 'sin dato') + '</small></span>' +
+        [e.marca ? esc(e.razon_social) : '', e.nit ? 'NIT ' + esc(e.nit) : ''].filter(Boolean).join(' · ') + '</small></span>' +
         (e.correo ? '<span class="tag ok">Correo verificado</span>' : '<span class="tag no">Sin correo</span>');
       b.addEventListener('click', function(){ elegir(e); });
       li.appendChild(b); resultados.appendChild(li);
@@ -701,7 +701,7 @@ footer.nav{position:fixed; left:0; right:0; bottom:0; z-index:5; background:var(
     if (!e.correo && !e.fuente) f.correoEmpresa.focus();
   }
   function rues(q, id){
-    var where = "estado_matricula='ACTIVA' AND codigo_categoria_matricula='01' AND upper(razon_social) like '" + q.replace(/'/g, "''") + "%'";
+    var where = "estado_matricula='ACTIVA' AND codigo_categoria_matricula='01' AND upper(razon_social) like '" + q.replace(/'/g, "''") + "%' AND upper(razon_social) not like '%LIQUIDACION%'";
     var url = 'https://www.datos.gov.co/resource/c82u-588k.json?$select=razon_social,nit,digito_verificacion&$limit=6&$where=' + encodeURIComponent(where);
     return fetch(url).then(function(r){ if (!r.ok) throw r; return r.json(); }).then(function(rows){
       if (id !== pedido) return null;
@@ -721,8 +721,12 @@ footer.nav{position:fixed; left:0; right:0; bottom:0; z-index:5; background:var(
       bEstado.textContent = 'Buscando en el registro de Cámaras de Comercio…';
       rues(q, id).then(function(otros){
         if (!otros) return;
-        var ya = propios.map(function(e){ return norm(e.razon_social); });
-        var todo = propios.concat(otros.filter(function(o){ return ya.indexOf(norm(o.razon_social)) < 0; }));
+        // Sin duplicados: se compara el NIT sin puntos ni dígito de verificación, o el nombre.
+        var nitBase = function(n){ return (n || '').replace(/\D/g, '').slice(0, 9); };
+        var nits = propios.map(function(e){ return nitBase(e.nit); }).filter(Boolean);
+        var nombres = propios.map(function(e){ return norm(e.razon_social).replace(/\W/g, ''); });
+        var todo = propios.concat(otros.filter(function(o){
+          return nits.indexOf(nitBase(o.nit)) < 0 && nombres.indexOf(norm(o.razon_social).replace(/\W/g, '')) < 0; }));
         pintar(todo);
         bEstado.textContent = todo.length ? 'Toque la empresa correcta.' : 'No la encontramos. Escriba el nombre legal completo o llénelo a mano abajo.';
       }).catch(function(){ if (id === pedido) bEstado.textContent = 'El registro no respondió. Puede llenar los datos a mano abajo.'; });
