@@ -3,8 +3,44 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Chao llamadas spam</title>
-<meta name="description" content="Herramienta gratuita para que las empresas dejen de llamarle: escriba su carta en 5 minutos y, si no cumplen, presente la queja ante la SIC. Nada se guarda.">
+<title>Chao Spam: pida que borren su número y dejen de llamarlo</title>
+<meta name="description" content="Servicio gratuito para que las empresas dejen de llamarlo con publicidad en Colombia: arme su derecho de petición de hábeas data en 5 minutos y, si no cumplen, presente la queja ante la SIC. Sin abogado. Nada se guarda.">
+<meta name="keywords" content="llamadas spam, dejen de fregar, Ley 2300 de 2023, hábeas data, Ley 1581 de 2012, derecho de petición, supresión de datos, SIC, Superintendencia de Industria y Comercio, llamadas publicitarias, Colombia">
+<meta name="author" content="Juan Sebastián Rodríguez Casas">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="theme-color" content="#5b44a0">
+<link rel="canonical" href="https://sebastian09781.github.io/peticion-antispam/">
+
+<!-- Íconos -->
+<link rel="icon" href="img/logo.svg" type="image/svg+xml">
+<link rel="icon" href="favicon.ico" sizes="32x32">
+<link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+<link rel="manifest" href="manifest.webmanifest">
+
+<!-- Vista previa al compartir (WhatsApp, Facebook, LinkedIn, X) -->
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_CO">
+<meta property="og:site_name" content="Chao Spam">
+<meta property="og:title" content="Chao Spam: pida que borren su número y dejen de llamarlo">
+<meta property="og:description" content="Arme gratis su derecho de petición en 5 minutos, con la ley de su lado. Sin abogado. Nada se guarda.">
+<meta property="og:url" content="https://sebastian09781.github.io/peticion-antispam/">
+<meta property="og:image" content="https://sebastian09781.github.io/peticion-antispam/img/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Logo de Chao Spam: un teléfono tachado, con el texto: pida que borren su número y dejen de llamarlo">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Chao Spam: pida que borren su número y dejen de llamarlo">
+<meta name="twitter:description" content="Arme gratis su derecho de petición en 5 minutos, con la ley de su lado.">
+<meta name="twitter:image" content="https://sebastian09781.github.io/peticion-antispam/img/og-image.jpg">
+
+<!-- Datos estructurados para buscadores -->
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"Chao Spam","url":"https://sebastian09781.github.io/peticion-antispam/",
+ "description":"Servicio gratuito para pedir a las empresas que borren sus datos y dejen de llamarlo con publicidad, y para presentar la queja ante la Superintendencia de Industria y Comercio de Colombia.",
+ "applicationCategory":"UtilitiesApplication","operatingSystem":"Web","inLanguage":"es-CO","isAccessibleForFree":true,
+ "offers":{"@type":"Offer","price":"0","priceCurrency":"COP"},
+ "author":{"@type":"Person","name":"Juan Sebastián Rodríguez Casas","url":"https://sebastian-09781.blogspot.com/"}}
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Literata:opsz,wght@7..72,500;7..72,650&display=swap">
@@ -200,6 +236,37 @@ details.peek[open] summary{margin-bottom:8px}
 .deadline{background:var(--amber-soft); border-radius:18px; padding:18px; text-align:center; display:flex; flex-direction:column; align-items:center; gap:4px}
 .deadline .date{font-family:var(--font-display); font-size:1.45rem; font-weight:650; color:var(--amber); line-height:1.25}
 .deadline .cta.alt{margin-top:10px; width:100%; justify-content:center; gap:10px; font-weight:700; background:var(--bg); min-height:50px}
+.brand{min-width:0; flex:1 1 auto} .brand img{width:26px; height:26px; flex:none; border-radius:7px}
+.brand span{overflow:hidden; text-overflow:ellipsis}
+.tools{flex:none}
+
+/* Opciones para ver mejor */
+.iconbtn.aa{font-family:var(--font-display); font-weight:650; font-size:1rem}
+.iconbtn[aria-expanded="true"]{background:var(--blue-soft)}
+.top-in{position:relative}
+.aapanel{position:absolute; right:max(16px, env(safe-area-inset-right, 0px)); top:52px; z-index:12; width:min(17rem, calc(100vw - 32px)); background:var(--bg); border:1px solid var(--line); border-radius:16px; padding:8px; box-shadow:0 20px 40px -18px rgba(23,32,43,.45); display:flex; flex-direction:column; gap:4px}
+.aarow{font:inherit; width:100%; display:flex; justify-content:space-between; align-items:center; gap:10px; padding:10px 12px; border:0; border-radius:12px; background:none; color:var(--ink); font-size:.98rem; text-align:left}
+.aarow > span:first-child{display:flex; gap:10px; align-items:center}
+.aarow .ico{color:var(--blue); font-size:1.2rem}
+.aatog{cursor:pointer} .aatog:hover{background:var(--surface)}
+.aaseg{display:flex; align-items:center; gap:4px}
+.aaseg button{font:inherit; font-weight:700; width:38px; height:34px; border-radius:10px; border:1px solid var(--line); background:var(--surface); color:var(--ink); cursor:pointer}
+.aaseg output{min-width:44px; text-align:center; font-size:.85rem; color:var(--muted); font-variant-numeric:tabular-nums}
+.sw{width:40px; height:24px; border-radius:999px; background:var(--line); position:relative; flex:none; transition:background .2s}
+.sw::after{content:""; position:absolute; top:3px; left:3px; width:18px; height:18px; border-radius:50%; background:#fff; transition:transform .2s; box-shadow:0 1px 3px rgba(0,0,0,.3)}
+.aatog[aria-pressed="true"] .sw{background:var(--green)} .aatog[aria-pressed="true"] .sw::after{transform:translateX(16px)}
+/* Alto contraste: textos negros, bordes oscuros, enlaces subrayados */
+html.contraste{--ink:#000; --muted:#1f2a36; --line:#5f6b78; --surface:#fff; --blue:#0b3d66; --violet:#3a2878; --green:#145234; --amber:#6b3f05; --red:#7e2318}
+html.contraste a, html.contraste .linkbtn{text-decoration:underline}
+html.contraste .field input, html.contraste .field select, html.contraste .paper{border-color:#000}
+/* Sin animaciones */
+html.quieto *, html.quieto *::before, html.quieto *::after{animation:none!important; transition:none!important}
+
+/* Pie de confianza */
+.foot{gap:8px}
+.foot .badge-ok{display:inline-flex; gap:6px; align-items:center; font-size:.85rem; font-weight:700; color:var(--green); background:var(--green-soft); border-radius:999px; padding:5px 12px; text-decoration:none; border:0; font-family:inherit; cursor:pointer}
+.foot .badge-ok .ico{font-size:1rem; color:var(--green)}
+
 /* Botones principales: degradado suave en movimiento y un brillo que pasa de vez en cuando, para invitar a tocarlos */
 .cta.main, .cta.sic, .btn.next{position:relative; overflow:hidden; background-size:220% 100%; transition:transform .15s ease, box-shadow .3s ease}
 .cta.main{background-image:linear-gradient(110deg, var(--blue) 0%, var(--violet) 50%, var(--blue) 100%)}
@@ -346,6 +413,10 @@ footer.nav{position:fixed; left:0; right:0; bottom:0; z-index:10; background:var
   <symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol>
   <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
   <symbol id="i-ext" viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-9 9M18 14v6H4V6h6"/></symbol>
+  <symbol id="i-text" viewBox="0 0 24 24"><path d="M4 19l5-14 5 14M6 14h6M15 19l3-8 3 8M16 16.5h4"/></symbol>
+  <symbol id="i-contrast" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 1 0 18z" fill="currentColor"/></symbol>
+  <symbol id="i-pause" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M10 9v6M14 9v6"/></symbol>
+  <symbol id="i-code" viewBox="0 0 24 24"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5M14 4l-4 16"/></symbol>
   <symbol id="i-share" viewBox="0 0 24 24"><circle cx="6" cy="12" r="2.5"/><circle cx="18" cy="6" r="2.5"/><circle cx="18" cy="18" r="2.5"/><path d="M8.2 10.8l7.6-3.6M8.2 13.2l7.6 3.6"/></symbol>
   <symbol id="i-pencil" viewBox="0 0 24 24"><path d="M4 20l4-1 11-11-3-3L5 16z"/><path d="M14 6l3 3"/></symbol>
   <symbol id="i-clip" viewBox="0 0 24 24"><path d="M21 11l-8.5 8.5a5 5 0 0 1-7-7L14 4a3.5 3.5 0 0 1 5 5l-8.5 8.5a2 2 0 0 1-3-3L15 7"/></symbol>
@@ -357,11 +428,18 @@ footer.nav{position:fixed; left:0; right:0; bottom:0; z-index:10; background:var
 
 <header class="top">
   <div class="top-in wrap">
-    <div class="top-row"><button class="brand" id="home" type="button" aria-label="Ir al inicio"><svg class="ico"><use href="#i-phoneoff"/></svg>Chao llamadas spam</button>
+    <div class="top-row"><button class="brand" id="home" type="button" aria-label="Chao Spam: ir al inicio"><img src="img/logo.svg" alt="" width="26" height="26"><span>Chao Spam</span></button>
       <span class="tools"><span class="count" id="count"></span>
         <button class="iconbtn vozrep" id="vozRep" type="button" aria-label="Repetir lo que dijo la guía" hidden><svg class="ico"><use href="#i-replay"/></svg></button>
         <button class="voicebtn" id="voz" type="button" aria-pressed="false" aria-label="Guía por voz" hidden><svg class="ico"><use href="#i-headset"/></svg><span>Voz</span></button>
-        <button class="iconbtn" id="snd" type="button" aria-label="Apagar los sonidos" aria-pressed="true"><svg class="ico"><use href="#i-sound"/></svg></button></span></div>
+        <button class="iconbtn" id="snd" type="button" aria-label="Apagar los sonidos" aria-pressed="true"><svg class="ico"><use href="#i-sound"/></svg></button>
+        <button class="iconbtn aa" id="aaBtn" type="button" aria-label="Opciones para ver mejor" aria-expanded="false" aria-controls="aaPanel">Aa</button></span></div>
+    <div class="aapanel" id="aaPanel" role="group" aria-label="Opciones para ver mejor" hidden>
+      <div class="aarow"><span><svg class="ico"><use href="#i-text"/></svg>Letra</span>
+        <span class="aaseg"><button type="button" data-aa="menos" aria-label="Letra más pequeña">A−</button><output id="aaTam">100%</output><button type="button" data-aa="mas" aria-label="Letra más grande">A+</button></span></div>
+      <button class="aarow aatog" type="button" data-aa="contraste" aria-pressed="false"><span><svg class="ico"><use href="#i-contrast"/></svg>Alto contraste</span><i class="sw"></i></button>
+      <button class="aarow aatog" type="button" data-aa="quieto" aria-pressed="false"><span><svg class="ico"><use href="#i-pause"/></svg>Sin animaciones</span><i class="sw"></i></button>
+    </div>
     <div class="bar" id="bar" aria-hidden="true"></div>
   </div>
 </header>
@@ -383,9 +461,10 @@ footer.nav{position:fixed; left:0; right:0; bottom:0; z-index:10; background:var
       <button class="cta main big" type="button" data-start="carta">Empezar mi carta →</button>
       <button class="cta voiceopt" type="button" data-start="carta" data-voz="on" id="startVoz" hidden><svg class="ico"><use href="#i-headset"/></svg>Prefiero que una voz me guíe</button>
       <button class="linkbtn" type="button" data-start="sic">Ya envié mi carta y no me respondieron →</button>
-      <p class="foot"><svg class="ico"><use href="#i-lock"/></svg>Nada se guarda ·
-        <a href="https://github.com/sebastian09781/peticion-antispam" target="_blank" rel="noopener">Código abierto</a> ·
-        <button type="button" class="linkbtn sm" data-src="politica">Privacidad</button></p>
+      <p class="foot">
+        <button type="button" class="badge-ok" data-src="politica"><svg class="ico"><use href="#i-lock"/></svg>Nada se guarda</button>
+        <a class="badge-ok" href="https://github.com/sebastian09781/peticion-antispam" target="_blank" rel="noopener"><svg class="ico"><use href="#i-code"/></svg>Código abierto</a>
+        <button type="button" class="badge-ok" data-src="politica"><svg class="ico"><use href="#i-shield"/></svg>Privacidad</button></p>
       <p class="credit">Servicio gratuito creado por <a href="https://sebastian-09781.blogspot.com/" target="_blank" rel="noopener">Juan Sebastián Rodríguez Casas</a>. No reemplaza la asesoría de un abogado.</p>
     </div>
   </section>
@@ -418,10 +497,10 @@ footer.nav{position:fixed; left:0; right:0; bottom:0; z-index:10; background:var
       <div><p class="qnum">Sus datos</p><h2 class="qtext">¿Quién es usted?</h2></div></div>
     <p class="hint"><svg class="ico"><use href="#i-lock"/></svg>Nada de esto se guarda. Solo sirve para armar su carta.</p>
     <div class="fields">
-      <label class="field full">Nombre completo<input name="nombre" required autocomplete="name"></label>
+      <label class="field full">Nombre completo<input name="nombre" required autocomplete="name" autocapitalize="words" maxlength="80" placeholder="Nombres y apellidos"></label>
       <label class="field">Documento
         <select name="tipoDoc"><option value="cédula de ciudadanía">Cédula de ciudadanía</option><option value="cédula de extranjería">Cédula de extranjería</option><option value="permiso por protección temporal">PPT</option><option value="pasaporte">Pasaporte</option></select></label>
-      <label class="field">Número<input name="doc" required inputmode="numeric" autocomplete="off"></label>
+      <label class="field">Número<input name="doc" required inputmode="numeric" autocomplete="off" maxlength="12" placeholder="Solo números"></label>
       <div class="combo">
         <label class="field">Ciudad o municipio<input name="ciudad" required autocomplete="off" placeholder="Escriba y elija…" role="combobox" aria-expanded="false" aria-controls="ciudadLista" aria-autocomplete="list"></label>
         <ul class="sugg" id="ciudadLista" role="listbox" aria-label="Municipios" hidden></ul>
@@ -453,6 +532,7 @@ footer.nav{position:fixed; left:0; right:0; bottom:0; z-index:10; background:var
       <div><p class="qnum">La empresa</p><h2 class="qtext">¿Quién lo está llamando?</h2></div></div>
     <label class="field">Escriba el nombre con el que la conoce<input id="buscar" type="search" placeholder="Claro, Bancolombia, Tigo…" autocomplete="off" aria-controls="resultados"></label>
     <p class="hint" id="buscarEstado" role="status">Toque la empresa cuando aparezca.</p>
+    <div class="note info"><svg class="ico"><use href="#i-phone"/></svg><p class="small"><b>¿Lo llamó un <i>call center</i>?</b> Escriba la marca que le ofrecían (el banco, el operador): esa empresa responde por quienes llaman a su nombre. <button type="button" class="src" data-src="art17"><svg class="ico"><use href="#i-scale"/></svg>Ley</button></p></div>
     <ul class="results" id="resultados" aria-label="Empresas encontradas"></ul>
     <div class="note" id="elegida" hidden></div>
     <div id="manual" hidden>
@@ -497,7 +577,7 @@ footer.nav{position:fixed; left:0; right:0; bottom:0; z-index:10; background:var
       <a href="https://tramitescrcom.gov.co/tramites/comun/guia.xhtml?tit=&amp;subt=&amp;tram=ebhrEbS9qKn04bkBEBApXQ==&amp;pr1=3578LkxQ3TO3y3t5FY9/BQ==&amp;onA=S0etv8CCdHqPI8wYF9h5dtdTbijZh1Ii32LohKmsEd6aN1b0ia4DPDtKgFkbFjDn" target="_blank" rel="noopener"><svg class="ico"><use href="#i-shield"/></svg><b>Bloquear mi número en la CRC</b></a>
       <button type="button" id="otra"><svg class="ico"><use href="#i-plus"/></svg><b>Escribir a otra empresa</b></button>
     </div>
-    <button type="button" class="chipbtn" data-src="lista:c748,res78138,art15,circ,sic9"><svg class="ico"><use href="#i-scale"/></svg>Normas</button>
+    <button type="button" class="chipbtn" data-src="lista:c748,res78138,art17,art15,circ,sic9"><svg class="ico"><use href="#i-scale"/></svg>Normas</button>
   </section>
 
   <!-- QUEJA SIC -->
@@ -544,7 +624,7 @@ footer.nav{position:fixed; left:0; right:0; bottom:0; z-index:10; background:var
       </div>
       <p class="status" id="gEstado" role="status"></p>
       <button class="linkbtn" type="button" id="gInicio">Volver al inicio</button>
-      <p class="credit">Chao llamadas spam · Servicio gratuito creado por <a href="https://sebastian-09781.blogspot.com/" target="_blank" rel="noopener">Juan Sebastián Rodríguez Casas</a></p>
+      <p class="credit">Chao Spam · Servicio gratuito creado por <a href="https://sebastian-09781.blogspot.com/" target="_blank" rel="noopener">Juan Sebastián Rodríguez Casas</a></p>
     </div>
   </section>
 
@@ -595,6 +675,10 @@ footer.nav{position:fixed; left:0; right:0; bottom:0; z-index:10; background:var
     circ: { t:'SIC · Circular Externa 001 de 2024', url:'https://normograma.mintic.gov.co/mintic/compilacion/docs/circular_superindustria_0001_2024.htm',
       q:'Denuncias: «podrán radicar las denuncias a través del correo electrónico institucional contactenos@sic.gov.co o cualquier otro canal de atención al ciudadano».\n\nRegistro de Números Excluidos: los productores y proveedores «están obligados a consultar el listado del \'Registro de Números Excluidos\' de la Comisión de Regulación de Comunicaciones».' }
   };
+  FUENTES.art17 = { t:'Ley 1581 de 2012: responsable y encargados (arts. 3, 15 y 17)', url:L1581,
+    q:'Art. 3, lit. d: Encargado es quien «realice el Tratamiento de datos personales por cuenta del Responsable del Tratamiento».\n\n' +
+      'Art. 17: el Responsable debe «f) Actualizar la información, comunicando de forma oportuna al Encargado del Tratamiento, todas las novedades…», «i) Exigir al Encargado del Tratamiento en todo momento, el respeto a las condiciones de seguridad y privacidad de la información del Titular» y «l) Informar al Encargado del Tratamiento cuando determinada información se encuentra en discusión por parte del Titular».\n\n' +
+      'Art. 15, num. 1: «En caso de que quien reciba el reclamo no sea competente para resolverlo, dará traslado a quien corresponda en un término máximo de dos (2) días hábiles e informará de la situación al interesado.»' };
   FUENTES.c748 = { t:'Corte Constitucional, Sentencia C-748 de 2011', url:'https://www.corteconstitucional.gov.co/relatoria/2011/C-748-11.htm',
     q:'«El tratamiento sólo puede ejercerse con el consentimiento, previo, expreso e informado del titular.»\n\n«…el silencio del Titular nunca podría inferirse como autorización del uso de su información…»' };
   FUENTES.res78138 = { t:'SIC, Resolución 78138 de 2025 (sanción por llamadas y mensajes comerciales)', url:'https://sedeelectronica.sic.gov.co/sites/default/files/normativa/2025078138RE0000000001.pdf',
@@ -673,17 +757,18 @@ footer.nav{position:fixed; left:0; right:0; bottom:0; z-index:10; background:var
         actual:'Soy cliente de su compañía, pero <b>no deseo recibir contactos con fines comerciales o publicitarios</b>.' }[d.relacion],
       'He recibido ' + e(canales) + ' con fines comerciales o publicitarios en: <b>' + ve(d.contactos, '[sus números o correos]') + '</b>.',
       cliente ? 'Revoco cualquier autorización que haya dado para usar mis datos con fines comerciales, publicitarios o de mercadeo.'
-              : 'No recuerdo haber dado autorización <i>previa, expresa e informada</i> para que su compañía trate mis datos.'
+              : 'No recuerdo haber dado autorización <i>previa, expresa e informada</i> para que su compañía trate mis datos.',
+      'Algunos de esos contactos pudieron hacerse a través de <i>call centers</i>, agencias o aliados que actúan <b>a nombre de su compañía</b> o para ofrecer sus productos.'
     ];
     var peticiones = cliente ? [
       '<b>Revocatoria.</b> Que se tenga por revocada mi autorización para usar mis datos con fines comerciales, publicitarios o de mercadeo, y que mis datos se usen solo para la ejecución de mi contrato.',
-      '<b>Terceros.</b> Que se ordene lo mismo a los encargados, aliados, <i>call centers</i> y demás terceros a quienes hayan entregado mis datos, y se me informe quiénes son.',
+      '<b>Encargados y aliados.</b> Que lo mismo se comunique y se cumpla en los encargados del tratamiento, <i>call centers</i>, agencias y aliados que me contacten a nombre de su compañía o para ofrecer sus productos, y que se me informe la razón social y el NIT de cada uno (<i>art. 17, lit. f, i y l, Ley 1581 de 2012</i>).',
       '<b>Contacto comercial.</b> Que se abstengan de contactarme con fines comerciales o publicitarios por cualquier canal (<i>Ley 2300 de 2023</i>).',
       '<b>Certificación.</b> Que se me confirme por escrito que la solicitud fue atendida.'
     ] : [
       '<b>Supresión.</b> Que se supriman de forma total y definitiva mis datos personales (nombre, documento, teléfonos, correos, dirección y cualquier otro) de todas sus bases de datos.',
       '<b>Revocatoria.</b> Que se tenga por revocada cualquier autorización que hubiere otorgado para el tratamiento de mis datos.',
-      '<b>Terceros.</b> Que se ordene la misma supresión a los encargados, aliados, <i>call centers</i> y demás terceros a quienes hayan entregado mis datos, y se me informe quiénes son.',
+      '<b>Encargados y aliados.</b> Que la misma supresión se comunique y se haga efectiva en los encargados del tratamiento, <i>call centers</i>, agencias de mercadeo o cobranza, aliados y demás empresas a las que hayan transmitido o transferido mis datos, incluso si me contactaron a nombre de su compañía, y que se me informe la razón social y el NIT de cada una (<i>art. 17, lit. f, i y l, Ley 1581 de 2012</i>).',
       '<b>Autorización.</b> Que se me entregue copia de la autorización que, según ustedes, otorgué para el uso de mis datos con fines comerciales o publicitarios, y se me informe cómo y cuándo obtuvieron mis datos (<i>art. 8, lit. b, Ley 1581 de 2012</i>).',
       '<b>Contacto comercial.</b> Que se abstengan de contactarme con fines comerciales o publicitarios por cualquier canal (<i>Ley 2300 de 2023</i>).',
       '<b>Conservación legal.</b> Si una norma les obliga a conservar algún dato, que se indique cuál norma, qué dato, para qué y por cuánto tiempo, y que ese dato se bloquee para cualquier otro uso.',
@@ -701,9 +786,10 @@ footer.nav{position:fixed; left:0; right:0; bottom:0; z-index:10; background:var
       P('<b>' + nombre + '</b>, mayor de edad, identificado(a) con ' + doc + ', actuando en nombre propio y como titular de los datos, presento el siguiente <b>reclamo</b>.'),
       sec('HECHOS', hechos, true),
       sec('PETICIONES', peticiones, true),
+      sec('TRASLADO', ['Si su compañía no es la Responsable del Tratamiento de mis datos, sino un encargado o un tercero, le solicito <b>dar traslado de este reclamo a quien corresponda dentro de los dos (2) días hábiles siguientes</b> e informarme de ello (<i>art. 15, num. 1, Ley 1581 de 2012</i>).'], false).replace('• ', ''),
       sec('FUNDAMENTOS DE DERECHO', [
         'Artículos 15 y 23 de la <i>Constitución Política</i>.',
-        '<i>Ley Estatutaria 1581 de 2012</i>: art. 8 (derechos del titular), art. 9 (autorización previa) y art. 15 (reclamos).',
+        '<i>Ley Estatutaria 1581 de 2012</i>: art. 3, lit. d y e (encargado y responsable), art. 8 (derechos del titular), art. 9 (autorización previa), art. 15 (reclamos) y art. 17, lit. b, f, i y l (deberes del responsable frente a la autorización y a sus encargados).',
         '<i>Decreto 1074 de 2015</i>, capítulo 25 (reglamentario de la Ley 1581).',
         '<i>Ley 1755 de 2015</i> (derecho de petición).',
         '<i>Ley 2300 de 2023</i>, que limita los contactos con fines comerciales o publicitarios.'
@@ -744,12 +830,12 @@ footer.nav{position:fixed; left:0; right:0; bottom:0; z-index:10; background:var
       ], true),
       sec('PRETENSIONES', [
         'Que se investigue a ' + emp + ' por el tratamiento de mis datos personales sin autorización y por no atender mi reclamo.',
-        'Que se le ordene <b>suprimir mis datos personales</b> de sus bases de datos y de las de los terceros a quienes los haya entregado (<i>arts. 21 y 22, Ley 1581 de 2012</i>).',
+        'Que se le ordene <b>suprimir mis datos personales</b> de sus bases de datos y de las de sus encargados, <i>call centers</i>, aliados y demás terceros a quienes los haya entregado (<i>arts. 17, 21 y 22, Ley 1581 de 2012</i>).',
         'Que se le ordene <b>abstenerse de contactarme</b> con fines comerciales o publicitarios (<i>Ley 2300 de 2023</i>).',
         'Que se impongan las sanciones previstas en el <i>artículo 23 de la Ley 1581 de 2012</i>.'
       ], true),
       sec('FUNDAMENTOS', [
-        '<i>Ley Estatutaria 1581 de 2012</i>: arts. 8, 9, 15, 16, 21, 22 y 23.',
+        '<i>Ley Estatutaria 1581 de 2012</i>: arts. 3, 8, 9, 15, 16, 17 (deberes del responsable, incluidos los que tiene frente a sus encargados), 21, 22 y 23.',
         '<i>Ley 2300 de 2023</i>.',
         'Cumplo el <b>requisito de procedibilidad</b> del artículo 16 de la Ley 1581 de 2012: presenté reclamo previo ante la empresa.'
       ].concat(JURIS.map(function(j){ return j.carta; })), false),
@@ -843,6 +929,26 @@ footer.nav{position:fixed; left:0; right:0; bottom:0; z-index:10; background:var
     play('tick');
   });
 
+  // ---------- Opciones para ver mejor (no se guardan: duran mientras la página esté abierta) ----------
+  var aaBtn = document.getElementById('aaBtn'), aaPanel = document.getElementById('aaPanel'), TAM = [100, 115, 130, 150], tam = 0;
+  function aaAbrir(abrir){ aaPanel.hidden = !abrir; aaBtn.setAttribute('aria-expanded', abrir); }
+  aaBtn.addEventListener('click', function(){ aaAbrir(aaPanel.hidden); play('tick'); });
+  document.addEventListener('click', function(ev){ if (!aaPanel.hidden && !ev.target.closest('#aaPanel, #aaBtn')) aaAbrir(false); });
+  document.addEventListener('keydown', function(ev){ if (ev.key === 'Escape' && !aaPanel.hidden) { aaAbrir(false); aaBtn.focus(); } });
+  aaPanel.addEventListener('click', function(ev){
+    var b = ev.target.closest('[data-aa]'); if (!b) return;
+    var a = b.dataset.aa;
+    if (a === 'mas' || a === 'menos') {
+      tam = Math.max(0, Math.min(TAM.length - 1, tam + (a === 'mas' ? 1 : -1)));
+      document.documentElement.style.fontSize = TAM[tam] + '%';
+      document.getElementById('aaTam').textContent = TAM[tam] + '%';
+    } else {
+      var on = document.documentElement.classList.toggle(a);
+      b.setAttribute('aria-pressed', on);
+    }
+    play('pop');
+  });
+
   // ---------- Tarjetas y opciones ----------
   document.querySelectorAll('.flip').forEach(function(fl){
     var t = document.createElement('span'); t.className = 'tapme'; t.setAttribute('aria-hidden', 'true');
@@ -861,7 +967,7 @@ footer.nav{position:fixed; left:0; right:0; bottom:0; z-index:10; background:var
     inicio: 'Hola. Soy su guía. Le voy a ayudar a pedirle a una empresa que borre su número y deje de llamarlo. Es gratis y toma unos cinco minutos. Toque el botón azul: Empezar mi carta.',
     derechos: 'Primero, sus derechos. Usted puede pedir que lo borren. La empresa debe responderle en quince días hábiles. Solo pueden llamarlo en ciertos horarios. Y si no cumplen, la Superintendencia de Industria y Comercio puede multarlos. Toque cada tarjeta para saber más. Cuando termine, toque Siguiente, abajo a la derecha.',
     usted: 'Ahora, sus datos. La empresa necesita saber que usted es el dueño de la información. Escriba su nombre, su documento, su ciudad y su correo. Después marque por dónde lo molestan. Tranquilo: nada de esto se guarda.',
-    empresa: '¿Qué empresa lo está llamando? Escriba el nombre con el que la conoce, por ejemplo Claro o Bancolombia, y toque la que aparezca en la lista.',
+    empresa: '¿Qué empresa lo está llamando? Escriba el nombre con el que la conoce, por ejemplo Claro o Bancolombia, y toque la que aparezca en la lista. Si lo llamó un call center, escriba la marca que le ofrecían: esa empresa responde por quienes llaman a su nombre.',
     conCorreo: 'Perfecto. Encontramos el correo oficial de esa empresa. Toque: Ver mi carta.',
     sinCorreo: 'Esta empresa no publica un correo para datos personales. Igual puede seguir. Al final, copie el texto y péguelo en el chat o formulario de la empresa.',
     ruesSinCorreo: 'Encontramos la empresa, pero no tenemos su correo. Búsquelo en la política de datos de su página web y escríbalo en el campo de correo.',
@@ -926,6 +1032,7 @@ footer.nav{position:fixed; left:0; right:0; bottom:0; z-index:10; background:var
 
   function valido(s){
     var err = s.querySelector('.err'); if (err) err.textContent = '';
+    [].forEach.call(s.querySelectorAll('input'), validarCampo);
     var bad = [].filter.call(s.querySelectorAll('input, select'), function(x){ return !x.checkValidity(); })[0];
     if (bad) {
       var caja = bad.closest('#manual');
@@ -971,7 +1078,8 @@ footer.nav{position:fixed; left:0; right:0; bottom:0; z-index:10; background:var
   var listo = false;
   function actualizarListo(){
     var s = steps[RUTAS[modo][pos]]; if (!s) return;
-    var ok = [].every.call(s.querySelectorAll('input, select'), function(x){ return x.checkValidity(); }) &&
+    [].forEach.call(s.querySelectorAll('input'), validarCampo);
+    var ok =[].every.call(s.querySelectorAll('input, select'), function(x){ return x.checkValidity(); }) &&
              (!s.querySelector('[name=canal]') || !!s.querySelector('[name=canal]:checked')) &&
              pos < RUTAS[modo].length - 1; // en la última pantalla lo principal es Enviar, no "Volver al inicio"
     if (ok && !listo && pos > 0) play('ready');
@@ -1073,7 +1181,7 @@ footer.nav{position:fixed; left:0; right:0; bottom:0; z-index:10; background:var
   }
   document.getElementById('gCal').addEventListener('click', function(){ document.getElementById('cal').click(); });
   document.getElementById('gShare').addEventListener('click', function(){
-    var datos = { title:'Chao llamadas spam', text:'Pide que borren tu número y dejen de llamarte. Gratis y en 5 minutos:', url:URL_SERVICIO };
+    var datos = { title:'Chao Spam', text:'Pide que borren tu número y dejen de llamarte. Gratis y en 5 minutos:', url:URL_SERVICIO };
     if (navigator.share) navigator.share(datos).catch(function(){});
     else copiar(URL_SERVICIO, document.getElementById('gEstado'), '✓ Enlace copiado. Compártalo por WhatsApp o donde quiera.');
     play('tick');
@@ -1108,7 +1216,7 @@ footer.nav{position:fixed; left:0; right:0; bottom:0; z-index:10; background:var
       android: 'intent:#Intent;action=android.intent.action.INSERT;type=vnd.android.cursor.item/event;' +
         'S.title=' + encodeURIComponent(titulo) + ';S.description=' + encodeURIComponent(detalle) +
         ';l.beginTime=' + utc(dia) + ';l.endTime=' + utc(sig) + ';B.allDay=true;S.browser_fallback_url=' + encodeURIComponent(web) + ';end',
-      ics: ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//Chao llamadas spam//ES', 'BEGIN:VEVENT',
+      ics: ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//Chao Spam//ES', 'BEGIN:VEVENT',
         'UID:' + Date.now() + '@chao-spam', 'DTSTAMP:' + new Date().toISOString().replace(/[-:]/g, '').slice(0, 15) + 'Z',
         'DTSTART;VALUE=DATE:' + compacta(dia), 'DTEND;VALUE=DATE:' + compacta(sig),
         'SUMMARY:' + titulo.replace(/[,;]/g, '\\$&'), 'DESCRIPTION:' + detalle.replace(/[,;]/g, '\\$&'), 'URL:' + enlace,
@@ -1151,6 +1259,46 @@ footer.nav{position:fixed; left:0; right:0; bottom:0; z-index:10; background:var
     }
   }
   [].forEach.call(document.querySelectorAll('[name=fechaEnvio]'), function(x){ x.max = new Date().toISOString().slice(0, 10); });
+
+  // ---------- Validación de campos (con mensajes claros) ----------
+  // Nombre: solo letras (con tildes y ñ), espacios, apóstrofo, punto y guion; al menos nombre y apellido.
+  // Documento: solo números (6 a 10 cédula, hasta 12 PPT); el pasaporte admite letras y números.
+  var RX = {
+    nombre: /^[A-Za-zÁÉÍÓÚÜÑáéíóúüñ'.-]{2,}(?: [A-Za-zÁÉÍÓÚÜÑáéíóúüñ'.-]+)+$/,
+    correo: /^[^\s@]+@[^\s@]+\.[A-Za-z]{2,}$/,
+    tel: /^\+?[\d ]{7,15}$/
+  };
+  var REGLAS = {
+    nombre: function(v){ return RX.nombre.test(v.trim()) ? '' : 'Escriba su nombre y apellido, solo con letras.'; },
+    doc: function(v){
+      var t = f.tipoDoc.value;
+      if (t === 'pasaporte') return /^[A-Za-z0-9]{5,12}$/.test(v) ? '' : 'El pasaporte lleva entre 5 y 12 letras o números.';
+      if (t === 'permiso por protección temporal') return /^\d{5,12}$/.test(v) ? '' : 'Escriba solo los números del permiso.';
+      return /^\d{6,10}$/.test(v) ? '' : 'La cédula lleva entre 6 y 10 números, sin puntos ni espacios.';
+    },
+    correo: function(v){ return RX.correo.test(v.trim()) ? '' : 'Revise su correo: debe ser como nombre@correo.com'; },
+    correoEmpresa: function(v){ return !v || RX.correo.test(v.trim()) ? '' : 'Revise el correo: debe ser como datos@empresa.com'; },
+    contactos: function(v){
+      var partes = v.split(',').map(function(x){ return x.trim(); }).filter(Boolean);
+      var ok = partes.length && partes.every(function(p){ return RX.tel.test(p) && p.replace(/\D/g, '').length >= 7 || RX.correo.test(p); });
+      return ok ? '' : 'Escriba un número de 7 a 13 dígitos o un correo. Si son varios, sepárelos con comas.';
+    }
+  };
+  function validarCampo(el){ if (REGLAS[el.name]) el.setCustomValidity(el.value ? REGLAS[el.name](el.value) : ''); }
+  // Filtra al escribir: el nombre no acepta números; el documento solo números (salvo pasaporte).
+  f.nombre.addEventListener('input', function(){ var v = f.nombre.value.replace(/[^A-Za-zÁÉÍÓÚÜÑáéíóúüñ' .-]/g, '').replace(/ {2,}/g, ' '); if (v !== f.nombre.value) f.nombre.value = v; });
+  f.doc.addEventListener('input', function(){
+    var pas = f.tipoDoc.value === 'pasaporte';
+    var v = pas ? f.doc.value.replace(/[^A-Za-z0-9]/g, '').toUpperCase() : f.doc.value.replace(/\D/g, '');
+    if (v !== f.doc.value) f.doc.value = v;
+  });
+  f.tipoDoc.addEventListener('change', function(){
+    var pas = f.tipoDoc.value === 'pasaporte';
+    f.doc.inputMode = pas ? 'text' : 'numeric'; f.doc.placeholder = pas ? 'Letras y números' : 'Solo números';
+    f.doc.dispatchEvent(new Event('input', { bubbles:true }));
+  });
+  f.addEventListener('input', function(ev){ validarCampo(ev.target); }); // después de los filtros de cada campo
+  ['nombre', 'doc', 'correo', 'contactos', 'correoEmpresa'].forEach(function(n){ validarCampo(f[n]); });
 
   // ---------- Municipios (DIVIPOLA del DANE en datos.gov.co) ----------
   var MUNICIPIOS = null;

@@ -1,134 +1,100 @@
-# Chao llamadas spam 📵
+<p align="center">
+  <img src="img/logo.svg" alt="Logo de Chao Spam" width="96">
+</p>
 
-**¿Te llaman a toda hora para venderte un crédito, un plan o un seguro que nunca pediste?**
-Esta página te ayuda a escribir, en unos cinco minutos, un **reclamo** para que esa empresa borre tus datos y deje de contactarte. Y si no cumple, te arma la **queja ante la Superintendencia de Industria y Comercio (SIC)**.
+<h1 align="center">Chao Spam</h1>
 
-👉 **Úsala aquí: https://sebastian09781.github.io/peticion-antispam/**
+<p align="center">
+  <b>Pida que borren su número y dejen de llamarlo, con la ley de su lado.</b><br>
+  Servicio gratuito · Sin abogado · 5 minutos · Nada se guarda
+</p>
+
+<p align="center">
+  👉 <a href="https://sebastian09781.github.io/peticion-antispam/"><b>sebastian09781.github.io/peticion-antispam</b></a>
+</p>
+
+<p align="center">
+  <img src="img/og-image.jpg" alt="Chao Spam: pida que borren su número y dejen de llamarlo" width="600">
+</p>
 
 ---
 
-## ¿Qué problema resuelve?
+## ¿Qué resuelve?
 
-Muchas empresas compran, comparten o heredan bases de datos con tu número. Tienes derecho a decirles: *"bórrenme y no me vuelvan a llamar"*. El problema es que casi nadie sabe:
+En Colombia las empresas compran, comparten o heredan bases de datos, y a muchas personas las llaman a toda hora para venderles créditos, planes o seguros que nunca pidieron. La ley permite exigir que borren esos datos, pero casi nadie sabe qué norma invocar, cómo redactar la carta, a quién enviarla ni qué hacer si no responden.
 
-- qué ley invocar,
-- cómo redactar la carta,
-- a quién enviarla,
-- y qué hacer si no responden.
+**Chao Spam** resuelve los cuatro pasos desde el celular, en lenguaje sencillo.
 
-Esta herramienta resuelve esos cuatro pasos.
+## ¿Cómo funciona?
 
-## ¿Cómo funciona? (en cristiano)
+Sigue el camino que recomienda la propia Superintendencia de Industria y Comercio (SIC) en su guía oficial: primero se reclama ante la empresa y, si no cumple, se presenta la queja ante la SIC.
 
-Sigue el mismo camino que recomienda la SIC en su guía oficial (pregunta 9). Al entrar, la persona elige uno de dos recorridos cortos, pensados para el celular:
+**A. Escribir mi carta a la empresa**
+1. **Sus derechos:** cuatro tarjetas (pueden borrarlo, 15 días hábiles, horarios permitidos, multas).
+2. **Sus datos:** nombre, documento, municipio (lista oficial del DANE) y cómo lo contactan.
+3. **La empresa:** buscador que llena la razón social y el correo de datos personales.
+4. **Su carta:** primero se lee, después se envía y por último se agenda el plazo en el calendario del teléfono.
 
-**A. Escribir mi carta a la empresa** (4 pantallas)
-1. **Sus derechos:** cuatro tarjetas (pueden borrarlo, 15 días hábiles, horarios permitidos, multas), cada una con su fuente.
-2. **Sus datos:** quién es y cómo lo contactan.
-3. **La empresa:** buscador que llena la razón social y el correo.
-4. **Su carta:** se envía con un toque, con la fecha límite calculada.
+**B. Ya envié mi carta y no me respondieron**
+1. **Sus datos** y 2. **La empresa**.
+3. **Queja ante la SIC:** revisa si ya venció el plazo (contando los festivos) y arma la queja dirigida a `contactenos@sic.gov.co` con el asunto que exige la SIC.
 
-**B. Ya envié la carta y no respondieron → queja ante la SIC** (3 pantallas)
-1. **Sus datos** y 2. **La empresa** (los mismos de arriba).
-3. **Queja:** pregunta cuándo envió la carta y qué pasó, revisa si ya se venció el plazo y arma la queja dirigida a `contactenos@sic.gov.co` con el asunto que exige la SIC.
+Al final aparece una pantalla de **gracias** con el recordatorio para el calendario y la opción de compartir el servicio.
 
-Cada pantalla tiene **una sola acción principal**. Lo secundario (copiar el texto, ver la carta completa, las fuentes) queda en enlaces discretos o plegado. Tiene tarjetas que se voltean y sonidos suaves, que se pueden apagar.
+## ⚖️ Sustento jurídico
 
-## ✍️ La carta, con formato
+La carta pide la **supresión** de los datos, la **revocatoria** de la autorización, **copia de la autorización** que la empresa dice tener y que la orden **se extienda a los encargados**: *call centers*, agencias y aliados que llaman a nombre de la empresa. Si la empresa que recibe la carta no es la responsable, debe **trasladarla en 2 días hábiles**. Cada dato legal tiene en la página un botón **⚖ Normas** que muestra el texto o la captura oficial.
 
-La carta y la queja se ven en pantalla como un documento real (títulos, **negrillas**, *cursivas*) y se pueden editar ahí mismo. El botón de copiar copia **con formato** para pegar en Gmail, Outlook o Word. El botón de enviar abre el correo con el texto ordenado; va sin negrillas porque los enlaces `mailto:` solo admiten texto plano.
-
-## 🔔 Sonidos y señales
-
-Avanzar suena cada vez más agudo y retroceder más grave. Hay un "pop" suave cuando un campo queda bien y un acorde cuando la pantalla está completa. En ese momento el botón **Siguiente** empieza a brillar con un degradado suave para indicar que ya se puede avanzar. Al final aparece una pantalla de **gracias** con la fecha límite, el calendario y la opción de compartir.
-
-## 🎧 Guía por voz
-
-Con el botón **"Prefiero que una voz me guíe"** (o el botón **Voz** de arriba), una voz acompaña todo el recorrido. Explica cada pantalla, lee las tarjetas que se voltean y comenta cada caso: empresa con o sin correo, plazo vencido o no, qué adjuntar antes de enviar y el "¡Chao, spam!" final. Hay un botón para repetir.
-
-Usa la voz que ya trae el celular o el computador (Web Speech API), prefiriendo español de Colombia o de Latinoamérica. **Solo lee instrucciones fijas y fechas de plazos, nunca los datos de la persona.**
-
-## 📚 Fuentes verificadas dentro de la página
-
-Cada dato legal tiene un botón **"Ver fuente"** que abre, sin salir de la página, la captura real o el texto oficial, con un enlace al documento original:
-
-| Dato | Fuente |
+| Qué se afirma | Fuente oficial |
 |---|---|
-| Primero se reclama a la empresa y luego a la SIC; correo y asunto de la queja | [SIC, Preguntas frecuentes de Protección de Datos, pregunta 9](https://www.sic.gov.co/sites/default/files/files/2022/Preguntas%20frecuentes%20Delegatura%20Datos%20Personales%202022.pdf) (captura en `img/sic-pregunta-9.png`) |
-| Requisito de procedibilidad: 15 días hábiles sin respuesta o respuesta inadecuada | [SIC, Consultas y reclamos](https://www.sic.gov.co/consultas-y-reclamos-pdp) (captura en `img/sic-requisito.png`) |
-| Canales de atención de la SIC | Misma página (captura en `img/sic-canales.png`) |
-| 15 días hábiles más 8 de prórroga; requisito previo; multas de hasta 2.000 SMMLV | [Ley 1581 de 2012, arts. 15, 16 y 23](https://normograma.mintic.gov.co/mintic/compilacion/docs/ley_1581_2012.htm) |
-| Horarios permitidos para contactos | [Ley 2300 de 2023, art. 3 y art. 5, par. 3](https://normograma.mintic.gov.co/mintic/compilacion/docs/ley_2300_2023.htm) |
+| Primero se reclama a la empresa y luego a la SIC; correo y asunto de la queja | [SIC, Preguntas frecuentes de Protección de Datos, pregunta 9](https://www.sic.gov.co/sites/default/files/files/2022/Preguntas%20frecuentes%20Delegatura%20Datos%20Personales%202022.pdf) |
+| Requisito de procedibilidad (15 días hábiles sin respuesta o respuesta inadecuada) | [SIC, Consultas y reclamos](https://www.sic.gov.co/consultas-y-reclamos-pdp) |
+| Plazo de 15 días hábiles más 8 de prórroga; traslado en 2 días; deberes del responsable frente a sus encargados; multas hasta 2.000 SMMLV | [Ley 1581 de 2012, arts. 3, 15, 16, 17 y 23](https://normograma.mintic.gov.co/mintic/compilacion/docs/ley_1581_2012.htm) |
+| Horarios permitidos para contactos comerciales | [Ley 2300 de 2023, art. 3 y art. 5, par. 3](https://normograma.mintic.gov.co/mintic/compilacion/docs/ley_2300_2023.htm) |
 | Correo de denuncias y Registro de Números Excluidos | [SIC, Circular Externa 001 de 2024](https://normograma.mintic.gov.co/mintic/compilacion/docs/circular_superindustria_0001_2024.htm) |
+| La autorización debe ser previa, expresa e informada; el silencio no es autorización | [Corte Constitucional, Sentencia C-748 de 2011](https://www.corteconstitucional.gov.co/relatoria/2011/C-748-11.htm) |
+| Las llamadas y los mensajes comerciales sin autorización vulneran el hábeas data | [SIC, Resolución 78138 de 2025](https://sedeelectronica.sic.gov.co/sites/default/files/normativa/2025078138RE0000000001.pdf) |
 
-| La autorización debe ser previa, expresa e informada, y el silencio no es autorización (citado en la carta y la queja) | [Corte Constitucional, Sentencia C-748 de 2011](https://www.corteconstitucional.gov.co/relatoria/2011/C-748-11.htm) |
-| Las llamadas y los mensajes comerciales sin autorización vulneran el hábeas data; multa de $670 millones a Movistar (citado en la carta y la queja) | [SIC, Resolución 78138 de 2025](https://sedeelectronica.sic.gov.co/sites/default/files/normativa/2025078138RE0000000001.pdf) |
+Fuentes revisadas el 7 de noviembre de 2026. Las citas se comprobaron textualmente en los documentos oficiales.
 
-Fuentes revisadas el 7 de noviembre de 2026. Las citas de jurisprudencia se comprobaron textualmente en los documentos oficiales.
+## 🔒 Privacidad: código abierto y auditable
 
-## 🔎 Buscador de empresas
+**Nada se guarda.** Es una sola página HTML, sin servidor propio, base de datos, cuentas, cookies ni analítica. La carta se arma en el navegador y se borra al cerrar la pestaña. El correo sale desde el correo de la propia persona.
 
-En la pantalla "La empresa" la persona escribe "Claro" o "Bancolombia" y la página llena la empresa sola. Usa dos fuentes:
-
-1. **[`empresas.js`](empresas.js): directorio propio** de las empresas que más llaman. Cada correo fue verificado en la política oficial de datos de la empresa, que va enlazada. Si la empresa no publica correo (algunos bancos solo atienden por chat o teléfono), la página lo dice y sugiere pegar la carta en ese canal.
-2. **[RUES en datos.gov.co](https://www.datos.gov.co/d/c82u-588k): cualquier otra empresa activa** registrada en las Cámaras de Comercio. Trae la razón social y el NIT, pero no el correo: ese lo busca la persona.
-
-¿Falta una empresa o cambió un correo? Abra un *issue* o un *pull request* en `empresas.js` con el enlace a la política oficial.
-
-## 🔒 ¿Y mis datos? Código abierto y auditable
-
-**No se guardan en ningún lado.** Esta es una sola página HTML:
-
-- no tiene servidor propio, base de datos, cuentas, cookies ni analítica,
-- el texto se arma dentro de tu navegador y se borra al cerrar la pestaña,
-- el correo sale desde **tu propio correo**: tú decides si lo envías.
-
-Servicios externos que usa, y qué reciben:
-
-| Servicio | Para qué | Qué recibe |
+| Servicio externo | Para qué | Qué recibe |
 |---|---|---|
-| [datos.gov.co, RUES](https://www.datos.gov.co/d/c82u-588k) | Buscar la empresa | Solo el nombre de la empresa que escribes |
-| [datos.gov.co, DIVIPOLA (DANE)](https://www.datos.gov.co/d/gdxc-w37w) | Lista oficial de los 1.122 municipios | Nada tuyo |
-| [Nager.Date](https://date.nager.at) | Festivos de Colombia para contar los días hábiles | Solo el año |
-| Google Fonts | Tipografías | Nada tuyo |
-| GitHub Pages | Aloja la página | Nada tuyo |
+| [datos.gov.co, RUES](https://www.datos.gov.co/d/c82u-588k) | Buscar la empresa | Solo el nombre de la empresa que se escribe |
+| [datos.gov.co, DIVIPOLA (DANE)](https://www.datos.gov.co/d/gdxc-w37w) | Lista oficial de los 1.122 municipios | Nada de la persona |
+| [Nager.Date](https://date.nager.at) | Festivos de Colombia para contar días hábiles | Solo el año |
+| Google Fonts · GitHub Pages | Tipografías · alojamiento | Nada de la persona |
 
-No tienes que creernos: todo el código está en [`index.html`](index.html) y cualquiera puede auditarlo. La página tiene además una ventana de **Privacidad y condiciones** escrita en lenguaje sencillo.
+## ♿ Accesibilidad
 
-## ⏱️ Plazos con festivos
+- **Guía por voz:** una voz recorre cada pantalla y explica cada caso. Solo lee instrucciones, nunca los datos de la persona.
+- **Botón "Aa":** letra más grande (hasta 150 %), alto contraste y modo sin animaciones.
+- Campos con validación y mensajes claros (por ejemplo, el nombre solo admite letras y la cédula solo números), navegación con teclado y respeto por la preferencia de "reducir movimiento" del teléfono.
 
-La página cuenta los 15 días hábiles **descontando los festivos de Colombia** (incluido el nuevo festivo de la Virgen de Chiquinquirá, Ley 2578 de 2026). Si la API de festivos no responde, cuenta de lunes a viernes y lo advierte en pantalla.
+## 🏢 Directorio de empresas
 
-## ¿En qué normas se apoya?
+[`empresas.js`](empresas.js) reúne las empresas que más llaman. Para cada una registra su razón social, su NIT y el correo de datos personales, **verificado en su política oficial** (con enlace). Si la empresa no publica un correo, lo dice. Para cualquier otra empresa, el buscador consulta el RUES.
 
-| Norma | Para qué sirve aquí |
-|---|---|
-| Constitución, arts. 15 y 23 | Derecho a la intimidad (habeas data) y derecho de petición |
-| Ley 1581 de 2012 | Te deja revocar la autorización y pedir que borren tus datos. El art. 15 da a la empresa **15 días hábiles** para responder, prorrogables 8 más |
-| Decreto 1074 de 2015, cap. 25 | Reglamenta la Ley 1581 |
-| Ley 1755 de 2015 | Regula el derecho de petición |
-| Ley 2300 de 2023 ("Dejen de fregar") | Limita los contactos comerciales y publicitarios. Creó el Registro de Números Excluidos |
+¿Falta una empresa o cambió un correo? Abra un *issue* o un *pull request* con el enlace a la política oficial.
 
-**¿Eres cliente actual de la empresa?** La carta cambia sola: en vez de pedir que borren todo (necesitan tus datos para el contrato), pide que **no los usen para publicidad ni ventas**.
+## 📁 Estructura
 
-## Pasos complementarios
-
-- **Registro de Números Excluidos (RNE):** es gratis y lo maneja la CRC. Inscribe tu número para frenar también a las empresas que aún no te han llamado. Se hace en el [formulario de la CRC](https://tramitescrcom.gov.co/tramites/comun/guia.xhtml?tit=&subt=&tram=ebhrEbS9qKn04bkBEBApXQ==&pr1=3578LkxQ3TO3y3t5FY9/BQ==&onA=S0etv8CCdHqPI8wYF9h5dtdTbijZh1Ii32LohKmsEd6aN1b0ia4DPDtKgFkbFjDn).
-- **Recordatorio en el calendario:** un solo botón, "Agregar a mi calendario", abre **el calendario propio del teléfono** con el evento ya lleno el día en que vence el plazo: en Android, la app de calendario (si no hay, la versión web); en iPhone, el Calendario de iOS; en computador, Outlook o Calendario. El evento trae el enlace `…/peticion-antispam/#sic=AAAA-MM-DD`, que abre directo la queja ante la SIC con la fecha de envío ya puesta. Solo incluye el nombre de la empresa, ningún dato personal.
-- **Queja ante la SIC:** está en la misma página (botón "Ya envié la carta").
-
-## Publicarla con GitHub Pages (2 minutos)
-
-1. En el repositorio, entra a **Settings → Pages**.
-2. En *Source* elige **Deploy from a branch**, rama `main`, carpeta `/ (root)`.
-3. Guarda. En uno o dos minutos la página queda en `https://<tu-usuario>.github.io/peticion-antispam/`.
+```
+index.html            La aplicación completa (HTML, CSS y JavaScript sin dependencias)
+empresas.js           Directorio verificado de empresas
+manifest.webmanifest  Datos para instalarla como aplicación en el celular
+sitemap.xml           Mapa del sitio para buscadores
+favicon.ico
+img/                  Logo, íconos, imagen para compartir y capturas oficiales de la SIC
+```
 
 ## Aviso
 
-Es un servicio gratuito que facilita el trámite. No reemplaza la asesoría de un abogado: antes de enviar, verifica que el texto se ajuste a tu caso.
+Chao Spam es un servicio gratuito que facilita el trámite. No es asesoría jurídica ni tiene relación con la SIC ni con las empresas mencionadas. Antes de enviar, verifique que el texto se ajuste a su caso.
 
-Creado por [Juan Sebastián Rodríguez Casas](https://sebastian-09781.blogspot.com/).
+## Autor y licencia
 
-## Licencia
-
-MIT. Úsala, cópiala y mejórala.
+Creado por [Juan Sebastián Rodríguez Casas](https://sebastian-09781.blogspot.com/). Licencia [MIT](LICENSE). Los íconos del teléfono del logo son de Material Icons (Apache 2.0).
