@@ -58,16 +58,29 @@ En la pantalla "La empresa" la persona escribe "Claro" o "Bancolombia" y la pág
 
 ¿Falta una empresa o cambió un correo? Abra un *issue* o un *pull request* en `empresas.js` con el enlace a la política oficial.
 
-## 🔒 ¿Y mis datos?
+## 🔒 ¿Y mis datos? Código abierto y auditable
 
 **No se guardan en ningún lado.** Esta es una sola página HTML:
 
-- no tiene servidor ni base de datos,
-- no usa cookies, analítica ni librerías externas (solo descarga dos tipografías de Google Fonts, sin enviar nada de lo que usted escribe),
+- no tiene servidor propio, base de datos, cuentas, cookies ni analítica,
 - el texto se arma dentro de tu navegador y se borra al cerrar la pestaña,
-- lo único que sale a internet es **el nombre de la empresa** que escribes en el buscador, para consultarla en datos.gov.co.
+- el correo sale desde **tu propio correo**: tú decides si lo envías.
 
-No tienes que creernos: todo el código está en [`index.html`](index.html) y puedes revisarlo.
+Servicios externos que usa, y qué reciben:
+
+| Servicio | Para qué | Qué recibe |
+|---|---|---|
+| [datos.gov.co, RUES](https://www.datos.gov.co/d/c82u-588k) | Buscar la empresa | Solo el nombre de la empresa que escribes |
+| [datos.gov.co, DIVIPOLA (DANE)](https://www.datos.gov.co/d/gdxc-w37w) | Lista oficial de los 1.122 municipios | Nada tuyo |
+| [Nager.Date](https://date.nager.at) | Festivos de Colombia para contar los días hábiles | Solo el año |
+| Google Fonts | Tipografías | Nada tuyo |
+| GitHub Pages | Aloja la página | Nada tuyo |
+
+No tienes que creernos: todo el código está en [`index.html`](index.html) y cualquiera puede auditarlo. La página tiene además una ventana de **Privacidad y condiciones** escrita en lenguaje sencillo.
+
+## ⏱️ Plazos con festivos
+
+La página cuenta los 15 días hábiles **descontando los festivos de Colombia** (incluido el nuevo festivo de la Virgen de Chiquinquirá, Ley 2578 de 2026). Si la API de festivos no responde, cuenta de lunes a viernes y lo advierte en pantalla.
 
 ## ¿En qué normas se apoya?
 

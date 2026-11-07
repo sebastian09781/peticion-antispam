@@ -175,6 +175,38 @@ dialog.viewer::backdrop{background:rgba(23,32,43,.55)}
 .vbody blockquote{margin:0; padding:12px 16px; border-left:4px solid var(--blue); background:var(--surface); border-radius:0 10px 10px 0; font-family:var(--font-display); font-size:1rem; line-height:1.6}
 @media (prefers-reduced-motion: no-preference){ dialog.viewer[open]{animation:rise .3s ease-out} }
 
+/* Confianza */
+.trust{display:flex; flex-wrap:wrap; justify-content:center; gap:8px}
+.trust a, .trust button{font:inherit; font-size:.9rem; font-weight:700; display:inline-flex; gap:6px; align-items:center; color:var(--green); background:var(--green-soft); border:0; border-radius:999px; padding:6px 14px; cursor:pointer; text-decoration:none}
+.trust button{color:var(--blue); background:var(--blue-soft)}
+.vbody h3{font-size:1.05rem; margin-top:4px}
+.vbody ul{margin:0; padding-left:20px} .vbody li{margin-bottom:4px}
+
+/* Envío: cuenta regresiva y despedida */
+.launch{position:fixed; inset:0; z-index:30; background:rgba(23,32,43,.72); display:grid; place-items:center; padding:16px}
+.launch-card{background:var(--bg); border-radius:22px; width:min(26rem, 100%); padding:24px 22px; display:flex; flex-direction:column; align-items:center; gap:14px; text-align:center; box-shadow:0 30px 60px -20px rgba(0,0,0,.5)}
+.launch-card h2{font-size:1.5rem}
+.launch-card ul{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:6px; text-align:left; width:100%}
+.launch-card li{display:flex; gap:10px; align-items:center; background:var(--amber-soft); border-radius:10px; padding:8px 12px; font-size:.98rem}
+.launch-card li .ico{color:var(--amber); font-size:1.2rem}
+.num{width:96px; height:96px; border-radius:50%; display:grid; place-items:center; font-family:var(--font-display); font-size:3rem; font-weight:650; color:#fff; background:var(--blue)}
+.launch-actions{display:flex; gap:10px; width:100%}
+.launch-actions .btn{flex:1}
+.bye{position:relative; display:flex; flex-direction:column; align-items:center; gap:10px}
+.bye .core{width:96px; height:96px; border-radius:28px; display:grid; place-items:center; font-size:52px; color:#fff; background:var(--green)}
+.bye h2{font-size:2.2rem; color:var(--green)}
+.bye .p{position:absolute; top:40px; left:50%; width:12px; height:12px; border-radius:3px; opacity:0}
+@media (prefers-reduced-motion: no-preference){
+  .num{animation:pulse .9s ease-out infinite}
+  .bye .core{animation:byePhone 1.1s cubic-bezier(.2,.9,.3,1.3) both}
+  .bye h2{animation:byeText .6s cubic-bezier(.2,.9,.3,1.4) .35s both}
+  .bye .p{animation:burst 1.1s ease-out .3s both}
+}
+@keyframes pulse{0%{transform:scale(.7); opacity:.4} 40%{transform:scale(1.08); opacity:1} 100%{transform:scale(1)}}
+@keyframes byePhone{0%{transform:scale(.3) rotate(-30deg)} 60%{transform:scale(1.15) rotate(10deg)} 100%{transform:none}}
+@keyframes byeText{from{transform:scale(.4); opacity:0} to{transform:none; opacity:1}}
+@keyframes burst{0%{opacity:1; transform:translate(-50%,0) rotate(0)} 100%{opacity:0; transform:translate(calc(-50% + var(--x)), var(--y)) rotate(320deg)}}
+
 /* Navegación */
 footer.nav{position:fixed; left:0; right:0; bottom:0; z-index:5; background:var(--bg); border-top:1px solid var(--line); padding-bottom:env(safe-area-inset-bottom, 0px)}
 .nav-in{max-width:46rem; margin:0 auto; padding-block:10px; display:flex; justify-content:space-between; align-items:center; gap:12px}
@@ -264,6 +296,10 @@ footer.nav{position:fixed; left:0; right:0; bottom:0; z-index:5; background:var(
         <li><svg class="ico"><use href="#i-lock"/></svg>Nada se guarda</li>
       </ul>
       <p class="small muted">Es el camino que recomienda la propia SIC <button type="button" class="src" data-src="sic9"><svg class="ico"><use href="#i-eye"/></svg>Ver fuente</button></p>
+      <div class="trust">
+        <a href="https://github.com/sebastian09781/peticion-antispam" target="_blank" rel="noopener"><svg class="ico"><use href="#i-shield"/></svg>Código abierto y auditable</a>
+        <button type="button" data-src="politica"><svg class="ico"><use href="#i-lock"/></svg>Privacidad y condiciones</button>
+      </div>
       <p class="credit">Creado por Juan Sebastián Rodríguez Casas · Herramienta educativa, no reemplaza la asesoría de un abogado</p>
     </div>
   </section>
@@ -292,7 +328,7 @@ footer.nav{position:fixed; left:0; right:0; bottom:0; z-index:5; background:var(
       <button type="button" class="src" data-src="art15"><svg class="ico"><use href="#i-eye"/></svg>15 días</button>
       <button type="button" class="src" data-src="l2300"><svg class="ico"><use href="#i-eye"/></svg>Horarios</button>
       <button type="button" class="src" data-src="art23"><svg class="ico"><use href="#i-eye"/></svg>Multas</button></p>
-    <div class="note ok"><svg class="ico"><use href="#i-lock"/></svg><p class="small">Ahora le pediremos algunos datos para la carta. <b>No se guardan en ningún lado</b>: todo pasa en su celular o computador.</p></div>
+    <div class="note ok"><svg class="ico"><use href="#i-lock"/></svg><p class="small">Ahora le pediremos algunos datos para la carta. <b>No se guardan en ningún lado</b>: todo pasa en su celular o computador. <a href="https://github.com/sebastian09781/peticion-antispam" target="_blank" rel="noopener">Revise el código</a> · <button type="button" class="src" data-src="politica">Privacidad</button></p></div>
   </section>
 
   <!-- USTED -->
@@ -304,7 +340,8 @@ footer.nav{position:fixed; left:0; right:0; bottom:0; z-index:5; background:var(
       <label class="field">Documento
         <select name="tipoDoc"><option value="cédula de ciudadanía">Cédula de ciudadanía</option><option value="cédula de extranjería">Cédula de extranjería</option><option value="permiso por protección temporal">PPT</option><option value="pasaporte">Pasaporte</option></select></label>
       <label class="field">Número<input name="doc" required inputmode="numeric" autocomplete="off"></label>
-      <label class="field">Ciudad<input name="ciudad" required autocomplete="address-level2" placeholder="Bogotá D.C."></label>
+      <label class="field">Ciudad o municipio<input name="ciudad" required list="ciudades" autocomplete="off" placeholder="Escriba y elija…"></label>
+      <datalist id="ciudades"></datalist>
       <label class="field">Su correo<input name="correo" type="email" required autocomplete="email"></label>
     </div>
     <div class="group"><b>¿Por dónde lo contactan?</b>
@@ -358,7 +395,7 @@ footer.nav{position:fixed; left:0; right:0; bottom:0; z-index:5; background:var(
     <div class="paper"><textarea id="carta" aria-label="Su carta a la empresa" spellcheck="true"></textarea></div>
     <ol class="timeline">
       <li style="--c:var(--blue)"><b>Hoy</b>Envíe la carta y guarde el correo enviado: es su prueba.</li>
-      <li style="--c:var(--amber)"><b id="vence">15 días hábiles</b>Plazo de la empresa: 15 días hábiles (más si hay festivos). <button type="button" class="src" data-src="art15"><svg class="ico"><use href="#i-eye"/></svg>Ver</button></li>
+      <li style="--c:var(--amber)"><b id="vence">15 días hábiles</b>Plazo de la empresa: 15 días hábiles. <span id="venceNota"></span> <button type="button" class="src" data-src="art15"><svg class="ico"><use href="#i-eye"/></svg>Ver</button></li>
       <li style="--c:var(--red)"><b>¿No cumplen?</b>Vuelva aquí y presente la queja ante la SIC.</li>
     </ol>
     <div class="note info"><svg class="ico"><use href="#i-shield"/></svg><p class="small"><b>Extra:</b> inscriba su número en el <a href="https://tramitescrcom.gov.co/tramitesCRC/publico/index.xhtml" target="_blank" rel="noopener">Registro de Números Excluidos de la CRC</a>. Es gratis y las empresas deben consultarlo antes de llamar. <button type="button" class="src" data-src="circ"><svg class="ico"><use href="#i-eye"/></svg>Ver fuente</button></p></div>
@@ -398,6 +435,8 @@ footer.nav{position:fixed; left:0; right:0; bottom:0; z-index:5; background:var(
   <div class="vbody" id="vbody"></div>
 </dialog>
 
+<div class="launch" id="launch" hidden role="dialog" aria-modal="true" aria-live="polite"><div class="launch-card" id="lcard"></div></div>
+
 <footer class="nav">
   <div class="nav-in wrap">
     <button class="btn prev" id="prev" type="button">← Atrás</button>
@@ -435,6 +474,23 @@ footer.nav{position:fixed; left:0; right:0; bottom:0; z-index:5; background:var(
     circ: { t:'SIC · Circular Externa 001 de 2024', url:'https://normograma.mintic.gov.co/mintic/compilacion/docs/circular_superindustria_0001_2024.htm',
       q:'Denuncias: «podrán radicar las denuncias a través del correo electrónico institucional contactenos@sic.gov.co o cualquier otro canal de atención al ciudadano».\n\nRegistro de Números Excluidos: los productores y proveedores «están obligados a consultar el listado del \'Registro de Números Excluidos\' de la Comisión de Regulación de Comunicaciones».' }
   };
+  // Texto fijo escrito aquí (no viene de afuera), por eso se inserta como HTML.
+  FUENTES.politica = { t:'Privacidad y condiciones de uso', url:'https://github.com/sebastian09781/peticion-antispam', link:'Revisar el código fuente en GitHub', html:
+    '<h3>¿Qué es esto?</h3><p>Una herramienta educativa, gratuita y de código abierto (licencia MIT). No es asesoría jurídica y no tiene relación con la SIC ni con las empresas mencionadas.</p>' +
+    '<h3>Sus datos no se guardan</h3><ul><li>Lo que usted escribe se queda en su celular o computador. No hay servidor propio, base de datos, cuentas, cookies ni analítica.</li>' +
+    '<li>Al cerrar la pestaña, todo se borra. Nosotros nunca vemos su carta.</li>' +
+    '<li>El correo sale desde <b>su propio correo</b>: usted decide si lo envía, a quién y cuándo.</li></ul>' +
+    '<h3>Servicios externos que usa la página</h3><ul>' +
+    '<li><b>datos.gov.co</b> (Gobierno de Colombia): recibe solo el nombre de la empresa que usted busca, y entrega la lista oficial de municipios.</li>' +
+    '<li><b>date.nager.at</b>: recibe solo el año, para conocer los festivos.</li>' +
+    '<li><b>Google Fonts</b>: entrega las tipografías.</li>' +
+    '<li><b>GitHub Pages</b>: aloja la página.</li></ul>' +
+    '<p>Ninguno recibe su nombre, documento, teléfono ni correo. Como cualquier sitio web, estos servicios pueden ver la dirección IP de su conexión.</p>' +
+    '<h3>Su responsabilidad</h3><ul><li>Revise el texto antes de enviarlo y ajústelo a su caso.</li>' +
+    '<li>Los correos de las empresas se verificaron en sus políticas oficiales en la fecha indicada en el código, y pueden cambiar.</li>' +
+    '<li>La herramienta se ofrece "tal cual", sin garantías.</li></ul>' +
+    '<h3>Verifíquelo usted mismo</h3><p>Todo el código es público: cualquier persona puede auditar que nada se guarda ni se envía a terceros. Si encuentra un error, repórtelo en GitHub.</p>' +
+    '<p class="small muted">Última actualización: 7 de noviembre de 2026.</p>' };
   var viewer = document.getElementById('viewer'), vbody = document.getElementById('vbody');
   function verFuente(id){
     var s = FUENTES[id]; if (!s) return;
@@ -445,10 +501,11 @@ footer.nav{position:fixed; left:0; right:0; bottom:0; z-index:5; background:var(
       var im = new Image(); im.src = s.img; im.alt = s.alt; ia.appendChild(im); vbody.appendChild(ia);
       var cap = document.createElement('p'); cap.className = 'small muted'; cap.textContent = 'Captura real del documento oficial. Tóquela para ampliarla.'; vbody.appendChild(cap);
     }
+    if (s.html) { var div = document.createElement('div'); div.className = 'vbody'; div.style.padding = '0'; div.innerHTML = s.html; vbody.appendChild(div); }
     if (s.q) s.q.split('\n\n').forEach(function(p){ var bq = document.createElement('blockquote'); bq.textContent = p; vbody.appendChild(bq); });
     if (s.nota) { var n = document.createElement('p'); n.className = 'small muted'; n.textContent = s.nota; vbody.appendChild(n); }
     var a = document.createElement('a'); a.href = s.url; a.target = '_blank'; a.rel = 'noopener';
-    a.innerHTML = 'Abrir el documento oficial <svg class="ico"><use href="#i-ext"/></svg>'; vbody.appendChild(a);
+    a.innerHTML = (s.link || 'Abrir el documento oficial') + ' <svg class="ico"><use href="#i-ext"/></svg>'; vbody.appendChild(a);
     viewer.showModal(); play('reveal');
   }
   document.addEventListener('click', function(e){ var b = e.target.closest('[data-src]'); if (b) { e.preventDefault(); verFuente(b.dataset.src); } });
@@ -559,15 +616,30 @@ footer.nav{position:fixed; left:0; right:0; bottom:0; z-index:5; background:var(
     ].join('\n');
   }
 
-  // Días hábiles: cuenta lunes a viernes. shortcut: no descuenta festivos; se advierte en pantalla.
-  function sumarHabiles(desde, n){ var d = new Date(desde); while (n > 0) { d.setDate(d.getDate() + 1); if (d.getDay() % 6) n--; } return d; }
-  function habilesEntre(a, b){ var n = 0, d = new Date(a); while (d < b) { d.setDate(d.getDate() + 1); if (d <= b && d.getDay() % 6) n++; } return n; }
+  // Días hábiles: lunes a viernes que no sean festivos en Colombia (API pública Nager.Date).
+  // Si la API no responde, se cuentan solo lunes a viernes y la pantalla lo advierte.
+  var FESTIVOS = {}, festivosOk = false;
+  var iso = function(d){ return d.getFullYear() + '-' + ('0' + (d.getMonth() + 1)).slice(-2) + '-' + ('0' + d.getDate()).slice(-2); };
+  var habil = function(d){ return d.getDay() % 6 !== 0 && !FESTIVOS[iso(d)]; };
+  function sumarHabiles(desde, n){ var d = new Date(desde); while (n > 0) { d.setDate(d.getDate() + 1); if (habil(d)) n--; } return d; }
+  function habilesEntre(a, b){ var n = 0, d = new Date(a); while (d < b) { d.setDate(d.getDate() + 1); if (d <= b && habil(d)) n++; } return n; }
+  (function cargarFestivos(){
+    var y = new Date().getFullYear();
+    Promise.all([y - 1, y, y + 1].map(function(a){
+      return fetch('https://date.nager.at/api/v3/PublicHolidays/' + a + '/CO').then(function(r){ if (!r.ok) throw r; return r.json(); });
+    })).then(function(listas){
+      listas.forEach(function(l){ l.forEach(function(h){ FESTIVOS[h.date] = h.localName; }); });
+      festivosOk = true;
+      actualizarVence(); pintarPlazo(); // solo fechas: no reescribe una carta que la persona esté editando
+    }).catch(function(){});
+  })();
+  var notaFestivos = function(){ return festivosOk ? 'Ya descontamos los festivos.' : 'No pudimos cargar los festivos: revise si hay alguno, porque corre la fecha.'; };
   window.__test = { armarCarta: armarCarta, armarQueja: armarQueja, sumarHabiles: sumarHabiles, habilesEntre: habilesEntre };
 
   var empresaNit = '';
   function leer(){
     var fd = new FormData(f);
-    return { nombre:fd.get('nombre'), tipoDoc:fd.get('tipoDoc'), doc:fd.get('doc'), ciudad:fd.get('ciudad'),
+    return { nombre:fd.get('nombre'), tipoDoc:fd.get('tipoDoc'), doc:fd.get('doc'), ciudad:(fd.get('ciudad') || '').replace(/\s*\(.*\)\s*$/, ''),
       correo:fd.get('correo'), contactos:fd.get('contactos'), canales:fd.getAll('canal'), relacion:fd.get('relacion'),
       empresa:fd.get('empresa'), correoEmpresa:(fd.get('correoEmpresa') || '').trim(), nit:empresaNit,
       fechaEnvio:fd.get('fechaEnvio'), situacion:fd.get('situacion') };
@@ -596,7 +668,8 @@ footer.nav{position:fixed; left:0; right:0; bottom:0; z-index:5; background:var(
     ding: function(){ tone(1318, 0, 0.35, 'sine', 0.06); },
     nope: function(){ tone(220, 0, 0.16, 'square', 0.04); tone(185, 0.12, 0.22, 'square', 0.04); },
     ring: function(){ for (var i = 0; i < 6; i++) tone(i % 2 ? 1180 : 940, i * 0.07, 0.07, 'square', 0.025); },
-    letter: function(){ [523, 659, 784].forEach(function(fr, i){ tone(fr, i * 0.1, 0.3, 'sine', 0.06); }); }
+    letter: function(){ [523, 659, 784].forEach(function(fr, i){ tone(fr, i * 0.1, 0.3, 'sine', 0.06); }); },
+    chao: function(){ swoosh(); [523, 659, 784, 1047, 1319].forEach(function(fr, i){ tone(fr, 0.12 + i * 0.09, 0.45, 'triangle', 0.07); }); tone(1568, 0.62, 0.7, 'sine', 0.05); }
   };
   function play(name){ if (soundOn && sfx[name]) try { sfx[name](); } catch(e){} }
   var snd = document.getElementById('snd');
@@ -641,9 +714,9 @@ footer.nav{position:fixed; left:0; right:0; bottom:0; z-index:5; background:var(
     var id = ruta[pos];
     Object.keys(steps).forEach(function(k){ steps[k].hidden = k !== id; });
     if (id === 'carta') { var c = armarCarta(leer(), new Date()); carta.value = c.cuerpo; carta.dataset.asunto = c.asunto;
-      document.getElementById('vence').textContent = 'Hacia el ' + sumarHabiles(new Date(), 15).toLocaleDateString('es-CO', { day:'numeric', month:'long' });
-      document.getElementById('estado').textContent = ''; }
+      actualizarVence(); document.getElementById('estado').textContent = ''; }
     if (id === 'sic') pintarQueja();
+    if (id === 'usted') cargarMunicipios();
     bar.innerHTML = ruta.slice(1).map(function(_, k){ return '<i class="' + (k + 1 < pos ? 'done' : k + 1 === pos ? 'now' : '') + '"></i>'; }).join('');
     bar.hidden = pos === 0;
     count.textContent = pos === 0 ? '' : 'Paso ' + pos + ' de ' + (ruta.length - 1);
@@ -676,25 +749,72 @@ footer.nav{position:fixed; left:0; right:0; bottom:0; z-index:5; background:var(
     var ok = function(){ el.textContent = msg; play('ding'); };
     if (navigator.clipboard) navigator.clipboard.writeText(texto).then(ok, ok); else ok();
   }
-  document.getElementById('abrir').addEventListener('click', function(){
+  // Antes de abrir el correo: cuenta regresiva con lo que debe adjuntar, y luego "¡Chao, spam!".
+  var launch = document.getElementById('launch'), lcard = document.getElementById('lcard'), lTimer = null;
+  function cerrarLaunch(){ clearInterval(lTimer); launch.hidden = true; }
+  function lanzar(href, adjuntos, estadoEl){
+    var n = 3;
+    lcard.innerHTML = '<h2>Listo para enviar su correo</h2><p class="small muted">Su programa de correo se abrirá en:</p>' +
+      '<div class="num" id="lnum">3</div><p><b>Recuerde adjuntar:</b></p><ul>' +
+      adjuntos.map(function(a){ return '<li><svg class="ico"><use href="#i-alert"/></svg>' + a + '</li>'; }).join('') + '</ul>' +
+      '<div class="launch-actions"><button class="btn prev" type="button" id="lcancel">Cancelar</button><button class="btn next" type="button" id="lnow">Abrir ya</button></div>';
+    launch.hidden = false; play('tick');
+    document.getElementById('lcancel').onclick = function(){ cerrarLaunch(); play('tick'); };
+    document.getElementById('lnow').onclick = function(){ adios(href, estadoEl); };
+    document.getElementById('lnow').focus();
+    clearInterval(lTimer);
+    lTimer = setInterval(function(){
+      n--;
+      if (n <= 0) return adios(href, estadoEl);
+      var el = document.getElementById('lnum'); el.textContent = n;
+      el.style.animation = 'none'; void el.offsetWidth; el.style.animation = '';
+      play('tick');
+    }, 1000);
+  }
+  function adios(href, estadoEl){
+    clearInterval(lTimer);
+    var colores = ['--red', '--amber', '--green', '--blue', '--violet'];
+    var particulas = '';
+    for (var i = 0; i < 14; i++) {
+      var ang = i / 14 * Math.PI * 2, r = 90 + (i % 3) * 30;
+      particulas += '<i class="p" style="background:var(' + colores[i % 5] + ');--x:' + Math.round(Math.cos(ang) * r) + 'px;--y:' + Math.round(Math.sin(ang) * r) + 'px"></i>';
+    }
+    lcard.innerHTML = '<div class="bye">' + particulas + '<div class="core"><svg class="ico"><use href="#i-phoneoff"/></svg></div><h2>¡Chao, spam!</h2></div>' +
+      '<p>Se abrió su correo. <b>Adjunte los documentos</b> y presione <b>Enviar</b>.</p>' +
+      '<button class="btn next" type="button" id="lok" style="width:100%">Listo</button>';
+    play('chao');
+    document.getElementById('lok').onclick = function(){ cerrarLaunch(); };
+    document.getElementById('lok').focus();
+    estadoEl.textContent = '✓ Se abrió su correo. Adjunte los documentos y envíe.';
     // mailto lo resuelve su propio equipo: abre su programa de correo, no pasa por ningún servidor.
-    location.href = mailto(leer().correoEmpresa, carta.dataset.asunto, carta.value);
-    document.getElementById('estado').textContent = '✓ Se abrió su correo. Adjunte su documento y envíe.'; play('ding');
+    setTimeout(function(){ location.href = href; }, 700);
+  }
+  launch.addEventListener('keydown', function(e){ if (e.key === 'Escape') cerrarLaunch(); });
+
+  document.getElementById('abrir').addEventListener('click', function(){
+    lanzar(mailto(leer().correoEmpresa, carta.dataset.asunto, carta.value),
+      ['Una foto o PDF de su documento de identidad'], document.getElementById('estado'));
   });
   document.getElementById('copiar').addEventListener('click', function(){
     copiar('Asunto: ' + carta.dataset.asunto + '\n\n' + carta.value, document.getElementById('estado'), '✓ Copiado. Péguelo en el correo, chat o formulario de la empresa.');
   });
   document.getElementById('abrirSic').addEventListener('click', function(){
-    location.href = mailto('contactenos@sic.gov.co', ASUNTO_SIC, queja.value);
-    document.getElementById('estadoSic').textContent = '✓ Se abrió su correo. Adjunte su carta, su documento y las capturas.'; play('ding');
+    lanzar(mailto('contactenos@sic.gov.co', ASUNTO_SIC, queja.value),
+      ['La carta que envió a la empresa', 'Su documento de identidad', 'Capturas de las llamadas o mensajes (si las tiene)'],
+      document.getElementById('estadoSic'));
   });
   document.getElementById('copiarSic').addEventListener('click', function(){
     copiar(queja.value, document.getElementById('estadoSic'), '✓ Copiado. Péguelo en el formulario de la SIC.');
   });
 
-  function pintarQueja(){
+  function actualizarVence(){
+    // La empresa recibe hoy; el plazo corre desde el día siguiente.
+    document.getElementById('vence').textContent = 'Hasta el ' + sumarHabiles(new Date(), 15).toLocaleDateString('es-CO', { weekday:'long', day:'numeric', month:'long' });
+    document.getElementById('venceNota').textContent = notaFestivos();
+  }
+  function pintarQueja(){ queja.value = armarQueja(leer(), new Date()); pintarPlazo(); }
+  function pintarPlazo(){
     var d = leer();
-    queja.value = armarQueja(d, new Date());
     var box = document.getElementById('plazo');
     if (!d.fechaEnvio) { box.hidden = true; return; }
     var env = new Date(d.fechaEnvio + 'T12:00:00'), hoy = new Date(), n = habilesEntre(env, hoy);
@@ -702,13 +822,36 @@ footer.nav{position:fixed; left:0; right:0; bottom:0; z-index:5; background:var(
     box.hidden = false;
     if (d.situacion === 'silencio' && n < 16) {
       box.className = 'note bad';
-      box.innerHTML = '<svg class="ico"><use href="#i-clock"/></svg><p class="small"><b>Todavía no se ha vencido el plazo.</b> La empresa tiene 15 días hábiles desde el día siguiente a recibir su carta. Podrá quejarse a partir del <b>' + cuando + '</b> (más días si hay festivos). <button type="button" class="src" data-src="requisito"><svg class="ico"><use href="#i-eye"/></svg>Ver regla de la SIC</button></p>';
+      box.innerHTML = '<svg class="ico"><use href="#i-clock"/></svg><p class="small"><b>Todavía no se ha vencido el plazo.</b> La empresa tiene 15 días hábiles desde el día siguiente a recibir su carta. Podrá quejarse a partir del <b>' + cuando + '</b>. ' + notaFestivos() + ' <button type="button" class="src" data-src="requisito"><svg class="ico"><use href="#i-eye"/></svg>Ver regla de la SIC</button></p>';
     } else {
       box.className = 'note ok';
-      box.innerHTML = '<svg class="ico"><use href="#i-check"/></svg><p class="small"><b>Cumple el requisito:</b> ya reclamó ante la empresa' + (d.situacion === 'silencio' ? ' y pasaron ' + n + ' días hábiles' : '') + '. Revise que no haya festivos que corran la fecha. <button type="button" class="src" data-src="art16"><svg class="ico"><use href="#i-eye"/></svg>Ver ley</button></p>';
+      box.innerHTML = '<svg class="ico"><use href="#i-check"/></svg><p class="small"><b>Cumple el requisito:</b> ya reclamó ante la empresa' + (d.situacion === 'silencio' ? ' y pasaron ' + n + ' días hábiles' : '') + '. ' + notaFestivos() + ' <button type="button" class="src" data-src="art16"><svg class="ico"><use href="#i-eye"/></svg>Ver ley</button></p>';
     }
   }
   [].forEach.call(document.querySelectorAll('[name=fechaEnvio]'), function(x){ x.max = new Date().toISOString().slice(0, 10); });
+
+  // ---------- Municipios (DIVIPOLA del DANE en datos.gov.co) ----------
+  var MUNICIPIOS = null;
+  var titulo = function(s){ return s.toLowerCase().replace(/(^|[\s(.-])(\S)/g, function(m, a, b){ return a + b.toUpperCase(); })
+    .replace(/ (De|Del|La|Las|Los|El|Y) /g, function(m){ return m.toLowerCase(); }); };
+  function cargarMunicipios(){
+    if (MUNICIPIOS) return;
+    MUNICIPIOS = [];
+    fetch('https://www.datos.gov.co/resource/gdxc-w37w.json?$select=nom_mpio,dpto&$limit=2000&$order=nom_mpio')
+      .then(function(r){ if (!r.ok) throw r; return r.json(); })
+      .then(function(rows){
+        var dl = document.getElementById('ciudades');
+        MUNICIPIOS = rows.map(function(x){ return titulo(x.nom_mpio) + (x.nom_mpio === x.dpto ? '' : ' (' + titulo(x.dpto) + ')'); });
+        dl.innerHTML = MUNICIPIOS.map(function(m){ return '<option value="' + esc(m) + '">'; }).join('');
+      })
+      .catch(function(){ MUNICIPIOS = []; }); // sin lista: se acepta texto libre
+  }
+  f.ciudad.addEventListener('focus', cargarMunicipios);
+  f.ciudad.addEventListener('input', function(){
+    // Si la lista cargó, se exige elegir un municipio real.
+    var ok = !MUNICIPIOS || !MUNICIPIOS.length || MUNICIPIOS.indexOf(f.ciudad.value) > -1;
+    f.ciudad.setCustomValidity(ok ? '' : 'Elija su ciudad o municipio de la lista.');
+  });
 
   // ---------- Buscador de empresas ----------
   // 1) Directorio propio (empresas.js): correos verificados en la política oficial de cada empresa.
