@@ -21,17 +21,17 @@
 <meta property="og:type" content="website">
 <meta property="og:locale" content="es_CO">
 <meta property="og:site_name" content="Chao Spam">
-<meta property="og:title" content="Chao Spam: pida que borren su número y dejen de llamarlo">
-<meta property="og:description" content="Arme gratis su derecho de petición en 5 minutos, con la ley de su lado. Sin abogado. Nada se guarda.">
+<meta property="og:title" content="Chao Spam · Pida que borren su número y dejen de llamarlo">
+<meta property="og:description" content="Pida que borren su número y dejen de llamarlo, con la ley de su lado. Gratis, sin abogado y en 5 minutos. Creado por Juan Sebastián Rodríguez Casas.">
 <meta property="og:url" content="https://sebastian09781.github.io/peticion-antispam/">
-<meta property="og:image" content="https://sebastian09781.github.io/peticion-antispam/img/og-image.jpg">
+<meta property="og:image" content="https://sebastian09781.github.io/peticion-antispam/img/og-image.jpg?v=3">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Logo de Chao Spam: un teléfono tachado, con el texto: pida que borren su número y dejen de llamarlo">
+<meta property="og:image:alt" content="Chao Spam: arme en 5 minutos la carta para que una empresa borre su número y deje de llamarlo. Creado por Juan Sebastián Rodríguez Casas">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Chao Spam: pida que borren su número y dejen de llamarlo">
-<meta name="twitter:description" content="Arme gratis su derecho de petición en 5 minutos, con la ley de su lado.">
-<meta name="twitter:image" content="https://sebastian09781.github.io/peticion-antispam/img/og-image.jpg">
+<meta name="twitter:title" content="Chao Spam · Pida que borren su número y dejen de llamarlo">
+<meta name="twitter:description" content="Pida que borren su número y dejen de llamarlo. Gratis y sin abogado. Creado por Juan Sebastián Rodríguez Casas.">
+<meta name="twitter:image" content="https://sebastian09781.github.io/peticion-antispam/img/og-image.jpg?v=3">
 
 <!-- Datos estructurados para buscadores -->
 <script type="application/ld+json">
@@ -266,6 +266,8 @@ html.quieto *, html.quieto *::before, html.quieto *::after{animation:none!import
 .foot{gap:8px}
 .foot .badge-ok{display:inline-flex; gap:6px; align-items:center; font-size:.85rem; font-weight:700; color:var(--green); background:var(--green-soft); border-radius:999px; padding:5px 12px; text-decoration:none; border:0; font-family:inherit; cursor:pointer}
 .foot .badge-ok .ico{font-size:1rem; color:var(--green)}
+.foot .badge-ok{white-space:nowrap}
+@media (max-width: 440px){ .foot{flex-wrap:nowrap; gap:5px} .foot .badge-ok{font-size:.74rem; padding:5px 9px; gap:4px} .foot .badge-ok .ico{font-size:.85rem} }
 
 /* Botones principales: degradado suave en movimiento y un brillo que pasa de vez en cuando, para invitar a tocarlos */
 .cta.main, .cta.sic, .btn.next{position:relative; overflow:hidden; background-size:220% 100%; transition:transform .15s ease, box-shadow .3s ease}
@@ -303,6 +305,13 @@ footer.nav .btn.next.ready{background-image:linear-gradient(110deg, var(--blue) 
 .sugg button:hover, .sugg button.act{background:var(--blue-soft)}
 @media (prefers-reduced-motion: no-preference){ .sugg:not([hidden]){animation:rise .18s ease-out} }
 
+.docbar{display:flex; justify-content:space-between; align-items:center; gap:10px; margin-top:-8px}
+.iconcta.sm{width:46px; min-height:46px; font-size:1.25rem}
+footer.nav .btn.next{display:inline-flex; gap:8px; align-items:center; justify-content:center; flex:1; max-width:22rem; font-size:1.05rem; min-height:50px}
+footer.nav .btn.next .ico{font-size:1.25rem}
+footer.nav .btn.next{white-space:nowrap}
+@media (max-width: 400px){ footer.nav .btn.next{font-size:.98rem; padding:10px 14px} footer.nav .btn.prev{padding:10px 14px} }
+footer.nav .btn.prev{flex:none}
 .sendbar{display:flex; gap:10px; align-items:stretch}
 .sendbar .cta.big{flex:1}
 .iconcta{flex:none; width:58px; min-height:58px; border-radius:14px; border:2px solid var(--line); background:var(--surface); color:var(--blue); display:grid; place-items:center; font-size:1.45rem; cursor:pointer}
@@ -552,38 +561,36 @@ footer.nav{position:fixed; left:0; right:0; bottom:0; z-index:10; background:var
   <!-- CARTA -->
   <section class="step" data-id="carta" style="--c:var(--green);--cs:var(--green-soft)" hidden>
     <div class="qhead"><div class="badge"><svg class="ico"><use href="#i-doc"/></svg></div>
-      <div><p class="qnum">1 · Léala</p><h2 class="qtext">Su carta</h2></div></div>
+      <div><p class="qnum">Su carta</p><h2 class="qtext">Léala antes de enviarla</h2></div></div>
     <div class="paper"><div class="doc" id="carta" contenteditable="true" role="textbox" aria-multiline="true" aria-label="Su carta a la empresa" spellcheck="true"></div></div>
-    <p class="hint"><svg class="ico" style="color:var(--blue)"><use href="#i-pencil"/></svg>Puede tocar el texto para corregirlo.</p>
-
-    <p class="qnum" style="color:var(--green)">2 · Envíela</p>
-    <p class="attach"><svg class="ico"><use href="#i-clip"/></svg>Adjunte una foto de su cédula</p>
-    <div class="sendbar">
-      <button class="cta main big" type="button" id="abrir"><svg class="ico"><use href="#i-send"/></svg>Enviar por correo</button>
-      <button class="iconcta" type="button" id="copiar" aria-label="Copiar el texto" title="Copiar el texto"><svg class="ico"><use href="#i-copy"/></svg></button>
+    <div class="docbar">
+      <p class="hint"><svg class="ico" style="color:var(--blue)"><use href="#i-pencil"/></svg>Toque el texto para corregirlo.</p>
+      <button class="iconcta sm" type="button" id="copiar" aria-label="Copiar el texto" title="Copiar el texto"><svg class="ico"><use href="#i-copy"/></svg></button>
     </div>
+    <p class="attach"><svg class="ico"><use href="#i-clip"/></svg>Al enviarla, adjunte una foto de su cédula</p>
     <p class="status" id="estado" role="status"></p>
-
-    <p class="qnum" style="color:var(--amber)">3 · Agéndelo</p>
-    <div class="deadline">
-      <svg class="ico big-ico"><use href="#i-calendar"/></svg>
-      <p class="date" id="vence">en 15 días hábiles</p>
-      <p class="small muted">Plazo de la empresa · <span id="venceNota"></span></p>
-      <button class="cta alt" type="button" id="cal"><svg class="ico"><use href="#i-plus"/></svg>Agregar a mi calendario</button>
-      <p class="status" id="calEstado" role="status"></p>
-    </div>
-
-    <div class="more-links">
-      <a href="https://tramitescrcom.gov.co/tramites/comun/guia.xhtml?tit=&amp;subt=&amp;tram=ebhrEbS9qKn04bkBEBApXQ==&amp;pr1=3578LkxQ3TO3y3t5FY9/BQ==&amp;onA=S0etv8CCdHqPI8wYF9h5dtdTbijZh1Ii32LohKmsEd6aN1b0ia4DPDtKgFkbFjDn" target="_blank" rel="noopener"><svg class="ico"><use href="#i-shield"/></svg><b>Bloquear mi número en la CRC</b></a>
-      <button type="button" id="otra"><svg class="ico"><use href="#i-plus"/></svg><b>Escribir a otra empresa</b></button>
-    </div>
     <button type="button" class="chipbtn" data-src="lista:c748,res78138,art17,art15,circ,sic9"><svg class="ico"><use href="#i-scale"/></svg>Normas</button>
   </section>
 
+  <!-- AGENDA -->
+  <section class="step" data-id="agenda" style="--c:var(--amber);--cs:var(--amber-soft)" hidden>
+    <div class="qhead"><div class="badge"><svg class="ico"><use href="#i-calendar"/></svg></div>
+      <div><p class="qnum">Último paso</p><h2 class="qtext">Agéndelo</h2></div></div>
+    <div class="deadline">
+      <svg class="ico big-ico"><use href="#i-clock"/></svg>
+      <p>La empresa debe responderle</p>
+      <p class="date" id="vence">en 15 días hábiles</p>
+      <p class="small muted" id="venceNota"></p>
+      <p class="small">Ese día le recordamos volver aquí, por si no cumplió.</p>
+    </div>
+    <p class="status" id="calEstado" role="status"></p>
+    <button class="linkbtn sm" type="button" id="noCal">Ahora no</button>
+  </section>
+
   <!-- QUEJA SIC -->
-  <section class="step" data-id="sic" style="--c:var(--red);--cs:var(--red-soft)" hidden>
+  <section class="step" data-id="caso" style="--c:var(--red);--cs:var(--red-soft)" hidden>
     <div class="qhead"><div class="badge"><svg class="ico"><use href="#i-stamp"/></svg></div>
-      <div><p class="qnum">Queja ante la SIC</p><h2 class="qtext">La empresa no cumplió</h2></div></div>
+      <div><p class="qnum">Queja ante la SIC</p><h2 class="qtext">Cuéntenos qué pasó</h2></div></div>
     <label class="field">¿Qué día envió su carta a la empresa?<input name="fechaEnvio" type="date" required></label>
     <label class="field">¿Qué pasó?
       <select name="situacion">
@@ -592,17 +599,18 @@ footer.nav{position:fixed; left:0; right:0; bottom:0; z-index:10; background:var
         <option value="siguen">Dijeron que sí, pero siguen llamando</option>
       </select></label>
     <div class="note" id="plazo" hidden></div>
+    <p class="err" role="alert"></p>
+  </section>
 
-    <p class="qnum">1 · Léala</p>
+  <section class="step" data-id="sic" style="--c:var(--red);--cs:var(--red-soft)" hidden>
+    <div class="qhead"><div class="badge"><svg class="ico"><use href="#i-doc"/></svg></div>
+      <div><p class="qnum">Su queja</p><h2 class="qtext">Léala antes de enviarla</h2></div></div>
     <div class="paper"><div class="doc" id="queja" contenteditable="true" role="textbox" aria-multiline="true" aria-label="Su queja ante la SIC" spellcheck="true"></div></div>
-    <p class="hint"><svg class="ico" style="color:var(--blue)"><use href="#i-pencil"/></svg>Puede tocar el texto para corregirlo.</p>
-
-    <p class="qnum">2 · Envíela</p>
-    <div class="attach"><svg class="ico"><use href="#i-clip"/></svg><span>Adjunte <b>la carta que envió</b>, <b>su cédula</b> y capturas</span></div>
-    <div class="sendbar">
-      <button class="cta sic big" type="button" id="abrirSic"><svg class="ico"><use href="#i-send"/></svg>Enviar a la SIC</button>
-      <button class="iconcta" type="button" id="copiarSic" aria-label="Copiar el texto" title="Copiar el texto"><svg class="ico"><use href="#i-copy"/></svg></button>
+    <div class="docbar">
+      <p class="hint"><svg class="ico" style="color:var(--blue)"><use href="#i-pencil"/></svg>Toque el texto para corregirlo.</p>
+      <button class="iconcta sm" type="button" id="copiarSic" aria-label="Copiar el texto" title="Copiar el texto"><svg class="ico"><use href="#i-copy"/></svg></button>
     </div>
+    <div class="attach"><svg class="ico"><use href="#i-clip"/></svg><span>Al enviarla, adjunte <b>la carta que envió</b>, <b>su cédula</b> y capturas</span></div>
     <p class="status" id="estadoSic" role="status"></p>
     <div class="chips-row">
       <a class="chipbtn" href="https://servicioslinea.sic.gov.co/servilinea/pqrsf/" target="_blank" rel="noopener"><svg class="ico"><use href="#i-ext"/></svg>Formulario web SIC</a>
@@ -616,14 +624,12 @@ footer.nav{position:fixed; left:0; right:0; bottom:0; z-index:10; background:var
       <div class="thanks-mark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>
       <h1>¡Gracias! Ya hizo su parte.</h1>
       <p class="lead" id="gTexto"></p>
-      <button class="cta main big" type="button" id="gCal"><svg class="ico"><use href="#i-calendar"/></svg>Agregar a mi calendario</button>
       <div class="more-links" style="width:100%">
         <button type="button" id="gShare"><svg class="ico"><use href="#i-share"/></svg><b>Compartir con alguien a quien también llamen</b></button>
         <a href="https://tramitescrcom.gov.co/tramites/comun/guia.xhtml?tit=&amp;subt=&amp;tram=ebhrEbS9qKn04bkBEBApXQ==&amp;pr1=3578LkxQ3TO3y3t5FY9/BQ==&amp;onA=S0etv8CCdHqPI8wYF9h5dtdTbijZh1Ii32LohKmsEd6aN1b0ia4DPDtKgFkbFjDn" target="_blank" rel="noopener"><svg class="ico"><use href="#i-shield"/></svg><b>Bloquear mi número en la CRC</b></a>
         <button type="button" id="gOtra"><svg class="ico"><use href="#i-plus"/></svg><b>Escribir a otra empresa</b></button>
       </div>
       <p class="status" id="gEstado" role="status"></p>
-      <button class="linkbtn" type="button" id="gInicio">Volver al inicio</button>
       <p class="credit">Chao Spam · Servicio gratuito creado por <a href="https://sebastian-09781.blogspot.com/" target="_blank" rel="noopener">Juan Sebastián Rodríguez Casas</a></p>
     </div>
   </section>
@@ -972,15 +978,17 @@ footer.nav{position:fixed; left:0; right:0; bottom:0; z-index:10; background:var
     sinCorreo: 'Esta empresa no publica un correo para datos personales. Igual puede seguir. Al final, copie el texto y péguelo en el chat o formulario de la empresa.',
     ruesSinCorreo: 'Encontramos la empresa, pero no tenemos su correo. Búsquelo en la política de datos de su página web y escríbalo en el campo de correo.',
     manual: 'Escriba el nombre legal de la empresa y su correo para datos personales. Si no sabe dónde encontrarlo, toque: Cómo encuentro el correo.',
-    carta: '¡Su carta está lista! Primero, léala con calma. Si quiere cambiar algo, toque el texto. Cuando esté de acuerdo, adjunte una foto de su cédula y toque Enviar por correo. Por último, agende el recordatorio: la empresa tiene plazo {fecha}.',
-    sic: 'Vamos con la queja ante la Superintendencia de Industria y Comercio. Díganos qué día envió su carta a la empresa y qué pasó. Luego lea la queja, y cuando esté de acuerdo, envíela.',
+    carta: '¡Su carta está lista! Léala con calma. Si quiere cambiar algo, toque el texto. Cuando esté de acuerdo, toque el botón de abajo: Enviar por correo.',
+    agenda: '¡Muy bien! Último paso. La empresa tiene plazo {fecha}. Toque el botón de abajo, Agregar al calendario, y ese día le recordaremos volver aquí si no cumplió.',
+    caso: 'Vamos con la queja ante la Superintendencia de Industria y Comercio. Díganos qué día envió su carta a la empresa y qué pasó. Yo le diré si ya puede presentar la queja. Luego toque: Ver mi queja.',
+    sic: 'Esta es su queja. Léala con calma. Cuando esté de acuerdo, toque el botón de abajo: Enviar a la SIC.',
     plazoNo: 'Todavía no se ha vencido el plazo de la empresa. Podrá presentar la queja a partir del {fecha}.',
     plazoOk: 'Muy bien: ya puede presentar la queja. Adjunte su carta, su cédula y las capturas que tenga, y toque Enviar queja a la SIC.',
     error: 'Falta un dato. Revise el campo marcado.',
     calendario: 'Listo. Se abrió su calendario con el recordatorio. Solo toque Guardar. Ese día le recordaremos volver aquí si la empresa no cumplió.',
     cuenta: 'Su correo se abrirá en unos segundos. Recuerde adjuntar: {lista}.',
     chao: '¡Chao, spam! Ya se abrió su correo. Adjunte los documentos y presione Enviar. ¡Bien hecho!',
-    gracias: '¡Gracias! Ya hizo su parte. Ahora la empresa debe responderle. Agregue el recordatorio a su calendario, y si quiere, comparta este servicio con alguien a quien también lo llamen.',
+    gracias: '¡Gracias! Ya hizo su parte. Ahora la empresa debe responderle. Si quiere, comparta este servicio con alguien a quien también lo llamen. Para terminar, toque el botón de abajo.',
     graciasSic: '¡Gracias! Su queja va camino a la Superintendencia. Ellos le responderán a su correo. Si quiere, comparta este servicio con alguien a quien también lo llamen.'
   };
   function elegirVoz(){
@@ -1007,6 +1015,7 @@ footer.nav{position:fixed; left:0; right:0; bottom:0; z-index:10; background:var
   var fechaPlazo = function(){ return 'hasta el ' + sumarHabiles(new Date(), 15).toLocaleDateString('es-CO', { weekday:'long', day:'numeric', month:'long' }); };
   function hablarPaso(){
     var id = RUTAS[modo][pos];
+    if (id === 'gracias' && modo === 'sic') id = 'graciasSic';
     hablar((VOZ[id] || '').replace('{fecha}', fechaPlazo()));
   }
   if (synth) {
@@ -1024,7 +1033,9 @@ footer.nav{position:fixed; left:0; right:0; bottom:0; z-index:10; background:var
   });
 
   // ---------- Recorridos ----------
-  var RUTAS = { carta:['inicio','derechos','usted','empresa','carta'], sic:['inicio','usted','empresa','sic'] };
+  // Un paso por pantalla. El botón grande de abajo siempre es la siguiente acción real.
+  var RUTAS = { carta:['inicio','derechos','usted','empresa','carta','agenda','gracias'], sic:['inicio','usted','empresa','caso','sic','gracias'] };
+  var ACCION = { carta:['i-send', 'Enviar por correo'], sic:['i-send', 'Enviar a la SIC'], agenda:['i-calendar', 'Agregar al calendario'], gracias:['i-check', 'Terminar'] };
   var modo = 'carta', pos = 0;
   var steps = {}; [].forEach.call(document.querySelectorAll('.step'), function(s){ steps[s.dataset.id] = s; });
   var bar = document.getElementById('bar'), count = document.getElementById('count');
@@ -1048,14 +1059,22 @@ footer.nav{position:fixed; left:0; right:0; bottom:0; z-index:10; background:var
     var id = ruta[pos];
     Object.keys(steps).forEach(function(k){ steps[k].hidden = k !== id; });
     if (id === 'carta') { var c = armarCarta(leer(), new Date()); carta.innerHTML = c.html; carta.dataset.asunto = c.asunto; carta.scrollTop = 0;
-      actualizarVence(); document.getElementById('estado').textContent = ''; }
-    if (id === 'sic') pintarQueja();
+      document.getElementById('estado').textContent = ''; }
+    if (id === 'caso') pintarPlazo();
+    if (id === 'sic') { pintarQueja(); queja.scrollTop = 0; }
+    if (id === 'agenda') actualizarVence();
+    if (id === 'gracias') document.getElementById('gTexto').textContent = modo === 'sic'
+      ? 'Su queja va camino a la Superintendencia de Industria y Comercio. Ellos le responderán al correo que escribió.'
+      : 'Su carta va en camino. La empresa tiene plazo ' + fechaPlazo() + ' para responderle.';
     if (id === 'usted') cargarMunicipios();
-    bar.innerHTML = ruta.slice(1).map(function(_, k){ return '<i class="' + (k + 1 < pos ? 'done' : k + 1 === pos ? 'now' : '') + '"></i>'; }).join('');
+    var total = ruta.length - 2; // sin contar el inicio ni la despedida
+    bar.innerHTML = ruta.slice(1, -1).map(function(_, k){ return '<i class="' + (k + 1 < pos ? 'done' : k + 1 === pos ? 'now' : '') + '"></i>'; }).join('');
     bar.hidden = pos === 0;
-    count.textContent = pos === 0 ? '' : 'Paso ' + pos + ' de ' + (ruta.length - 1);
+    count.textContent = pos === 0 || id === 'gracias' ? '' : 'Paso ' + pos + ' de ' + total;
     document.querySelector('footer.nav').hidden = pos === 0;
-    next.textContent = pos === ruta.length - 1 ? 'Volver al inicio' : ruta[pos + 1] === 'carta' ? 'Ver mi carta ✓' : ruta[pos + 1] === 'sic' ? 'Ver mi queja ✓' : 'Siguiente →';
+    prev.hidden = id === 'gracias';
+    var acc = ACCION[id] || (ruta[pos + 1] === 'carta' ? ['i-doc', 'Ver mi carta'] : ruta[pos + 1] === 'sic' ? ['i-doc', 'Ver mi queja'] : null);
+    next.innerHTML = acc ? '<svg class="ico"><use href="#' + acc[0] + '"/></svg>' + acc[1] : 'Siguiente →';
     window.scrollTo(0, 0);
     var first = steps[id].querySelector('input:not([type=checkbox]):not([type=radio]):not([type=date])');
     if (first && !first.value && matchMedia('(pointer:fine)').matches) setTimeout(function(){ first.focus({ preventScroll:true }); }, 300);
@@ -1066,12 +1085,16 @@ footer.nav{position:fixed; left:0; right:0; bottom:0; z-index:10; background:var
   document.querySelectorAll('[data-start]').forEach(function(b){ b.addEventListener('click', function(){ if (b.dataset.voz) setVoz(true); empezar(b.dataset.start); }); });
   document.getElementById('home').addEventListener('click', function(){ go(0); play('tick'); });
   next.addEventListener('click', function(){
-    var ruta = RUTAS[modo], s = steps[ruta[pos]];
-    if (pos === ruta.length - 1) { go(0); play('tick'); return; }
+    var ruta = RUTAS[modo], id = ruta[pos], s = steps[id];
+    if (id === 'gracias') { go(0); play('back'); return; }
     if (!valido(s)) { play('nope'); return; }
+    if (id === 'carta') return enviarCarta();
+    if (id === 'sic') return enviarSic();
+    if (id === 'agenda') { agendar(); setTimeout(function(){ go(pos + 1); play('fanfare'); }, 600); return; }
     go(pos + 1);
-    play(ruta[pos] === 'carta' || ruta[pos] === 'sic' ? 'letter' : 'step');
+    play(ruta[pos] === 'carta' || ruta[pos] === 'sic' ? 'letter' : ruta[pos] === 'gracias' ? 'fanfare' : 'step');
   });
+  document.getElementById('noCal').addEventListener('click', function(){ go(pos + 1); play('fanfare'); });
   prev.addEventListener('click', function(){ go(pos - 1); play('back'); });
 
   // El botón Siguiente "brilla" cuando la pantalla está completa: así se sabe que ya puede avanzar.
@@ -1080,8 +1103,7 @@ footer.nav{position:fixed; left:0; right:0; bottom:0; z-index:10; background:var
     var s = steps[RUTAS[modo][pos]]; if (!s) return;
     [].forEach.call(s.querySelectorAll('input'), validarCampo);
     var ok =[].every.call(s.querySelectorAll('input, select'), function(x){ return x.checkValidity(); }) &&
-             (!s.querySelector('[name=canal]') || !!s.querySelector('[name=canal]:checked')) &&
-             pos < RUTAS[modo].length - 1; // en la última pantalla lo principal es Enviar, no "Volver al inicio"
+             (!s.querySelector('[name=canal]') || !!s.querySelector('[name=canal]:checked'));
     if (ok && !listo && pos > 0) play('ready');
     listo = ok; next.classList.toggle('ready', ok);
   }
@@ -1141,8 +1163,10 @@ footer.nav{position:fixed; left:0; right:0; bottom:0; z-index:10; background:var
     lcard.innerHTML = '<div class="bye">' + particulas + '<div class="core"><svg class="ico"><use href="#i-phoneoff"/></svg></div><h2>¡Chao, spam!</h2></div>' +
       '<p>Se abrió su correo. <b>Adjunte los documentos</b> y presione <b>Enviar</b>.</p>' +
       '<button class="btn next" type="button" id="lok" style="width:100%">Listo</button>';
+    // Avanza ya: cuando la persona vuelva del correo, encuentra el paso siguiente y no otra vez la carta.
+    go(RUTAS[modo].indexOf(modo === 'carta' ? 'agenda' : 'gracias'));
     play('chao'); hablar(VOZ.chao);
-    document.getElementById('lok').onclick = function(){ cerrarLaunch(); gracias(); };
+    document.getElementById('lok').onclick = function(){ cerrarLaunch(); hablarPaso(); };
     document.getElementById('lok').focus();
     estadoEl.textContent = '✓ Se abrió su correo. Adjunte los documentos y envíe.';
     // mailto lo resuelve su propio equipo: abre su programa de correo, no pasa por ningún servidor.
@@ -1150,44 +1174,32 @@ footer.nav{position:fixed; left:0; right:0; bottom:0; z-index:10; background:var
   }
   launch.addEventListener('keydown', function(e){ if (e.key === 'Escape') cerrarLaunch(); });
 
-  document.getElementById('abrir').addEventListener('click', function(){
+  function enviarCarta(){
     lanzar(mailto(leer().correoEmpresa, carta.dataset.asunto, plano(carta)),
       ['Una foto o PDF de su documento de identidad'], document.getElementById('estado'));
-  });
+  }
   document.getElementById('copiar').addEventListener('click', function(){
     copiar('Asunto: ' + carta.dataset.asunto + '\n\n' + plano(carta), document.getElementById('estado'),
       '✓ Copiado con formato. Péguelo en su correo, chat o formulario.', '<p><b>Asunto:</b> ' + e(carta.dataset.asunto) + '</p>' + carta.innerHTML);
   });
-  document.getElementById('abrirSic').addEventListener('click', function(){
+  function enviarSic(){
     lanzar(mailto('contactenos@sic.gov.co', ASUNTO_SIC, plano(queja)),
       ['La carta que envió a la empresa', 'Su documento de identidad', 'Capturas de las llamadas o mensajes (si las tiene)'],
       document.getElementById('estadoSic'));
-  });
+  }
   document.getElementById('copiarSic').addEventListener('click', function(){
     copiar(plano(queja), document.getElementById('estadoSic'), '✓ Copiado con formato. Péguelo en el formulario de la SIC.', queja.innerHTML);
   });
 
   // ---------- Pantalla de despedida ----------
   var URL_SERVICIO = 'https://sebastian09781.github.io/peticion-antispam/';
-  function gracias(){
-    var sic = modo === 'sic';
-    Object.keys(steps).forEach(function(k){ steps[k].hidden = k !== 'gracias'; });
-    bar.hidden = true; count.textContent = ''; document.querySelector('footer.nav').hidden = true;
-    document.getElementById('gTexto').textContent = sic
-      ? 'Su queja va camino a la Superintendencia de Industria y Comercio. Ellos le responderán al correo que escribió.'
-      : 'Su carta va en camino. La empresa tiene plazo ' + fechaPlazo() + ' para responderle.';
-    document.getElementById('gCal').hidden = sic;
-    window.scrollTo(0, 0); play('fanfare'); hablar(sic ? VOZ.graciasSic : VOZ.gracias);
-  }
-  document.getElementById('gCal').addEventListener('click', function(){ document.getElementById('cal').click(); });
   document.getElementById('gShare').addEventListener('click', function(){
     var datos = { title:'Chao Spam', text:'Pide que borren tu número y dejen de llamarte. Gratis y en 5 minutos:', url:URL_SERVICIO };
     if (navigator.share) navigator.share(datos).catch(function(){});
     else copiar(URL_SERVICIO, document.getElementById('gEstado'), '✓ Enlace copiado. Compártalo por WhatsApp o donde quiera.');
     play('tick');
   });
-  document.getElementById('gOtra').addEventListener('click', function(){ document.getElementById('otra').click(); });
-  document.getElementById('gInicio').addEventListener('click', function(){ go(0); play('back'); });
+  document.getElementById('gOtra').addEventListener('click', otraEmpresa);
 
   function actualizarVence(){
     // La empresa recibe hoy; el plazo corre desde el día siguiente.
@@ -1227,7 +1239,7 @@ footer.nav{position:fixed; left:0; right:0; bottom:0; z-index:10; background:var
   // Un solo botón: cada sistema abre su propio calendario.
   var esAndroid = /Android/i.test(navigator.userAgent);
   var esIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
-  document.getElementById('cal').addEventListener('click', function(){
+  function agendar(){
     var r = recordatorio();
     if (esAndroid) location.href = r.android;
     else if (esIOS) location.href = 'data:text/calendar;charset=utf-8,' + encodeURIComponent(r.ics); // iPhone muestra "Agregar al calendario"
@@ -1239,7 +1251,7 @@ footer.nav{position:fixed; left:0; right:0; bottom:0; z-index:10; background:var
     }
     document.getElementById('calEstado').textContent = esAndroid || esIOS ? '✓ Toque "Guardar" en su calendario.' : '✓ Abra el archivo descargado para guardarlo en su calendario.';
     play('ding'); hablar(VOZ.calendario);
-  });
+  }
   function pintarQueja(){ queja.innerHTML = armarQueja(leer(), new Date()); pintarPlazo(); }
   function pintarPlazo(){
     var d = leer();
@@ -1442,12 +1454,12 @@ footer.nav{position:fixed; left:0; right:0; bottom:0; z-index:10; background:var
     (f.empresa.value ? f.correoEmpresa : f.empresa).focus();
   });
 
-  document.getElementById('otra').addEventListener('click', function(){
+  function otraEmpresa(){
     f.empresa.value = ''; f.correoEmpresa.value = ''; f.correoEmpresa.required = true; empresaNit = '';
     elegida.hidden = true; buscar.value = ''; resultados.innerHTML = '';
     manualBox.hidden = true; manualBtn.textContent = 'No la encuentro: escribir los datos a mano';
     modo = 'carta'; go(RUTAS.carta.indexOf('empresa')); play('back');
-  });
+  }
 
   // Enlace del recordatorio: #sic=AAAA-MM-DD abre directo la queja con la fecha de envío puesta.
   var m = location.hash.match(/^#sic(?:=(\d{4}-\d{2}-\d{2}))?$/);

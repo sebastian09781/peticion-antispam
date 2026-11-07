@@ -29,17 +29,27 @@ En Colombia las empresas compran, comparten o heredan bases de datos, y a muchas
 
 Sigue el camino que recomienda la propia Superintendencia de Industria y Comercio (SIC) en su guía oficial: primero se reclama ante la empresa y, si no cumple, se presenta la queja ante la SIC.
 
+Un paso por pantalla. **El botón grande de abajo siempre es la siguiente acción real**, así nadie se pierde:
+
 **A. Escribir mi carta a la empresa**
-1. **Sus derechos:** cuatro tarjetas (pueden borrarlo, 15 días hábiles, horarios permitidos, multas).
-2. **Sus datos:** nombre, documento, municipio (lista oficial del DANE) y cómo lo contactan.
-3. **La empresa:** buscador que llena la razón social y el correo de datos personales.
-4. **Su carta:** primero se lee, después se envía y por último se agenda el plazo en el calendario del teléfono.
+
+| Pantalla | Botón de abajo |
+|---|---|
+| 1. Sus derechos: pueden borrarlo, 15 días hábiles, horarios permitidos, multas | Siguiente → |
+| 2. Sus datos: nombre, documento, municipio (lista oficial del DANE) y cómo lo contactan | Siguiente → |
+| 3. La empresa: buscador que llena la razón social y el correo de datos personales | **Ver mi carta** |
+| 4. Léala antes de enviarla: la carta con formato, editable | **Enviar por correo** |
+| 5. Agéndelo: la fecha límite, ya sin contar festivos | **Agregar al calendario** |
+| ¡Gracias! Compartir, bloquear el número en la CRC, escribir a otra empresa | **Terminar** |
 
 **B. Ya envié mi carta y no me respondieron**
-1. **Sus datos** y 2. **La empresa**.
-3. **Queja ante la SIC:** revisa si ya venció el plazo (contando los festivos) y arma la queja dirigida a `contactenos@sic.gov.co` con el asunto que exige la SIC.
 
-Al final aparece una pantalla de **gracias** con el recordatorio para el calendario y la opción de compartir el servicio.
+| Pantalla | Botón de abajo |
+|---|---|
+| Sus datos · La empresa | Siguiente → |
+| Cuéntenos qué pasó: fecha de envío, qué pasó y si ya venció el plazo | **Ver mi queja** |
+| Léala antes de enviarla: dirigida a `contactenos@sic.gov.co` con el asunto que exige la SIC | **Enviar a la SIC** |
+| ¡Gracias! | **Terminar** |
 
 ## ⚖️ Sustento jurídico
 
@@ -97,4 +107,4 @@ Chao Spam es un servicio gratuito que facilita el trámite. No es asesoría jur�
 
 ## Autor y licencia
 
-Creado por [Juan Sebastián Rodríguez Casas](https://sebastian-09781.blogspot.com/). Licencia [MIT](LICENSE). Los íconos del teléfono del logo son de Material Icons (Apache 2.0).
+<img src="img/autor.svg" alt="" width="28" align="left">&nbsp;Creado por [Juan Sebastián Rodríguez Casas](https://sebastian-09781.blogspot.com/). Licencia [MIT](LICENSE). Los íconos del teléfono del logo son de Material Icons (Apache 2.0).
