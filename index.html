@@ -175,6 +175,40 @@ dialog.viewer::backdrop{background:rgba(23,32,43,.55)}
 .vbody blockquote{margin:0; padding:12px 16px; border-left:4px solid var(--blue); background:var(--surface); border-radius:0 10px 10px 0; font-family:var(--font-display); font-size:1rem; line-height:1.6}
 @media (prefers-reduced-motion: no-preference){ dialog.viewer[open]{animation:rise .3s ease-out} }
 
+/* Jerarquía: una acción principal por pantalla, lo demás discreto */
+.step{gap:20px}
+.cta.big{width:100%; justify-content:center; font-size:1.15rem; font-weight:700; min-height:58px; gap:10px}
+.cta.big .ico, .cta.voiceopt .ico, .deadline .cta .ico{font-size:1.35rem}
+.cta.voiceopt{width:100%; justify-content:center; gap:10px; font-weight:700; color:var(--violet); background:var(--violet-soft); min-height:50px}
+.linkbtn{font:inherit; font-weight:700; color:var(--blue); background:none; border:0; padding:8px 4px; cursor:pointer; display:inline-flex; gap:6px; align-items:center; align-self:center; text-decoration:underline; text-underline-offset:4px; text-decoration-thickness:1px}
+.linkbtn.sm{font-size:.95rem}
+.foot{display:flex; flex-wrap:wrap; justify-content:center; align-items:center; gap:2px 6px; font-size:.88rem; color:var(--muted); margin-top:6px}
+.foot .linkbtn{font-weight:400; padding:2px 0} .foot .ico{color:var(--green)}
+.hint{display:flex; gap:8px; align-items:center; color:var(--muted); font-size:.95rem}
+.hint .ico{color:var(--green); font-size:1.1rem}
+.subhead{font-size:1.15rem; padding-top:16px; border-top:1px solid var(--line)}
+.attach{display:flex; gap:10px; align-items:center; background:var(--red-soft); border-radius:12px; padding:10px 14px; font-size:1rem}
+.attach .ico{color:var(--red); font-size:1.3rem}
+.row2{display:flex; flex-direction:column; align-items:center; gap:2px; margin-top:-8px}
+details.peek{width:100%}
+details.peek summary{cursor:pointer; color:var(--blue); font-weight:700; font-size:.95rem; text-align:center; padding:8px; list-style:none; text-decoration:underline; text-underline-offset:4px}
+details.peek summary::-webkit-details-marker{display:none}
+details.peek[open] summary{margin-bottom:8px}
+.deadline{background:var(--amber-soft); border-radius:18px; padding:18px; text-align:center; display:flex; flex-direction:column; align-items:center; gap:4px}
+.deadline .date{font-family:var(--font-display); font-size:1.45rem; font-weight:650; color:var(--amber); line-height:1.25}
+.deadline .cta.alt{margin-top:10px; width:100%; justify-content:center; gap:10px; font-weight:700; background:var(--bg); min-height:50px}
+.more-links{display:flex; flex-direction:column; gap:8px}
+.more-links a, .more-links button{font:inherit; display:flex; gap:12px; align-items:center; text-align:left; padding:12px 14px; border:1px solid var(--line); border-radius:14px; background:var(--bg); color:var(--ink); text-decoration:none; cursor:pointer}
+.more-links .ico{font-size:1.5rem; color:var(--blue)}
+.more-links b{display:block; font-size:1rem} .more-links small{display:block; color:var(--muted); font-size:.88rem}
+.voicebtn{font:inherit; font-size:.9rem; font-weight:700; display:inline-flex; gap:6px; align-items:center; height:36px; padding:0 12px; border-radius:999px; border:1px solid var(--violet-soft); background:var(--bg); color:var(--violet); cursor:pointer}
+.voicebtn .ico{font-size:1.1rem}
+.voicebtn[aria-pressed="true"]{background:var(--violet); color:#fff; border-color:var(--violet)}
+@media (prefers-reduced-motion: no-preference){ .voicebtn.talking .ico{animation:tap .9s ease-in-out infinite} }
+.vozrep{color:var(--violet)}
+@media (max-width: 420px){ .count{display:none} .brand{font-size:.9rem} .tools{gap:4px} .iconbtn{width:34px; height:34px} .voicebtn{padding:0 10px; height:34px} }
+.status:empty, .err:empty{display:none}
+
 .calrow{display:flex; flex-wrap:wrap; gap:8px; margin-top:8px}
 .calbtn{font:inherit; font-size:.92rem; font-weight:700; color:var(--blue); background:var(--bg); border:2px solid var(--blue); border-radius:10px; padding:6px 12px; cursor:pointer; text-decoration:none}
 .calbtn:hover{background:var(--blue-soft)}
@@ -265,6 +299,8 @@ footer.nav{position:fixed; left:0; right:0; bottom:0; z-index:5; background:var(
   <symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol>
   <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
   <symbol id="i-ext" viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-9 9M18 14v6H4V6h6"/></symbol>
+  <symbol id="i-headset" viewBox="0 0 24 24"><path d="M4 14v-2a8 8 0 0 1 16 0v2"/><rect x="3" y="14" width="4" height="6" rx="1.5"/><rect x="17" y="14" width="4" height="6" rx="1.5"/></symbol>
+  <symbol id="i-replay" viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 3-6.7L3 8M3 3v5h5"/></symbol>
   <symbol id="i-sound" viewBox="0 0 24 24"><path d="M4 9v6h4l5 4V5L8 9z"/><path d="M16 9a4 4 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11"/></symbol>
   <symbol id="i-mute" viewBox="0 0 24 24"><path d="M4 9v6h4l5 4V5L8 9z"/><path d="M17 9l5 6M22 9l-5 6"/></symbol>
 </svg>
@@ -272,7 +308,10 @@ footer.nav{position:fixed; left:0; right:0; bottom:0; z-index:5; background:var(
 <header class="top">
   <div class="top-in wrap">
     <div class="top-row"><button class="brand" id="home" type="button" aria-label="Ir al inicio"><svg class="ico"><use href="#i-phoneoff"/></svg>Chao llamadas spam</button>
-      <span class="tools"><span class="count" id="count"></span><button class="iconbtn" id="snd" type="button" aria-label="Apagar el sonido" aria-pressed="true"><svg class="ico"><use href="#i-sound"/></svg></button></span></div>
+      <span class="tools"><span class="count" id="count"></span>
+        <button class="iconbtn vozrep" id="vozRep" type="button" aria-label="Repetir lo que dijo la guía" hidden><svg class="ico"><use href="#i-replay"/></svg></button>
+        <button class="voicebtn" id="voz" type="button" aria-pressed="false" aria-label="Guía por voz" hidden><svg class="ico"><use href="#i-headset"/></svg><span>Voz</span></button>
+        <button class="iconbtn" id="snd" type="button" aria-label="Apagar los sonidos" aria-pressed="true"><svg class="ico"><use href="#i-sound"/></svg></button></span></div>
     <div class="bar" id="bar" aria-hidden="true"></div>
   </div>
 </header>
@@ -284,28 +323,21 @@ footer.nav{position:fixed; left:0; right:0; bottom:0; z-index:5; background:var(
   <section class="step" data-id="inicio">
     <div class="hero">
       <div class="phone" aria-hidden="true"><span class="wave"></span><span class="wave w2"></span><div class="core"><svg class="ico"><use href="#i-phone"/></svg></div></div>
-      <h1>¿Lo llaman para venderle algo que nunca pidió?</h1>
-      <p class="lead">Esta herramienta le ayuda a <b>exigir que borren su número</b>, con la ley de su lado. Así funciona:</p>
+      <h1>¿Lo llaman para venderle algo que no pidió?</h1>
+      <p class="lead">Le ayudamos a pedir que <b>borren su número</b>.<br>Gratis, sin abogado y en 5 minutos.</p>
       <ol class="how">
-        <li style="--c:var(--blue)"><svg class="ico"><use href="#i-doc"/></svg><span><b>1. Escriba su carta</b><br>Le pide a la empresa que lo borre. Toma 5 minutos.</span></li>
-        <li style="--c:var(--amber)"><svg class="ico"><use href="#i-clock"/></svg><span><b>2. La empresa responde</b><br>Tiene 15 días hábiles para hacerlo.</span></li>
-        <li style="--c:var(--red)"><svg class="ico"><use href="#i-stamp"/></svg><span><b>3. Si no cumple, queja</b><br>Ante la Superintendencia de Industria y Comercio (SIC).</span></li>
+        <li style="--c:var(--blue)"><svg class="ico"><use href="#i-doc"/></svg><span>Escriba su carta</span></li>
+        <li style="--c:var(--amber)"><svg class="ico"><use href="#i-clock"/></svg><span>La empresa tiene 15 días hábiles</span></li>
+        <li style="--c:var(--red)"><svg class="ico"><use href="#i-stamp"/></svg><span>Si no cumple, queja ante la SIC</span></li>
       </ol>
-      <div class="paths">
-        <button class="cta main" type="button" data-start="carta"><span class="ci"><svg class="ico"><use href="#i-doc"/></svg></span><span><strong>Escribir mi carta</strong><small>Primer paso: a la empresa</small></span></button>
-        <button class="cta alt" type="button" data-start="sic"><span class="ci"><svg class="ico"><use href="#i-stamp"/></svg></span><span><strong>Ya envié la carta</strong><small>No respondieron: queja ante la SIC</small></span></button>
-      </div>
-      <ul class="chips">
-        <li><svg class="ico"><use href="#i-check"/></svg>Gratis</li>
-        <li><svg class="ico"><use href="#i-check"/></svg>Sin abogado</li>
-        <li><svg class="ico"><use href="#i-lock"/></svg>Nada se guarda</li>
-      </ul>
-      <p class="small muted">Es el camino que recomienda la propia SIC <button type="button" class="src" data-src="sic9"><svg class="ico"><use href="#i-eye"/></svg>Ver fuente</button></p>
-      <div class="trust">
-        <a href="https://github.com/sebastian09781/peticion-antispam" target="_blank" rel="noopener"><svg class="ico"><use href="#i-shield"/></svg>Código abierto y auditable</a>
-        <button type="button" data-src="politica"><svg class="ico"><use href="#i-lock"/></svg>Privacidad y condiciones</button>
-      </div>
-      <p class="credit">Creado por Juan Sebastián Rodríguez Casas · Herramienta educativa, no reemplaza la asesoría de un abogado</p>
+      <button class="cta main big" type="button" data-start="carta">Empezar mi carta →</button>
+      <button class="cta voiceopt" type="button" data-start="carta" data-voz="on" id="startVoz" hidden><svg class="ico"><use href="#i-headset"/></svg>Prefiero que una voz me guíe</button>
+      <button class="linkbtn" type="button" data-start="sic">Ya envié mi carta y no me respondieron →</button>
+      <p class="foot"><svg class="ico"><use href="#i-lock"/></svg>Nada se guarda ·
+        <a href="https://github.com/sebastian09781/peticion-antispam" target="_blank" rel="noopener">Código abierto</a> ·
+        <button type="button" class="linkbtn sm" data-src="politica">Privacidad</button> ·
+        <button type="button" class="linkbtn sm" data-src="sic9">Guía oficial de la SIC</button></p>
+      <p class="credit">Creado por Juan Sebastián Rodríguez Casas. Herramienta educativa: no reemplaza a un abogado.</p>
     </div>
   </section>
 
@@ -328,18 +360,14 @@ footer.nav{position:fixed; left:0; right:0; bottom:0; z-index:5; background:var(
         <span class="f"><svg class="ico"><use href="#i-coins"/></svg><b>La SIC puede multarlos</b></span>
         <span class="b">Hasta 2.000 salarios mínimos, y ordenar que borren sus datos.</span></span></button>
     </div>
-    <p class="small muted">Fuentes:
-      <button type="button" class="src" data-src="sic9"><svg class="ico"><use href="#i-eye"/></svg>Borrar</button>
-      <button type="button" class="src" data-src="art15"><svg class="ico"><use href="#i-eye"/></svg>15 días</button>
-      <button type="button" class="src" data-src="l2300"><svg class="ico"><use href="#i-eye"/></svg>Horarios</button>
-      <button type="button" class="src" data-src="art23"><svg class="ico"><use href="#i-eye"/></svg>Multas</button></p>
-    <div class="note ok"><svg class="ico"><use href="#i-lock"/></svg><p class="small">Ahora le pediremos algunos datos para la carta. <b>No se guardan en ningún lado</b>: todo pasa en su celular o computador. <a href="https://github.com/sebastian09781/peticion-antispam" target="_blank" rel="noopener">Revise el código</a> · <button type="button" class="src" data-src="politica">Privacidad</button></p></div>
+    <button type="button" class="linkbtn sm" data-src="lista:sic9,art15,l2300,art23"><svg class="ico"><use href="#i-eye"/></svg>¿De dónde sale esto? Ver las normas</button>
   </section>
 
   <!-- USTED -->
   <section class="step" data-id="usted" style="--c:var(--blue);--cs:var(--blue-soft)" hidden>
     <div class="qhead"><div class="badge"><svg class="ico"><use href="#i-user"/></svg></div>
-      <div><p class="qnum">Sus datos</p><h2 class="qtext">¿Quién es y cómo lo molestan?</h2></div></div>
+      <div><p class="qnum">Sus datos</p><h2 class="qtext">¿Quién es usted?</h2></div></div>
+    <p class="hint"><svg class="ico"><use href="#i-lock"/></svg>Nada de esto se guarda. Solo sirve para armar su carta.</p>
     <div class="fields">
       <label class="field full">Nombre completo<input name="nombre" required autocomplete="name"></label>
       <label class="field">Documento
@@ -349,14 +377,15 @@ footer.nav{position:fixed; left:0; right:0; bottom:0; z-index:5; background:var(
       <datalist id="ciudades"></datalist>
       <label class="field">Su correo<input name="correo" type="email" required autocomplete="email"></label>
     </div>
-    <div class="group"><b>¿Por dónde lo contactan?</b>
+    <h3 class="subhead">¿Cómo lo molestan?</h3>
+    <div class="group"><b>Por dónde</b>
       <div class="pills">
         <label class="pill" style="--c:var(--red);--cs:var(--red-soft)"><input type="checkbox" name="canal" value="llamadas" checked><svg class="ico"><use href="#i-phone"/></svg>Llamadas</label>
         <label class="pill"><input type="checkbox" name="canal" value="mensajes de texto (SMS)"><svg class="ico"><use href="#i-sms"/></svg>SMS</label>
         <label class="pill" style="--c:var(--green);--cs:var(--green-soft)"><input type="checkbox" name="canal" value="mensajes de WhatsApp"><svg class="ico"><use href="#i-wa"/></svg>WhatsApp</label>
         <label class="pill" style="--c:var(--violet);--cs:var(--violet-soft)"><input type="checkbox" name="canal" value="correos electrónicos"><svg class="ico"><use href="#i-mail"/></svg>Correo</label>
       </div></div>
-    <label class="field">¿A qué número o correo?<input name="contactos" required placeholder="300 123 4567" autocomplete="off"></label>
+    <label class="field">A qué número o correo<input name="contactos" required placeholder="300 123 4567" autocomplete="off"></label>
     <div class="group"><b>¿Es o fue cliente de esa empresa?</b>
       <div class="pills">
         <label class="pill"><input type="radio" name="relacion" value="nunca" checked>Nunca</label>
@@ -372,66 +401,68 @@ footer.nav{position:fixed; left:0; right:0; bottom:0; z-index:5; background:var(
     <div class="qhead"><div class="badge"><svg class="ico"><use href="#i-building"/></svg></div>
       <div><p class="qnum">La empresa</p><h2 class="qtext">¿Quién lo está llamando?</h2></div></div>
     <label class="field">Escriba el nombre con el que la conoce<input id="buscar" type="search" placeholder="Claro, Bancolombia, Tigo…" autocomplete="off" aria-controls="resultados"></label>
+    <p class="hint" id="buscarEstado" role="status">Toque la empresa cuando aparezca.</p>
     <ul class="results" id="resultados" aria-label="Empresas encontradas"></ul>
-    <p class="small muted" id="buscarEstado" role="status">Solo el nombre de la empresa se consulta en internet, en el registro de las Cámaras de Comercio.</p>
     <div class="note" id="elegida" hidden></div>
-    <div class="fields">
-      <label class="field full">Razón social<input name="empresa" required placeholder="Empresa Ejemplo S.A.S." autocomplete="off"></label>
-      <label class="field full">Correo de datos personales<input name="correoEmpresa" type="email" required placeholder="datospersonales@empresa.com" autocomplete="off"></label>
+    <div id="manual" hidden>
+      <div class="fields">
+        <label class="field full">Nombre legal de la empresa (razón social)<input name="empresa" required placeholder="Empresa Ejemplo S.A.S." autocomplete="off"></label>
+        <label class="field full">Correo para datos personales<input name="correoEmpresa" type="email" required placeholder="datospersonales@empresa.com" autocomplete="off"></label>
+      </div>
+      <details class="more"><summary>¿Cómo encuentro el correo?</summary>
+        <ol><li>Entre a la página web de la empresa y baje hasta el final.</li>
+          <li>Abra la <b>"Política de tratamiento de datos personales"</b>.</li>
+          <li>Copie el correo para <b>consultas y reclamos</b>.</li></ol></details>
     </div>
-    <details class="more" id="manual"><summary>¿Cómo encuentro el correo?</summary>
-      <ol><li>Entre a la página web de la empresa y baje hasta el final.</li>
-        <li>Abra la <b>"Política de tratamiento de datos personales"</b>.</li>
-        <li>Copie el correo para <b>consultas y reclamos</b>.</li></ol>
-      <p class="small">También puede buscarla en el <a href="https://rnbd.sic.gov.co/sisi/consultaTitulares/consulta" target="_blank" rel="noopener">Registro Nacional de Bases de Datos de la SIC</a>.</p></details>
+    <button class="linkbtn sm" type="button" id="manualBtn">No la encuentro: escribir los datos a mano</button>
     <p class="err" role="alert"></p>
   </section>
 
   <!-- CARTA -->
   <section class="step" data-id="carta" style="--c:var(--green);--cs:var(--green-soft)" hidden>
     <div class="qhead"><div class="badge"><svg class="ico"><use href="#i-doc"/></svg></div>
-      <div><p class="qnum">Su carta</p><h2 class="qtext">Lista para enviar</h2></div></div>
-    <div class="note bad"><svg class="ico"><use href="#i-alert"/></svg><p class="small"><b>Adjunte una foto de su documento de identidad</b> antes de enviarla. Puede editar el texto tocando la hoja.</p></div>
-    <div class="sendrow">
-      <button class="cta main" type="button" id="abrir"><span class="ci"><svg class="ico"><use href="#i-send"/></svg></span><span><strong>Abrir en mi correo</strong><small>Con destinatario y asunto listos</small></span></button>
-      <button class="cta alt" type="button" id="copiar"><span class="ci"><svg class="ico"><use href="#i-copy"/></svg></span><span><strong>Copiar el texto</strong><small>Para pegarlo en un chat o formulario</small></span></button>
-    </div>
+      <div><p class="qnum">Su carta</p><h2 class="qtext">¡Lista para enviar!</h2></div></div>
+    <p class="attach"><svg class="ico"><use href="#i-alert"/></svg>Antes de enviar, adjunte una foto de su cédula.</p>
+    <button class="cta main big" type="button" id="abrir"><svg class="ico"><use href="#i-send"/></svg>Enviar por correo</button>
+    <div class="row2"><button class="linkbtn sm" type="button" id="copiar"><svg class="ico"><use href="#i-copy"/></svg>Copiar el texto</button>
+      <details class="peek"><summary>Ver o editar la carta</summary><div class="paper"><textarea id="carta" aria-label="Su carta a la empresa" spellcheck="true"></textarea></div></details></div>
     <p class="status" id="estado" role="status"></p>
-    <div class="paper"><textarea id="carta" aria-label="Su carta a la empresa" spellcheck="true"></textarea></div>
-    <ol class="timeline">
-      <li style="--c:var(--blue)"><b>Hoy</b>Envíe la carta y guarde el correo enviado: es su prueba.</li>
-      <li style="--c:var(--amber)"><b id="vence">15 días hábiles</b>Plazo de la empresa: 15 días hábiles. <span id="venceNota"></span> <button type="button" class="src" data-src="art15"><svg class="ico"><use href="#i-eye"/></svg>Ver</button></li>
-      <li style="--c:var(--red)"><b>¿No cumplen?</b>Vuelva aquí y presente la queja ante la SIC.</li>
-    </ol>
-    <div class="note info"><svg class="ico"><use href="#i-calendar"/></svg><div class="small"><b>Agéndelo:</b> le recordamos el día en que vence el plazo, con el enlace para volver aquí y presentar la queja si la empresa no cumplió.
-      <div class="calrow"><a class="calbtn" id="calGoogle" target="_blank" rel="noopener">Google Calendar</a><button class="calbtn" type="button" id="calIcs">Otro calendario (.ics)</button></div></div></div>
-    <div class="note info"><svg class="ico"><use href="#i-shield"/></svg><p class="small"><b>Extra:</b> inscriba su número en el <a href="https://tramitescrcom.gov.co/tramites/comun/guia.xhtml?tit=&amp;subt=&amp;tram=ebhrEbS9qKn04bkBEBApXQ==&amp;pr1=3578LkxQ3TO3y3t5FY9/BQ==&amp;onA=S0etv8CCdHqPI8wYF9h5dtdTbijZh1Ii32LohKmsEd6aN1b0ia4DPDtKgFkbFjDn" target="_blank" rel="noopener">Registro de Números Excluidos de la CRC</a>. Es gratis y las empresas deben consultarlo antes de llamar. <button type="button" class="src" data-src="circ"><svg class="ico"><use href="#i-eye"/></svg>Ver fuente</button></p></div>
-    <button class="cta alt" type="button" id="otra"><span class="ci"><svg class="ico"><use href="#i-plus"/></svg></span><span><strong>Escribir a otra empresa</strong><small>Sus datos se mantienen</small></span></button>
+
+    <div class="deadline">
+      <p class="qnum" style="color:var(--amber)">¿Y después?</p>
+      <p>La empresa debe responderle</p>
+      <p class="date" id="vence">en 15 días hábiles</p>
+      <p class="small muted"><span id="venceNota"></span> Si no cumple, vuelva aquí y presente la queja ante la SIC.</p>
+      <a class="cta alt" id="calGoogle" target="_blank" rel="noopener"><svg class="ico"><use href="#i-calendar"/></svg>Agendar recordatorio</a>
+      <button class="linkbtn sm" type="button" id="calIcs">Usar otro calendario (.ics)</button>
+    </div>
+
+    <div class="more-links">
+      <a href="https://tramitescrcom.gov.co/tramites/comun/guia.xhtml?tit=&amp;subt=&amp;tram=ebhrEbS9qKn04bkBEBApXQ==&amp;pr1=3578LkxQ3TO3y3t5FY9/BQ==&amp;onA=S0etv8CCdHqPI8wYF9h5dtdTbijZh1Ii32LohKmsEd6aN1b0ia4DPDtKgFkbFjDn" target="_blank" rel="noopener"><svg class="ico"><use href="#i-shield"/></svg><span><b>Bloquee su número para todas las empresas</b><small>Registro de Números Excluidos de la CRC, gratis</small></span></a>
+      <button type="button" id="otra"><svg class="ico"><use href="#i-plus"/></svg><span><b>Escribir a otra empresa</b><small>Sus datos se mantienen</small></span></button>
+    </div>
+    <button type="button" class="linkbtn sm" data-src="lista:art15,circ,sic9"><svg class="ico"><use href="#i-eye"/></svg>¿De dónde sale esto? Ver las normas</button>
   </section>
 
   <!-- QUEJA SIC -->
   <section class="step" data-id="sic" style="--c:var(--red);--cs:var(--red-soft)" hidden>
     <div class="qhead"><div class="badge"><svg class="ico"><use href="#i-stamp"/></svg></div>
       <div><p class="qnum">Queja ante la SIC</p><h2 class="qtext">La empresa no cumplió</h2></div></div>
-    <div class="fields two">
-      <label class="field">¿Cuándo envió la carta?<input name="fechaEnvio" type="date" required></label>
-      <label class="field">¿Qué pasó?
-        <select name="situacion">
-          <option value="silencio">No me respondieron</option>
-          <option value="mala">Respondieron, pero no borraron mis datos</option>
-          <option value="siguen">Dijeron que sí, pero siguen llamando</option>
-        </select></label>
-    </div>
+    <label class="field">¿Qué día envió su carta a la empresa?<input name="fechaEnvio" type="date" required></label>
+    <label class="field">¿Qué pasó?
+      <select name="situacion">
+        <option value="silencio">No me respondieron</option>
+        <option value="mala">Respondieron, pero no borraron mis datos</option>
+        <option value="siguen">Dijeron que sí, pero siguen llamando</option>
+      </select></label>
     <div class="note" id="plazo" hidden></div>
-    <div class="note bad"><svg class="ico"><use href="#i-alert"/></svg><p class="small"><b>Adjunte:</b> la carta que envió a la empresa (reenvíe ese correo o haga captura), su documento y, si las tiene, capturas de las llamadas o mensajes. <button type="button" class="src" data-src="sic9"><svg class="ico"><use href="#i-eye"/></svg>Ver fuente</button></p></div>
-    <div class="sendrow">
-      <button class="cta sic" type="button" id="abrirSic"><span class="ci"><svg class="ico"><use href="#i-send"/></svg></span><span><strong>Enviar a la SIC</strong><small>contactenos@sic.gov.co, con el asunto oficial</small></span></button>
-      <button class="cta alt" type="button" id="copiarSic"><span class="ci"><svg class="ico"><use href="#i-copy"/></svg></span><span><strong>Copiar el texto</strong><small>Para el formulario web de la SIC</small></span></button>
-    </div>
+    <div class="attach"><svg class="ico"><use href="#i-alert"/></svg><span>Adjunte: <b>la carta que envió</b>, <b>su cédula</b> y capturas de las llamadas si las tiene.</span></div>
+    <button class="cta sic big" type="button" id="abrirSic"><svg class="ico"><use href="#i-send"/></svg>Enviar queja a la SIC</button>
+    <div class="row2"><button class="linkbtn sm" type="button" id="copiarSic"><svg class="ico"><use href="#i-copy"/></svg>Copiar el texto</button>
+      <details class="peek"><summary>Ver o editar la queja</summary><div class="paper"><textarea id="queja" aria-label="Su queja ante la SIC" spellcheck="true"></textarea></div></details></div>
     <p class="status" id="estadoSic" role="status"></p>
-    <div class="paper"><textarea id="queja" aria-label="Su queja ante la SIC" spellcheck="true"></textarea></div>
-    <p class="small muted">Correo y asunto según la SIC <button type="button" class="src" data-src="circ"><svg class="ico"><use href="#i-eye"/></svg>Circular 2024</button> <button type="button" class="src" data-src="sic9"><svg class="ico"><use href="#i-eye"/></svg>Guía SIC</button>.
-      Si prefiere, use el <a href="https://servicioslinea.sic.gov.co/servilinea/pqrsf/" target="_blank" rel="noopener">formulario web de la SIC</a> <button type="button" class="src" data-src="canales"><svg class="ico"><use href="#i-eye"/></svg>Canales</button>.</p>
+    <p class="small muted">Se envía a contactenos@sic.gov.co con el asunto que pide la SIC. ¿Prefiere su <a href="https://servicioslinea.sic.gov.co/servilinea/pqrsf/" target="_blank" rel="noopener">formulario web</a>?</p>
+    <button type="button" class="linkbtn sm" data-src="lista:sic9,requisito,art16,circ,canales"><svg class="ico"><use href="#i-eye"/></svg>¿De dónde sale esto? Ver las normas</button>
   </section>
 
 </form>
@@ -492,6 +523,7 @@ footer.nav{position:fixed; left:0; right:0; bottom:0; z-index:5; background:var(
     '<li><b>date.nager.at</b>: recibe solo el año, para conocer los festivos.</li>' +
     '<li><b>Google Fonts</b>: entrega las tipografías.</li>' +
     '<li><b>GitHub Pages</b>: aloja la página.</li></ul>' +
+    '<p>La <b>guía por voz</b> usa la voz de su propio celular o computador y solo lee instrucciones, nunca sus datos.</p>' +
     '<p>Ninguno recibe su nombre, documento, teléfono ni correo. Como cualquier sitio web, estos servicios pueden ver la dirección IP de su conexión.</p>' +
     '<h3>Su responsabilidad</h3><ul><li>Revise el texto antes de enviarlo y ajústelo a su caso.</li>' +
     '<li>Los correos de las empresas se verificaron en sus políticas oficiales en la fecha indicada en el código, y pueden cambiar.</li>' +
@@ -500,6 +532,13 @@ footer.nav{position:fixed; left:0; right:0; bottom:0; z-index:5; background:var(
     '<p class="small muted">Última actualización: 7 de noviembre de 2026.</p>' };
   var viewer = document.getElementById('viewer'), vbody = document.getElementById('vbody');
   function verFuente(id){
+    // "lista:a,b,c" muestra el índice de fuentes de una pantalla; cada una abre su detalle.
+    if (id.indexOf('lista:') === 0) {
+      document.getElementById('vtitle').textContent = 'Las normas detrás de esta pantalla';
+      vbody.innerHTML = '<p class="small muted">Toque una para ver el texto oficial:</p><div class="more-links">' +
+        id.slice(6).split(',').map(function(k){ return '<button type="button" data-src="' + k + '"><svg class="ico"><use href="#i-eye"/></svg><span><b>' + FUENTES[k].t + '</b></span></button>'; }).join('') + '</div>';
+      if (!viewer.open) viewer.showModal(); play('reveal'); return;
+    }
     var s = FUENTES[id]; if (!s) return;
     document.getElementById('vtitle').textContent = s.t;
     vbody.innerHTML = '';
@@ -513,7 +552,7 @@ footer.nav{position:fixed; left:0; right:0; bottom:0; z-index:5; background:var(
     if (s.nota) { var n = document.createElement('p'); n.className = 'small muted'; n.textContent = s.nota; vbody.appendChild(n); }
     var a = document.createElement('a'); a.href = s.url; a.target = '_blank'; a.rel = 'noopener';
     a.innerHTML = (s.link || 'Abrir el documento oficial') + ' <svg class="ico"><use href="#i-ext"/></svg>'; vbody.appendChild(a);
-    viewer.showModal(); play('reveal');
+    if (!viewer.open) viewer.showModal(); vbody.scrollTop = 0; play('reveal');
   }
   document.addEventListener('click', function(e){ var b = e.target.closest('[data-src]'); if (b) { e.preventDefault(); verFuente(b.dataset.src); } });
   document.getElementById('vclose').addEventListener('click', function(){ viewer.close(); play('tick'); });
@@ -690,14 +729,71 @@ footer.nav{position:fixed; left:0; right:0; bottom:0; z-index:5; background:var(
   document.querySelectorAll('.flip').forEach(function(fl){
     var t = document.createElement('span'); t.className = 'tapme'; t.setAttribute('aria-hidden', 'true');
     t.innerHTML = '<svg class="ico"><use href="#i-hand"/></svg>'; fl.querySelector('.f').appendChild(t);
-    fl.addEventListener('click', function(){ fl.classList.toggle('on'); play('flip'); });
+    fl.addEventListener('click', function(){
+      fl.classList.toggle('on'); play('flip');
+      if (fl.classList.contains('on')) hablar(fl.querySelector('.f b').textContent + '. ' + fl.querySelector('.b').textContent);
+    });
   });
+
+  // ---------- Guía por voz (voz del propio dispositivo, Web Speech API) ----------
+  // Solo lee instrucciones fijas y fechas de plazos. Nunca lee nombres, documentos, teléfonos ni la carta.
+  var synth = window.speechSynthesis, vozOn = false, vozUlt = '', vozElegida = null, plazoVoz = '';
+  var vozBtn = document.getElementById('voz'), vozRep = document.getElementById('vozRep');
+  var VOZ = {
+    inicio: 'Hola. Soy su guía. Le voy a ayudar a pedirle a una empresa que borre su número y deje de llamarlo. Es gratis y toma unos cinco minutos. Toque el botón azul: Empezar mi carta.',
+    derechos: 'Primero, sus derechos. Usted puede pedir que lo borren. La empresa debe responderle en quince días hábiles. Solo pueden llamarlo en ciertos horarios. Y si no cumplen, la Superintendencia de Industria y Comercio puede multarlos. Toque cada tarjeta para saber más. Cuando termine, toque Siguiente, abajo a la derecha.',
+    usted: 'Ahora, sus datos. La empresa necesita saber que usted es el dueño de la información. Escriba su nombre, su documento, su ciudad y su correo. Después marque por dónde lo molestan. Tranquilo: nada de esto se guarda.',
+    empresa: '¿Qué empresa lo está llamando? Escriba el nombre con el que la conoce, por ejemplo Claro o Bancolombia, y toque la que aparezca en la lista.',
+    conCorreo: 'Perfecto. Encontramos el correo oficial de esa empresa. Toque: Ver mi carta.',
+    sinCorreo: 'Esta empresa no publica un correo para datos personales. Igual puede seguir. Al final, copie el texto y péguelo en el chat o formulario de la empresa.',
+    ruesSinCorreo: 'Encontramos la empresa, pero no tenemos su correo. Búsquelo en la política de datos de su página web y escríbalo en el campo de correo.',
+    manual: 'Escriba el nombre legal de la empresa y su correo para datos personales. Si no sabe dónde encontrarlo, toque: Cómo encuentro el correo.',
+    carta: '¡Su carta está lista! Antes de enviarla, adjunte una foto de su cédula. Toque Enviar por correo, y se abrirá su correo con todo listo. La empresa tiene plazo {fecha}. Le recomiendo agendar un recordatorio para ese día.',
+    sic: 'Vamos con la queja ante la Superintendencia de Industria y Comercio. Díganos qué día envió su carta a la empresa y qué pasó. Yo le diré si ya puede presentar la queja.',
+    plazoNo: 'Todavía no se ha vencido el plazo de la empresa. Podrá presentar la queja a partir del {fecha}.',
+    plazoOk: 'Muy bien: ya puede presentar la queja. Adjunte su carta, su cédula y las capturas que tenga, y toque Enviar queja a la SIC.',
+    error: 'Falta un dato. Revise el campo marcado.',
+    cuenta: 'Su correo se abrirá en unos segundos. Recuerde adjuntar: {lista}.',
+    chao: '¡Chao, spam! Ya se abrió su correo. Adjunte los documentos y presione Enviar. ¡Bien hecho!'
+  };
+  function elegirVoz(){
+    var vs = synth.getVoices(), pref = ['es-CO', 'es-419', 'es-MX', 'es-US', 'es-ES', 'es'];
+    for (var i = 0; i < pref.length; i++) {
+      var v = vs.filter(function(x){ return x.lang.replace('_', '-').indexOf(pref[i]) === 0; })[0];
+      if (v) { vozElegida = v; return; }
+    }
+  }
+  function hablar(txt){
+    if (!synth || !vozOn || !txt) return;
+    vozUlt = txt; synth.cancel();
+    var u = new SpeechSynthesisUtterance(txt);
+    u.lang = vozElegida ? vozElegida.lang : 'es-CO'; if (vozElegida) u.voice = vozElegida; u.rate = 0.97;
+    u.onstart = function(){ vozBtn.classList.add('talking'); };
+    u.onend = u.onerror = function(){ vozBtn.classList.remove('talking'); };
+    synth.speak(u);
+  }
+  function setVoz(on){
+    vozOn = on; vozBtn.setAttribute('aria-pressed', on); vozRep.hidden = !on;
+    vozBtn.setAttribute('aria-label', on ? 'Apagar la guía por voz' : 'Encender la guía por voz');
+    if (!on && synth) { synth.cancel(); vozBtn.classList.remove('talking'); }
+  }
+  var fechaPlazo = function(){ return 'hasta el ' + sumarHabiles(new Date(), 15).toLocaleDateString('es-CO', { weekday:'long', day:'numeric', month:'long' }); };
+  function hablarPaso(){
+    var id = RUTAS[modo][pos];
+    hablar((VOZ[id] || '').replace('{fecha}', fechaPlazo()));
+  }
+  if (synth) {
+    vozBtn.hidden = false; document.getElementById('startVoz').hidden = false;
+    elegirVoz(); if ('onvoiceschanged' in synth) synth.onvoiceschanged = elegirVoz;
+    vozBtn.addEventListener('click', function(){ setVoz(!vozOn); play('tick'); hablarPaso(); });
+    vozRep.addEventListener('click', function(){ hablar(vozUlt); });
+  }
   var REL = { nunca:'La carta pide que lo borren por completo.', antes:'La carta pide que borren todo lo que no estén obligados a guardar.',
     actual:'Como es cliente, la carta pide que no usen sus datos para vender ni hacer publicidad.' };
   f.addEventListener('change', function(e){
     if (e.target.closest('label.pill')) play(e.target.checked ? 'ding' : 'tick');
     if (e.target.name === 'relacion') document.getElementById('relNota').textContent = REL[e.target.value];
-    if (e.target.name === 'fechaEnvio' || e.target.name === 'situacion') pintarQueja();
+    if (e.target.name === 'fechaEnvio' || e.target.name === 'situacion') { pintarQueja(); hablar(plazoVoz); }
   });
 
   // ---------- Recorridos ----------
@@ -710,7 +806,11 @@ footer.nav{position:fixed; left:0; right:0; bottom:0; z-index:5; background:var(
   function valido(s){
     var err = s.querySelector('.err'); if (err) err.textContent = '';
     var bad = [].filter.call(s.querySelectorAll('input, select'), function(x){ return !x.checkValidity(); })[0];
-    if (bad) { bad.reportValidity(); bad.focus(); if (err) err.textContent = 'Revise el campo marcado para seguir.'; return false; }
+    if (bad) {
+      var caja = bad.closest('#manual');
+      if (caja && caja.hidden) { if (err) err.textContent = 'Busque y toque su empresa, o escríbala a mano.'; hablar(VOZ.empresa); buscar.focus(); return false; }
+      bad.reportValidity(); bad.focus(); if (err) err.textContent = 'Revise el campo marcado para seguir.'; hablar(VOZ.error); return false;
+    }
     if (s.querySelector('[name=canal]') && !s.querySelector('[name=canal]:checked')) { if (err) err.textContent = 'Elija al menos una forma en que lo contactan.'; return false; }
     return true;
   }
@@ -731,9 +831,10 @@ footer.nav{position:fixed; left:0; right:0; bottom:0; z-index:5; background:var(
     window.scrollTo(0, 0);
     var first = steps[id].querySelector('input:not([type=checkbox]):not([type=radio]):not([type=date])');
     if (first && !first.value && matchMedia('(pointer:fine)').matches) setTimeout(function(){ first.focus({ preventScroll:true }); }, 300);
+    hablarPaso();
   }
   function empezar(m){ modo = m; go(1); play(m === 'carta' ? 'ring' : 'tick'); }
-  document.querySelectorAll('[data-start]').forEach(function(b){ b.addEventListener('click', function(){ empezar(b.dataset.start); }); });
+  document.querySelectorAll('[data-start]').forEach(function(b){ b.addEventListener('click', function(){ if (b.dataset.voz) setVoz(true); empezar(b.dataset.start); }); });
   document.getElementById('home').addEventListener('click', function(){ go(0); play('tick'); });
   next.addEventListener('click', function(){
     var ruta = RUTAS[modo], s = steps[ruta[pos]];
@@ -759,13 +860,14 @@ footer.nav{position:fixed; left:0; right:0; bottom:0; z-index:5; background:var(
   var launch = document.getElementById('launch'), lcard = document.getElementById('lcard'), lTimer = null;
   function cerrarLaunch(){ clearInterval(lTimer); launch.hidden = true; }
   function lanzar(href, adjuntos, estadoEl){
-    var n = 3;
+    var n = vozOn ? 7 : 3; // con voz, más tiempo para escuchar qué adjuntar
     lcard.innerHTML = '<h2>Listo para enviar su correo</h2><p class="small muted">Su programa de correo se abrirá en:</p>' +
-      '<div class="num" id="lnum">3</div><p><b>Recuerde adjuntar:</b></p><ul>' +
+      '<div class="num" id="lnum">' + n + '</div><p><b>Recuerde adjuntar:</b></p><ul>' +
       adjuntos.map(function(a){ return '<li><svg class="ico"><use href="#i-alert"/></svg>' + a + '</li>'; }).join('') + '</ul>' +
       '<div class="launch-actions"><button class="btn prev" type="button" id="lcancel">Cancelar</button><button class="btn next" type="button" id="lnow">Abrir ya</button></div>';
     launch.hidden = false; play('tick');
-    document.getElementById('lcancel').onclick = function(){ cerrarLaunch(); play('tick'); };
+    hablar(VOZ.cuenta.replace('{lista}', adjuntos.join('; ')));
+    document.getElementById('lcancel').onclick = function(){ cerrarLaunch(); play('tick'); if (synth) synth.cancel(); };
     document.getElementById('lnow').onclick = function(){ adios(href, estadoEl); };
     document.getElementById('lnow').focus();
     clearInterval(lTimer);
@@ -788,12 +890,12 @@ footer.nav{position:fixed; left:0; right:0; bottom:0; z-index:5; background:var(
     lcard.innerHTML = '<div class="bye">' + particulas + '<div class="core"><svg class="ico"><use href="#i-phoneoff"/></svg></div><h2>¡Chao, spam!</h2></div>' +
       '<p>Se abrió su correo. <b>Adjunte los documentos</b> y presione <b>Enviar</b>.</p>' +
       '<button class="btn next" type="button" id="lok" style="width:100%">Listo</button>';
-    play('chao');
+    play('chao'); hablar(VOZ.chao);
     document.getElementById('lok').onclick = function(){ cerrarLaunch(); };
     document.getElementById('lok').focus();
     estadoEl.textContent = '✓ Se abrió su correo. Adjunte los documentos y envíe.';
     // mailto lo resuelve su propio equipo: abre su programa de correo, no pasa por ningún servidor.
-    setTimeout(function(){ location.href = href; }, 700);
+    setTimeout(function(){ location.href = href; }, vozOn ? 3500 : 700);
   }
   launch.addEventListener('keydown', function(e){ if (e.key === 'Escape') cerrarLaunch(); });
 
@@ -815,7 +917,7 @@ footer.nav{position:fixed; left:0; right:0; bottom:0; z-index:5; background:var(
 
   function actualizarVence(){
     // La empresa recibe hoy; el plazo corre desde el día siguiente.
-    document.getElementById('vence').textContent = 'Hasta el ' + sumarHabiles(new Date(), 15).toLocaleDateString('es-CO', { weekday:'long', day:'numeric', month:'long' });
+    document.getElementById('vence').textContent = fechaPlazo();
     document.getElementById('venceNota').textContent = notaFestivos();
     document.getElementById('calGoogle').href = recordatorio().google;
   }
@@ -860,9 +962,11 @@ footer.nav{position:fixed; left:0; right:0; bottom:0; z-index:5; background:var(
     box.hidden = false;
     if (d.situacion === 'silencio' && n < 16) {
       box.className = 'note bad';
+      plazoVoz = VOZ.plazoNo.replace('{fecha}', cuando);
       box.innerHTML = '<svg class="ico"><use href="#i-clock"/></svg><p class="small"><b>Todavía no se ha vencido el plazo.</b> La empresa tiene 15 días hábiles desde el día siguiente a recibir su carta. Podrá quejarse a partir del <b>' + cuando + '</b>. ' + notaFestivos() + ' <button type="button" class="src" data-src="requisito"><svg class="ico"><use href="#i-eye"/></svg>Ver regla de la SIC</button></p>';
     } else {
       box.className = 'note ok';
+      plazoVoz = VOZ.plazoOk;
       box.innerHTML = '<svg class="ico"><use href="#i-check"/></svg><p class="small"><b>Cumple el requisito:</b> ya reclamó ante la empresa' + (d.situacion === 'silencio' ? ' y pasaron ' + n + ' días hábiles' : '') + '. ' + notaFestivos() + ' <button type="button" class="src" data-src="art16"><svg class="ico"><use href="#i-eye"/></svg>Ver ley</button></p>';
     }
   }
@@ -885,6 +989,14 @@ footer.nav{position:fixed; left:0; right:0; bottom:0; z-index:5; background:var(
       .catch(function(){ MUNICIPIOS = []; }); // sin lista: se acepta texto libre
   }
   f.ciudad.addEventListener('focus', cargarMunicipios);
+  // Al salir del campo: si lo escrito coincide con un solo municipio ("Cali" → "Santiago de Cali (Valle del Cauca)"), se completa.
+  f.ciudad.addEventListener('change', function(){
+    if (!MUNICIPIOS || !MUNICIPIOS.length || MUNICIPIOS.indexOf(f.ciudad.value) > -1) return;
+    var q = norm(f.ciudad.value);
+    var c = MUNICIPIOS.filter(function(m){ var nom = norm(m.replace(/\s*\(.*\)$/, '').split(',')[0]); return nom === q || nom.slice(-q.length - 1) === ' ' + q; });
+    if (c.length === 1) { f.ciudad.value = c[0]; f.ciudad.setCustomValidity(''); }
+    else if (c.length > 1) f.ciudad.setCustomValidity('Hay varios municipios con ese nombre: elija el suyo de la lista.');
+  });
   f.ciudad.addEventListener('input', function(){
     // Si la lista cargó, se exige elegir un municipio real.
     var ok = !MUNICIPIOS || !MUNICIPIOS.length || MUNICIPIOS.indexOf(f.ciudad.value) > -1;
@@ -923,7 +1035,10 @@ footer.nav{position:fixed; left:0; right:0; bottom:0; z-index:5; background:var(
       (e.correo ? 'Correo verificado en su política oficial.' + pol + (e.nota ? '<br>' + esc(e.nota) : '')
        : e.fuente ? esc(e.nota || 'Esta empresa no publica un correo para datos personales.') + pol + '<br>Puede seguir sin correo y luego usar <b>Copiar el texto</b>.'
        : 'No tenemos su correo. <a href="https://www.google.com/search?q=' + q + '" target="_blank" rel="noopener">Búsquelo en su política de datos</a> y escríbalo abajo.') + '</p>';
-    document.getElementById('manual').open = !e.correo && !e.fuente;
+    // Los campos quedan llenos pero ocultos; solo se muestran si hace falta escribir el correo.
+    manualBox.hidden = !!(e.correo || e.fuente);
+    manualBtn.textContent = 'Corregir los datos de la empresa';
+    hablar(e.correo ? VOZ.conCorreo : e.fuente ? VOZ.sinCorreo : VOZ.ruesSinCorreo);
     play(e.correo ? 'ding' : 'tick');
   }
   function rues(q, id){
@@ -960,9 +1075,16 @@ footer.nav{position:fixed; left:0; right:0; bottom:0; z-index:5; background:var(
   });
   f.empresa.addEventListener('input', function(){ empresaNit = ''; });
 
+  var manualBox = document.getElementById('manual'), manualBtn = document.getElementById('manualBtn');
+  manualBtn.addEventListener('click', function(){
+    manualBox.hidden = false; play('tick'); hablar(VOZ.manual);
+    (f.empresa.value ? f.correoEmpresa : f.empresa).focus();
+  });
+
   document.getElementById('otra').addEventListener('click', function(){
     f.empresa.value = ''; f.correoEmpresa.value = ''; f.correoEmpresa.required = true; empresaNit = '';
     elegida.hidden = true; buscar.value = ''; resultados.innerHTML = '';
+    manualBox.hidden = true; manualBtn.textContent = 'No la encuentro: escribir los datos a mano';
     go(RUTAS.carta.indexOf('empresa')); play('tick');
   });
 

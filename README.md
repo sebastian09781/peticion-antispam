@@ -32,7 +32,13 @@ Sigue el mismo camino que recomienda la SIC en su guía oficial (pregunta 9). Al
 1. **Sus datos** y 2. **La empresa** (los mismos de arriba).
 3. **Queja:** pregunta cuándo envió la carta y qué pasó, revisa si ya se venció el plazo y arma la queja dirigida a `contactenos@sic.gov.co` con el asunto que exige la SIC.
 
-Tiene tarjetas que se voltean y sonidos suaves, que se pueden apagar.
+Cada pantalla tiene **una sola acción principal**. Lo secundario (copiar el texto, ver la carta completa, las fuentes) queda en enlaces discretos o plegado. Tiene tarjetas que se voltean y sonidos suaves, que se pueden apagar.
+
+## 🎧 Guía por voz
+
+Con el botón **"Prefiero que una voz me guíe"** (o el botón **Voz** de arriba), una voz acompaña todo el recorrido. Explica cada pantalla, lee las tarjetas que se voltean y comenta cada caso: empresa con o sin correo, plazo vencido o no, qué adjuntar antes de enviar y el "¡Chao, spam!" final. Hay un botón para repetir.
+
+Usa la voz que ya trae el celular o el computador (Web Speech API), prefiriendo español de Colombia o de Latinoamérica. **Solo lee instrucciones fijas y fechas de plazos, nunca los datos de la persona.**
 
 ## 📚 Fuentes verificadas dentro de la página
 
