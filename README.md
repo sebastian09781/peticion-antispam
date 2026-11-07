@@ -39,9 +39,10 @@ Un paso por pantalla. **El botón grande de abajo siempre es la siguiente acció
 | 1. Sus derechos: pueden borrarlo, 15 días hábiles, horarios permitidos, multas | Siguiente → |
 | 2. Sus datos: nombre, documento, municipio (lista oficial del DANE) y correo | Siguiente → |
 | 3. ¿Cómo lo molestan?: llamadas, SMS, WhatsApp o correo, a qué número y si es cliente | Siguiente → |
-| 4. La empresa: buscador que llena la razón social y el correo de datos personales | **Ver mi carta** |
-| 5. Léala antes de enviarla: la carta con formato, editable | **Enviar por correo** |
-| 6. Agéndelo: la fecha límite, ya sin contar festivos | **Agregar al calendario** |
+| 4. La empresa: buscador que llena la razón social y el correo de datos personales | Siguiente → |
+| 5. Foto de su cédula: solo el frente; la marca de agua ("solo para hábeas data a [empresa] · fecha") se pone en el propio celular | **Ver mi carta** |
+| 6. Léala antes de enviarla: la carta con formato, editable | **Enviar por correo** |
+| 7. Agéndelo: la fecha límite, ya sin contar festivos | **Agregar al calendario** |
 | ¡Gracias! Compartir, bloquear el número en la CRC, escribir a otra empresa | **Terminar** |
 
 **B. Ya envié mi carta y no me respondieron**
@@ -49,7 +50,8 @@ Un paso por pantalla. **El botón grande de abajo siempre es la siguiente acció
 | Pantalla | Botón de abajo |
 |---|---|
 | Sus datos · ¿Cómo lo molestan? · La empresa | Siguiente → |
-| Cuéntenos qué pasó: fecha de envío, qué pasó y si ya venció el plazo | **Ver mi queja** |
+| Cuéntenos qué pasó: fecha de envío, qué pasó y si ya venció el plazo | Siguiente → |
+| Foto de su cédula, con marca de agua para la queja ante la SIC | **Ver mi queja** |
 | Léala antes de enviarla: dirigida a `contactenos@sic.gov.co` con el asunto que exige la SIC | **Enviar a la SIC** |
 | ¡Gracias! | **Terminar** |
 

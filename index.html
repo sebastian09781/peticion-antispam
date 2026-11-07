@@ -231,6 +231,11 @@ dialog.viewer::backdrop{background:rgba(23,32,43,.55)}
 .subhead{font-size:1.15rem; padding-top:16px; border-top:1px solid var(--line)}
 .attach{display:flex; gap:10px; align-items:center; background:var(--red-soft); border-radius:12px; padding:10px 14px; font-size:1rem}
 .attach .ico{color:var(--red); font-size:1.3rem}
+.idzona{display:grid; gap:12px; padding:14px; border:2px dashed var(--line); border-radius:16px; background:var(--surface)}
+.idejemplo{display:grid; justify-items:center; gap:6px; color:var(--blue); font-size:.9rem; font-weight:700}
+.idejemplo svg{width:150px; fill:var(--blue-soft); stroke:currentColor; stroke-width:3; stroke-linecap:round}
+#idPrev{max-width:100%; max-height:42vh; justify-self:center; border-radius:12px; box-shadow:0 12px 26px -16px rgba(0,0,0,.5); animation:rise .35s ease}
+.idmas{display:flex; justify-content:center; gap:18px; flex-wrap:wrap}
 .row2{display:flex; flex-direction:column; align-items:center; gap:2px; margin-top:-8px}
 details.peek{width:100%}
 details.peek summary{cursor:pointer; color:var(--blue); font-weight:700; font-size:.95rem; text-align:center; padding:8px; list-style:none; text-decoration:underline; text-underline-offset:4px}
@@ -439,7 +444,9 @@ footer.nav{position:fixed; left:0; right:0; bottom:0; z-index:10; background:var
   <symbol id="i-headset" viewBox="0 0 24 24"><path d="M4 14v-2a8 8 0 0 1 16 0v2"/><rect x="3" y="14" width="4" height="6" rx="1.5"/><rect x="17" y="14" width="4" height="6" rx="1.5"/></symbol>
   <symbol id="i-replay" viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 3-6.7L3 8M3 3v5h5"/></symbol>
   <symbol id="i-sound" viewBox="0 0 24 24"><path d="M4 9v6h4l5 4V5L8 9z"/><path d="M16 9a4 4 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11"/></symbol>
-  <symbol id="i-mute" viewBox="0 0 24 24"><path d="M4 9v6h4l5 4V5L8 9z"/><path d="M17 9l5 6M22 9l-5 6"/></symbol>
+  <symbol id="i-camera" viewBox="0 0 24 24"><path d="M3 8h4l2-3h6l2 3h4v12H3z"/><circle cx="12" cy="13.5" r="3.5"/></symbol>
+  <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></symbol>
+  <symbol id="i-mute"viewBox="0 0 24 24"><path d="M4 9v6h4l5 4V5L8 9z"/><path d="M17 9l5 6M22 9l-5 6"/></symbol>
 </svg>
 
 <header class="top">
@@ -572,6 +579,31 @@ footer.nav{position:fixed; left:0; right:0; bottom:0; z-index:10; background:var
     <p class="err" role="alert"></p>
   </section>
 
+  <!-- CÉDULA: la marca de agua se pone en el propio celular -->
+  <section class="step" data-id="cedula" style="--c:var(--blue);--cs:var(--blue-soft)" hidden>
+    <div class="qhead"><div class="badge"><svg class="ico"><use href="#i-camera"/></svg></div>
+      <div><p class="qnum">Su documento</p><h2 class="qtext">Foto de su cédula</h2></div></div>
+    <p>La empresa puede pedirle que demuestre que es usted. Basta con el <b>frente</b>.</p>
+    <div class="idzona">
+      <div class="idejemplo" id="idEjemplo" aria-hidden="true">
+        <svg viewBox="0 0 160 100"><rect x="4" y="4" width="152" height="92" rx="10"/><circle cx="40" cy="42" r="12"/><path d="M20 78a20 18 0 0 1 40 0"/><path d="M74 34h62M74 50h50M74 66h56"/></svg>
+        <span>Solo el frente · con buena luz</span>
+      </div>
+      <img id="idPrev" alt="Su cédula con la marca de agua" hidden>
+      <label class="cta main big" id="idTomar"><svg class="ico"><use href="#i-camera"/></svg>Tomar foto del frente
+        <input type="file" id="idCam" accept="image/*" capture="environment" hidden></label>
+      <a class="cta main big" id="idGuardar" href="#" download="cedula.jpg" hidden><svg class="ico"><use href="#i-download"/></svg>Guardar foto</a>
+      <div class="idmas">
+        <button class="linkbtn sm" type="button" id="idOtra" hidden>Tomar otra</button>
+        <button class="linkbtn sm" type="button" id="idGaleria">Elegir de la galería</button>
+        <input type="file" id="idGal" accept="image/*" hidden>
+      </div>
+    </div>
+    <p class="hint"><svg class="ico" style="color:var(--green)"><use href="#i-lock"/></svg>La foto no sale de su celular. Le ponemos una marca para que solo sirva para este trámite.</p>
+    <p class="status" id="idEstado" role="status"></p>
+    <button type="button" class="chipbtn" data-src="d1377"><svg class="ico"><use href="#i-scale"/></svg>Norma</button>
+  </section>
+
   <!-- CARTA -->
   <section class="step" data-id="carta" style="--c:var(--green);--cs:var(--green-soft)" hidden>
     <div class="qhead"><div class="badge"><svg class="ico"><use href="#i-doc"/></svg></div>
@@ -581,7 +613,7 @@ footer.nav{position:fixed; left:0; right:0; bottom:0; z-index:10; background:var
       <p class="hint"><svg class="ico" style="color:var(--blue)"><use href="#i-pencil"/></svg>Toque el texto para corregirlo.</p>
       <button class="iconcta sm" type="button" id="copiar" aria-label="Copiar el texto" title="Copiar el texto"><svg class="ico"><use href="#i-copy"/></svg></button>
     </div>
-    <p class="attach"><svg class="ico"><use href="#i-clip"/></svg>Al enviarla, adjunte una foto de su cédula</p>
+    <p class="attach"><svg class="ico"><use href="#i-clip"/></svg>Al enviarla, adjunte la foto de su cédula</p>
     <p class="status" id="estado" role="status"></p>
     <button type="button" class="chipbtn" data-src="lista:c748,res78138,art17,art15,circ,sic9"><svg class="ico"><use href="#i-scale"/></svg>Normas</button>
   </section>
@@ -688,6 +720,9 @@ footer.nav{position:fixed; left:0; right:0; bottom:0; z-index:10; background:var
       q:'El término máximo para atender el reclamo será de quince (15) días hábiles contados a partir del día siguiente a la fecha de su recibo. […] la cual en ningún caso podrá superar los ocho (8) días hábiles siguientes al vencimiento del primer término.' },
     art16: { t:'Ley 1581 de 2012, artículo 16 (requisito de procedibilidad)', url:L1581,
       q:'El Titular o causahabiente sólo podrá elevar queja ante la Superintendencia de Industria y Comercio una vez haya agotado el trámite de consulta o reclamo ante el Responsable del Tratamiento o Encargado del Tratamiento.' },
+    d1377: { t:'Decreto 1377 de 2013, artículo 20 (demostrar que es usted)', url:'https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=53646',
+      q:'Los derechos de los Titulares establecidos en la Ley, podrán ejercerse por las siguientes personas: 1. Por el Titular, quien deberá acreditar su identidad en forma suficiente por los distintos medios que le ponga a disposición el responsable.',
+      nota:'Por eso basta con el frente de la cédula: ahí están su nombre, su número y su foto. Si la empresa pide algo más, se lo puede enviar después.' },
     art23: { t:'Ley 1581 de 2012, artículo 23 (sanciones)', url:L1581,
       q:'Multas de carácter personal e institucional hasta por el equivalente de dos mil (2.000) salarios mínimos mensuales legales vigentes al momento de la imposición de la sanción.' },
     l2300: { t:'Ley 2300 de 2023 ("Dejen de fregar"), art. 3 y art. 5', url:'https://normograma.mintic.gov.co/mintic/compilacion/docs/ley_2300_2023.htm',
@@ -709,6 +744,7 @@ footer.nav{position:fixed; left:0; right:0; bottom:0; z-index:10; background:var
     '<h3>¿Qué es esto?</h3><p>Un servicio gratuito y de código abierto (licencia MIT) que le ayuda a hacer el trámite de forma fácil. No es asesoría jurídica y no tiene relación con la SIC ni con las empresas mencionadas. Lo creó <a href="https://sebastian-09781.blogspot.com/" target="_blank" rel="noopener author">Juan Sebastián Rodríguez Casas</a>.</p>' +
     '<h3>Sus datos no se guardan</h3><ul><li>Lo que usted escribe se queda en su celular o computador. No hay servidor propio, base de datos, cuentas, cookies ni analítica.</li>' +
     '<li>Al cerrar la pestaña, todo se borra. Nosotros nunca vemos su carta.</li>' +
+    '<li>La <b>foto de su cédula</b> se procesa en su propio celular: ahí se le pone la marca de agua y ahí se guarda. Nunca se sube a internet.</li>' +
     '<li>El correo sale desde <b>su propio correo</b>: usted decide si lo envía, a quién y cuándo.</li></ul>' +
     '<h3>Servicios externos que usa la página</h3><ul>' +
     '<li><b>datos.gov.co</b> (Gobierno de Colombia): recibe solo el nombre de la empresa que usted busca, y entrega la lista oficial de municipios.</li>' +
@@ -989,13 +1025,15 @@ footer.nav{position:fixed; left:0; right:0; bottom:0; z-index:10; background:var
     usted: 'Ahora, sus datos. La empresa necesita saber que usted es el dueño de la información. Escriba su nombre, su documento, su ciudad y su correo. Tranquilo: nada de esto se guarda.',
     molestan: 'Ahora cuéntenos cómo lo molestan. Toque si son llamadas, mensajes de texto, WhatsApp o correos, y escriba a qué número o correo le llegan. Por último, díganos si es o fue cliente de esa empresa.',
     empresa: '¿Qué empresa lo está llamando? Escriba el nombre con el que la conoce, por ejemplo Claro o Bancolombia, y toque la que aparezca en la lista. Si lo llamó un call center, escriba la marca que le ofrecían: esa empresa responde por quienes llaman a su nombre.',
-    conCorreo: 'Perfecto. Encontramos el correo oficial de esa empresa. Toque: Ver mi carta.',
+    conCorreo: 'Perfecto. Encontramos el correo oficial de esa empresa. Toque Siguiente.',
+    cedula: 'Ahora, una foto de su cédula. La empresa puede pedirle que demuestre que es usted. Tome una foto solo del frente, con buena luz. Le pondremos una marca para que solo sirva para este trámite. La foto no sale de su celular.',
+    cedulaLista: 'Listo, ya tiene la marca. Toque Guardar foto. Al enviar el correo, la adjunta desde su galería o sus descargas.',
     sinCorreo: 'Esta empresa no publica un correo para datos personales. Igual puede seguir. Al final, copie el texto y péguelo en el chat o formulario de la empresa.',
     ruesSinCorreo: 'Encontramos la empresa, pero no tenemos su correo. Búsquelo en la política de datos de su página web y escríbalo en el campo de correo.',
     manual: 'Escriba el nombre legal de la empresa y su correo para datos personales. Si no sabe dónde encontrarlo, toque: Cómo encuentro el correo.',
     carta: '¡Su carta está lista! Léala con calma. Si quiere cambiar algo, toque el texto. Cuando esté de acuerdo, toque el botón de abajo: Enviar por correo.',
     agenda: '¡Muy bien! Último paso. La empresa tiene plazo {fecha}. Toque el botón de abajo, Agregar al calendario, y ese día le recordaremos volver aquí si no cumplió.',
-    caso: 'Vamos con la queja ante la Superintendencia de Industria y Comercio. Díganos qué día envió su carta a la empresa y qué pasó. Yo le diré si ya puede presentar la queja. Luego toque: Ver mi queja.',
+    caso: 'Vamos con la queja ante la Superintendencia de Industria y Comercio. Díganos qué día envió su carta a la empresa y qué pasó. Yo le diré si ya puede presentar la queja. Luego toque Siguiente.',
     sic: 'Esta es su queja. Léala con calma. Cuando esté de acuerdo, toque el botón de abajo: Enviar a la SIC.',
     plazoNo: 'Todavía no se ha vencido el plazo de la empresa. Podrá presentar la queja a partir del {fecha}.',
     plazoOk: 'Muy bien: ya puede presentar la queja. Adjunte su carta, su cédula y las capturas que tenga, y toque Enviar queja a la SIC.',
@@ -1049,7 +1087,7 @@ footer.nav{position:fixed; left:0; right:0; bottom:0; z-index:10; background:var
 
   // ---------- Recorridos ----------
   // Un paso por pantalla. El botón grande de abajo siempre es la siguiente acción real.
-  var RUTAS = { carta:['inicio','derechos','usted','molestan','empresa','carta','agenda','gracias'], sic:['inicio','usted','molestan','empresa','caso','sic','gracias'] };
+  var RUTAS = { carta:['inicio','derechos','usted','molestan','empresa','cedula','carta','agenda','gracias'], sic:['inicio','usted','molestan','empresa','caso','cedula','sic','gracias'] };
   var ACCION = { carta:['i-send', 'Enviar por correo'], sic:['i-send', 'Enviar a la SIC'], agenda:['i-calendar', 'Agregar al calendario'], gracias:['i-check', 'Terminar'] };
   var modo = 'carta', pos = 0;
   var steps = {}; [].forEach.call(document.querySelectorAll('.step'), function(s){ steps[s.dataset.id] = s; });
@@ -1078,6 +1116,7 @@ footer.nav{position:fixed; left:0; right:0; bottom:0; z-index:10; background:var
     if (id === 'caso') pintarPlazo();
     if (id === 'sic') { pintarQueja(); queja.scrollTop = 0; }
     if (id === 'agenda') actualizarVence();
+    if (id === 'cedula' && idArchivo && idHecha !== textoMarca()) marcar(idArchivo); // cambió la empresa o el trámite: rehace la marca
     if (id === 'gracias') document.getElementById('gTexto').textContent = modo === 'sic'
       ? 'Su queja va camino a la Superintendencia de Industria y Comercio. Ellos le responderán al correo que escribió.'
       : 'Su carta va en camino. La empresa tiene plazo ' + fechaPlazo() + ' para responderle.';
@@ -1192,7 +1231,7 @@ footer.nav{position:fixed; left:0; right:0; bottom:0; z-index:10; background:var
 
   function enviarCarta(){
     lanzar(mailto(leer().correoEmpresa, carta.dataset.asunto, plano(carta)),
-      ['Una foto o PDF de su documento de identidad'], document.getElementById('estado'));
+      [adjuntoCedula()], document.getElementById('estado'));
   }
   document.getElementById('copiar').addEventListener('click', function(){
     copiar('Asunto: ' + carta.dataset.asunto + '\n\n' + plano(carta), document.getElementById('estado'),
@@ -1200,9 +1239,69 @@ footer.nav{position:fixed; left:0; right:0; bottom:0; z-index:10; background:var
   });
   function enviarSic(){
     lanzar(mailto('contactenos@sic.gov.co', ASUNTO_SIC, plano(queja)),
-      ['La carta que envió a la empresa', 'Su documento de identidad', 'Capturas de las llamadas o mensajes (si las tiene)'],
+      ['La carta que envió a la empresa', adjuntoCedula(), 'Capturas de las llamadas o mensajes (si las tiene)'],
       document.getElementById('estadoSic'));
   }
+
+  // ---------- Foto de la cédula ----------
+  // La marca de agua se dibuja aquí mismo (canvas): la foto nunca sale del celular ni se sube a ningún servidor.
+  var idCam = document.getElementById('idCam'), idGal = document.getElementById('idGal'), idPrev = document.getElementById('idPrev'),
+      idTomar = document.getElementById('idTomar'), idGuardar = document.getElementById('idGuardar'), idOtra = document.getElementById('idOtra'),
+      idEstado = document.getElementById('idEstado'), idEjemplo = document.getElementById('idEjemplo');
+  var idArchivo = null, idHecha = '', idUrl = '', idGuardada = false;
+  function adjuntoCedula(){ return idGuardada ? 'La foto de su cédula que guardó (con la marca de agua)' : 'Una foto del frente de su cédula'; }
+  function textoMarca(){
+    var emp = (leer().empresa || 'la empresa').toUpperCase(), hoy = new Date().toLocaleDateString('es-CO', { day:'2-digit', month:'2-digit', year:'numeric' });
+    return (modo === 'sic' ? 'SOLO PARA QUEJA ANTE LA SIC CONTRA ' : 'SOLO PARA SOLICITUD DE HÁBEAS DATA A ') + emp + ' · ' + hoy;
+  }
+  function dibujarMarca(g, w, h, txt){
+    var fs = Math.max(14, Math.round(Math.max(w, h) * 0.026)), diag = Math.hypot(w, h);
+    g.save(); g.translate(w / 2, h / 2); g.rotate(-28 * Math.PI / 180);
+    g.font = '700 ' + fs + 'px system-ui, Arial, sans-serif'; g.fillStyle = 'rgba(190,30,30,.4)'; g.textBaseline = 'middle';
+    var paso = g.measureText(txt + '      ').width;
+    for (var y = -diag / 2, fila = 0; y < diag / 2; y += fs * 3.4, fila++)
+      for (var x = -diag / 2 - (fila % 2) * paso / 2; x < diag / 2; x += paso) g.fillText(txt, x, y);
+    g.restore();
+    // Franja de abajo, siempre legible
+    var pie = txt + ' · NO VÁLIDA PARA OTRO FIN', pf = Math.round(fs * 0.8);
+    g.font = '700 ' + pf + 'px system-ui, Arial, sans-serif';
+    while (pf > 8 && g.measureText(pie).width > w * 0.94) { pf--; g.font = '700 ' + pf + 'px system-ui, Arial, sans-serif'; }
+    var bh = Math.round(pf * 2.4);
+    g.fillStyle = 'rgba(20,20,20,.88)'; g.fillRect(0, h - bh, w, bh);
+    g.fillStyle = '#fff'; g.textAlign = 'center'; g.fillText(pie, w / 2, h - bh / 2);
+  }
+  function marcar(file){
+    var src = URL.createObjectURL(file), img = new Image();
+    idEstado.textContent = 'Poniendo la marca…';
+    img.onload = function(){
+      URL.revokeObjectURL(src);
+      var k = Math.min(1, 1600 / Math.max(img.naturalWidth, img.naturalHeight)); // liviana para adjuntar
+      var w = Math.round(img.naturalWidth * k), h = Math.round(img.naturalHeight * k);
+      var cv = document.createElement('canvas'); cv.width = w; cv.height = h;
+      var g = cv.getContext('2d'); g.drawImage(img, 0, 0, w, h);
+      var txt = textoMarca(); dibujarMarca(g, w, h, txt);
+      cv.toBlob(function(b){
+        if (idUrl) URL.revokeObjectURL(idUrl);
+        idUrl = URL.createObjectURL(b); idHecha = txt; idGuardada = false;
+        var emp = (leer().empresa || 'empresa').normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 30);
+        idPrev.src = idUrl; idGuardar.href = idUrl; idGuardar.download = 'cedula-' + (modo === 'sic' ? 'queja-sic-' : 'habeas-data-') + emp + '.jpg';
+        idPrev.hidden = idGuardar.hidden = idOtra.hidden = false; idTomar.hidden = idEjemplo.hidden = true;
+        idEstado.textContent = 'Lista, con la marca. Guárdela para adjuntarla al correo (o mantenga presionada la foto).';
+        play('ding'); hablar(VOZ.cedulaLista);
+      }, 'image/jpeg', 0.85);
+    };
+    img.onerror = function(){ URL.revokeObjectURL(src); idEstado.textContent = 'No pudimos abrir esa imagen. Intente con otra foto.'; play('nope'); };
+    img.src = src;
+  }
+  function alElegir(e){ var file = e.target.files && e.target.files[0]; e.target.value = ''; if (file) { idArchivo = file; marcar(file); } }
+  idCam.addEventListener('change', alElegir); idGal.addEventListener('change', alElegir);
+  idOtra.addEventListener('click', function(){ idCam.click(); });
+  document.getElementById('idGaleria').addEventListener('click', function(){ idGal.click(); });
+  idGuardar.addEventListener('click', function(){
+    idGuardada = true; play('copy');
+    idEstado.textContent = '✓ Guardada. Al enviar el correo, adjúntela desde su galería o sus descargas.';
+  });
+  window.__test.dibujarMarca = dibujarMarca;
   document.getElementById('copiarSic').addEventListener('click', function(){
     copiar(plano(queja), document.getElementById('estadoSic'), '✓ Copiado con formato. Péguelo en el formulario de la SIC.', queja.innerHTML);
   });
