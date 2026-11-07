@@ -692,7 +692,7 @@ footer.nav{position:fixed; left:0; right:0; bottom:0; z-index:5; background:var(
     elegida.innerHTML = '<svg class="ico"><use href="#' + (e.correo ? 'i-check' : 'i-alert') + '"/></svg><p><b>' + esc(e.razon_social) + '</b>' +
       (e.nit ? ' · NIT ' + esc(e.nit) : '') + '<br>' +
       (e.correo ? 'Correo: <b>' + esc(e.correo) + '</b>' + pol
-       : e.fuente ? 'Esta empresa <b>no publica un correo</b> para datos personales.' + pol + '<br>' + esc(e.nota || '') +
+       : e.fuente ? (esc(e.nota || '') || 'Esta empresa no publica un correo para datos personales.') + pol +
                     '<br><small>Si no tiene correo, en el paso siguiente use <b>Copiar el texto</b> y péguelo en el canal de la empresa.</small>'
        : 'No tenemos su correo. <a href="https://www.google.com/search?q=' + q + '" target="_blank" rel="noopener">Búsquelo en su política de datos</a> y escríbalo abajo.') +
       (e.correo && e.nota ? '<br><small>' + esc(e.nota) + '</small>' : '') + '</p>';
