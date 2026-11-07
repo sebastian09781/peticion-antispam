@@ -36,17 +36,18 @@ Un paso por pantalla. **El botón grande de abajo siempre es la siguiente acció
 | Pantalla | Botón de abajo |
 |---|---|
 | 1. Sus derechos: pueden borrarlo, 15 días hábiles, horarios permitidos, multas | Siguiente → |
-| 2. Sus datos: nombre, documento, municipio (lista oficial del DANE) y cómo lo contactan | Siguiente → |
-| 3. La empresa: buscador que llena la razón social y el correo de datos personales | **Ver mi carta** |
-| 4. Léala antes de enviarla: la carta con formato, editable | **Enviar por correo** |
-| 5. Agéndelo: la fecha límite, ya sin contar festivos | **Agregar al calendario** |
+| 2. Sus datos: nombre, documento, municipio (lista oficial del DANE) y correo | Siguiente → |
+| 3. ¿Cómo lo molestan?: llamadas, SMS, WhatsApp o correo, a qué número y si es cliente | Siguiente → |
+| 4. La empresa: buscador que llena la razón social y el correo de datos personales | **Ver mi carta** |
+| 5. Léala antes de enviarla: la carta con formato, editable | **Enviar por correo** |
+| 6. Agéndelo: la fecha límite, ya sin contar festivos | **Agregar al calendario** |
 | ¡Gracias! Compartir, bloquear el número en la CRC, escribir a otra empresa | **Terminar** |
 
 **B. Ya envié mi carta y no me respondieron**
 
 | Pantalla | Botón de abajo |
 |---|---|
-| Sus datos · La empresa | Siguiente → |
+| Sus datos · ¿Cómo lo molestan? · La empresa | Siguiente → |
 | Cuéntenos qué pasó: fecha de envío, qué pasó y si ya venció el plazo | **Ver mi queja** |
 | Léala antes de enviarla: dirigida a `contactenos@sic.gov.co` con el asunto que exige la SIC | **Enviar a la SIC** |
 | ¡Gracias! | **Terminar** |
@@ -86,7 +87,7 @@ Fuentes revisadas el 7 de noviembre de 2026. Las citas se comprobaron textualmen
 
 ## 🏢 Directorio de empresas
 
-[`empresas.js`](empresas.js) reúne las empresas que más llaman. Para cada una registra su razón social, su NIT y el correo de datos personales, **verificado en su política oficial** (con enlace). Si la empresa no publica un correo, lo dice. Para cualquier otra empresa, el buscador consulta el RUES.
+[`empresas.js`](empresas.js) reúne 23 de las empresas que más llaman, según las quejas ante la CRC y las sanciones de la SIC de 2023 a 2025. Para cada una registra su razón social, su NIT y el correo de datos personales, **verificado en su política oficial** (con enlace). Si la empresa no publica un correo, lo dice. Para cualquier otra empresa, el buscador consulta el RUES.
 
 ¿Falta una empresa o cambió un correo? Abra un *issue* o un *pull request* con el enlace a la política oficial.
 

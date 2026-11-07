@@ -8,7 +8,7 @@ window.EMPRESAS = [
     nota: 'También recibe reclamos en la línea *611 y en el formulario web de claro.com.co.' },
   { marca: 'Movistar', razon_social: 'Colombia Telecomunicaciones S.A. E.S.P. BIC', nit: '830.122.566-1', correo: null,
     fuente: 'https://descubre.movistar.co/atencion-cliente/politicas-de-privacidad/politica.html',
-    nota: 'Su política indica radicar la solicitud con el enlace "Radicar PQR" de movistar.co. Copie la carta y péguela allí.' },
+    nota: 'Su política indica radicar la solicitud con el enlace "Radicar PQR" de movistar.co. Copie la carta y péguela allí. Si ahora le llega como Tigo, es la misma empresa.' },
   { marca: 'Tigo', razon_social: 'Colombia Móvil S.A. E.S.P.', nit: '830.114.921-1', correo: null,
     fuente: 'https://assets.tigocloud.net/j1bxozgharz5/6MW3dWFqogVDjbXjMjNMCm/f6adcfbf29ed0a4e4615a400e627cde6/politica-proteccion-datos-personales-_22.pdf',
     nota: 'No publica correo de datos personales. Canales: atención al cliente en tigo.com.co, línea 018000 42 22 22 u oficinas. Para servicios fijos la empresa es UNE EPM Telecomunicaciones S.A.' },
@@ -50,6 +50,16 @@ window.EMPRESAS = [
   { marca: 'Tuya', razon_social: 'Compañía de Financiamiento Tuya S.A.', nit: null, correo: null,
     fuente: 'https://www.tuya.com.co/proteccion-de-datos-personales',
     nota: 'No publica correo para clientes. Canales: formulario "Contáctanos" o chat en tuya.com.co y línea 01 8000 97 8888.' },
+  { marca: 'Banco Serfinanza', razon_social: 'Banco Serfinanza S.A.', nit: null, correo: 'protecciondedatos@bancoserfinanza.com',
+    fuente: 'https://bancoserfinanza.com/wp-content/uploads/2025/03/Ley-Habeas-Data-vf.pdf',
+    nota: 'También atiende en el celular 323 599 7000 y en sus líneas de atención.' },
+  { marca: 'Finsocial', razon_social: 'Finsocial S.A.S.', nit: '900.516.574-6', correo: 'servicioalcliente@finsocial.co',
+    fuente: 'https://www.finsocial.co/politica-de-datos', nota: 'También atiende en la línea (605) 385 0757.' },
+
+  // --- Salud ---
+  { marca: 'Emermédica', razon_social: 'Emermédica S.A.', nit: '800.126.785-7', correo: 'servicioalcliente@emermedica.com.co',
+    fuente: 'https://www.emermedica.com.co/wp-content/uploads/2026/06/DE-OD-016.V4.POLITICA-LOCAL-DE-PRIVACIDAD-DE-DATOS_2026.pdf',
+    nota: 'También atiende en la línea (601) 307 7089.' },
 
   // --- Cobranzas ---
   { marca: 'Covinoc', razon_social: 'Covinoc S.A.', nit: null, correo: 'atencion.cliente@covinoc.com',

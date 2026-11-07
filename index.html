@@ -521,7 +521,13 @@ footer.nav{position:fixed; left:0; right:0; bottom:0; z-index:10; background:var
       </div>
       <label class="field">Su correo<input name="correo" type="email" required autocomplete="email"></label>
     </div>
-    <h3 class="subhead">¿Cómo lo molestan?</h3>
+    <p class="err" role="alert"></p>
+  </section>
+
+  <!-- CÓMO LO MOLESTAN -->
+  <section class="step" data-id="molestan" style="--c:var(--red);--cs:var(--red-soft)" hidden>
+    <div class="qhead"><div class="badge"><svg class="ico"><use href="#i-phone"/></svg></div>
+      <div><p class="qnum">Las llamadas</p><h2 class="qtext">¿Cómo lo molestan?</h2></div></div>
     <div class="group"><b>Por dónde</b>
       <div class="pills">
         <label class="pill" style="--c:var(--red);--cs:var(--red-soft)"><input type="checkbox" name="canal" value="llamadas" checked><svg class="ico"><use href="#i-phone"/></svg>Llamadas</label>
@@ -977,7 +983,8 @@ footer.nav{position:fixed; left:0; right:0; bottom:0; z-index:10; background:var
   var VOZ = {
     inicio: 'Hola. Soy su guía. Le voy a ayudar a pedirle a una empresa que borre su número y deje de llamarlo. Es gratis y toma unos cinco minutos. Toque el botón azul: Empezar mi carta.',
     derechos: 'Primero, sus derechos. Usted puede pedir que lo borren. La empresa debe responderle en quince días hábiles. Solo pueden llamarlo en ciertos horarios. Y si no cumplen, la Superintendencia de Industria y Comercio puede multarlos. Toque cada tarjeta para saber más. Cuando termine, toque Siguiente, abajo a la derecha.',
-    usted: 'Ahora, sus datos. La empresa necesita saber que usted es el dueño de la información. Escriba su nombre, su documento, su ciudad y su correo. Después marque por dónde lo molestan. Tranquilo: nada de esto se guarda.',
+    usted: 'Ahora, sus datos. La empresa necesita saber que usted es el dueño de la información. Escriba su nombre, su documento, su ciudad y su correo. Tranquilo: nada de esto se guarda.',
+    molestan: 'Ahora cuéntenos cómo lo molestan. Toque si son llamadas, mensajes de texto, WhatsApp o correos, y escriba a qué número o correo le llegan. Por último, díganos si es o fue cliente de esa empresa.',
     empresa: '¿Qué empresa lo está llamando? Escriba el nombre con el que la conoce, por ejemplo Claro o Bancolombia, y toque la que aparezca en la lista. Si lo llamó un call center, escriba la marca que le ofrecían: esa empresa responde por quienes llaman a su nombre.',
     conCorreo: 'Perfecto. Encontramos el correo oficial de esa empresa. Toque: Ver mi carta.',
     sinCorreo: 'Esta empresa no publica un correo para datos personales. Igual puede seguir. Al final, copie el texto y péguelo en el chat o formulario de la empresa.',
@@ -1039,7 +1046,7 @@ footer.nav{position:fixed; left:0; right:0; bottom:0; z-index:10; background:var
 
   // ---------- Recorridos ----------
   // Un paso por pantalla. El botón grande de abajo siempre es la siguiente acción real.
-  var RUTAS = { carta:['inicio','derechos','usted','empresa','carta','agenda','gracias'], sic:['inicio','usted','empresa','caso','sic','gracias'] };
+  var RUTAS = { carta:['inicio','derechos','usted','molestan','empresa','carta','agenda','gracias'], sic:['inicio','usted','molestan','empresa','caso','sic','gracias'] };
   var ACCION = { carta:['i-send', 'Enviar por correo'], sic:['i-send', 'Enviar a la SIC'], agenda:['i-calendar', 'Agregar al calendario'], gracias:['i-check', 'Terminar'] };
   var modo = 'carta', pos = 0;
   var steps = {}; [].forEach.call(document.querySelectorAll('.step'), function(s){ steps[s.dataset.id] = s; });
